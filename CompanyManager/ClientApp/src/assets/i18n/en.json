@@ -1,0 +1,62 @@
+{
+  "common": {
+    "title": "My Jira",
+    "email": "Email",
+    "password": "Password",
+    "confirmpassword": "Confirm password",
+    "loading": "Loading...",
+    "nick": "Nick"
+  },
+
+
+  "auth": {
+    "motto": "Manage the tasks the simple and easy way with kanban app",
+    "formisinvalid": "Form is invalid!",
+    "pleaseprovidevalidemail": "Pleas provide valid email",
+    "passwordshouldheaveCharacters": "Password should have at least 8 characters",
+    "passwordisrequired": "Password is required.",
+    "passwordconfirmisrequired": "Password confirm is required.",
+    "passwordsdonotmetch": "Passwords do not match,",
+
+
+    "login": {
+      "welcomeback": "Welcome back!",
+      "signintoyouraccount": "Log in",
+      "login": "Login",
+      "donthaveaccount": "Don't heave account?",
+      "registernow": "Register Now",
+      "forgotpassword": "Forgot password?"
+    },
+    "register": {
+      "register": "Register",
+      "getstarted": "Get Started!",
+      "createnewaccount": "Create a new account",
+      "nickisrequired": "Nickname is required.",
+      "nickistolong": "Nickname has max 25 characters.",
+      "confirmpassword": "Confirm password",
+      "signin": "Sign in",
+      "haveaccount": "Have an account?",
+      "checkyouremailbox": "Check your mailbox.We send you a email to verify!"
+    },
+    "emailconfirm": {
+      "emailsuccessfullyconfirm": "Your email has been successfully confirmed. Please log now.",
+      "tryagain": "Try again."
+    },
+    "forgotpassword": {
+      "passwordreset": "Password reset!",
+      "resetyourpassword": "Reset your password",
+      "sendemail":  "Send email"
+    },
+    "resetpassword": {
+      "changeyourpassword": "Change Your Password!",
+      "newpassword": "New password",
+      "changepassword": "Change Password",
+      "confirmnewpassword": "Confirm new password",
+      "passwordwaschange": "Password was change!",
+      "passwordwasnotchange":  "Password was not change!"
+    },
+    "privacy": {
+
+    }
+  }
+}

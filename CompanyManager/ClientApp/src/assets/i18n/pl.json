@@ -1,0 +1,61 @@
+{
+  "common": {
+    "title": "Moja Jira",
+    "email": "Email",
+    "password": "Hasło",
+    "confirmpassword":  "Powtórz hasło",
+    "loading": "Ładuję dane...",
+    "nick": "Nazwa użytkownika"
+  },
+
+
+  "auth": {
+    "motto": "Zarządzaj zadaniami w prosty i łatwy sposób dzięki aplikacji Moja Jira",
+    "formisinvalid": "Formularz zawiera błędy!",
+    "pleaseprovidevalidemail": "Proszę wprowadzić poprawny adres email",
+    "passwordshouldheaveCharacters": "Hasło powinno składać sie z conajmniej 8 znaków",
+    "passwordisrequired": "Haslo jest wymagane.",
+    "passwordconfirmisrequired": "Powtórzenie hasła jest wymagane.",
+    "passwordsdonotmetch": "Hasła różnią się od siebie,",
+
+    "login": {
+      "welcomeback": "Witaj spowrotem!",
+      "signintoyouraccount": "Logowanie",
+      "login": "Zaloguj się",
+      "donthaveaccount": "Nie masz jeszcze konta?",
+      "registernow": "Zarejestruj się teraz",
+      "forgotpassword": "Zapomniałeś hasła?"
+    },
+    "register": {
+      "register": "Zarejestruj się",
+      "getstarted": "Zaczynamy!",
+      "createnewaccount": "Utwórz nowe konto",
+      "nickisrequired": "Nazwa użytkownika jest wymagana.",
+      "nickistolong": "Nazwa użytkownika może składać się maksymalnie z 25 znaków.",
+      "confirmpassword": "Powtórz hasło",
+      "signin": "Logowanie",
+      "haveaccount": "Masz już konto?",
+      "checkyouremailbox": "Sprawdź swoją skrzynke emailową. Właśnie wyslaliśmy link do weryfikacji!"
+    },
+    "emailconfirm": {
+      "emailsuccessfullyconfirm": "Twój adres email został potwierdzony. Możesz sę teraz zalogować.",
+      "tryagain":  "Spróbuj ponownie."
+    },
+    "forgotpassword": {
+      "passwordreset": "Reset hasła!",
+      "resetyourpassword": "Zmień swoje hasło",
+      "sendemail": "Wyślij email"
+    },
+    "resetpassword": {
+      "changeyourpassword": "Zmień swoje hasło!",
+      "newpassword": "Nowe hasło",
+      "changepassword": "Zmień hasło",
+      "confirmnewpassword": "Potwierdź nowe hasło",
+      "passwordwaschange": "Hasło zostało zmienione!",
+      "passwordwasnotchange": "Hasła nie udało się zmienić!"
+    },
+    "privacy": {
+
+    }
+  }
+}
