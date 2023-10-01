@@ -1,0 +1,13 @@
+<div class="toast-wrapper"
+     [ngClass]="{
+    show: show$ | async,
+    informative: (type$ | async) === 'confirm'
+  }">
+  <img class="icon" [src]="'../../../assets/exclamation-circle.svg'"
+       alt="exclamation mark" />
+    
+
+  <div class="text-wrapper">
+    <p>{{ message$ | async }}</p>
+  </div>
+</div>

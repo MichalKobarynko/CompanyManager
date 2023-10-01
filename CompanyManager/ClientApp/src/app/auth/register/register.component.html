@@ -1,0 +1,113 @@
+<div class="wrapper">
+  <div class="title-text">
+    <div class="title">{{ 'auth.register.getstarted' | translate }}</div>
+    <span class="description">{{ 'auth.register.createnewaccount' | translate }}</span>
+  </div>
+
+  <div class="form-container">
+    <div class="form-inner">
+      <form class="form"
+            [formGroup]="registerForm"
+            (ngSubmit)="onSubmit(registerForm.value)">
+
+        <span class="form-error"
+              *ngIf="status === 'error'"
+              [innerHTML]="errorMessage">
+        </span>
+
+        <div class="field">
+          <input class="form-input"
+                 type="email"
+                 id="email"
+                 name="email"
+                 placeholder="{{ 'common.email' | translate }}"
+                 autocomplete="off"
+                 [ngClass]="{
+                    error: formControls.email.invalid && formControls.email.touched
+                  }"
+                 formControlName="email" />
+          <span class="input-invalid-message"
+                *ngIf="formControls.email.invalid && formControls.email.touched">
+            {{ 'auth.pleaseprovidevalidemail' | translate }}
+          </span>
+        </div>
+        <div class="field">
+          <input class="form-input"
+                 type="text"
+                 placeholder="{{ 'common.nick' | translate }}"
+                 id="username"
+                 formControlName="username"
+                 autocomplete="off"
+                 [ngClass]="{
+                    error: formControls.username.invalid && formControls.username.touched
+                  }"
+                 required />
+          <span class="input-invalid-message"
+                *ngIf="nicknameLength === 0 && formControls.username.touched">
+            {{ 'auth.register.nickisrequired' | translate }}
+          </span>
+          <span class="form-invalid-message"
+                *ngIf="formControls.username.invalid && nicknameLength !== 0 && formControls.username.touched">
+            {{ 'auth.register.nickistolong' | translate }}
+          </span>
+        </div>
+        <div class="field">
+          <input class="form-input"
+                 type="password"
+                 id="password"
+                 placeholder="{{ 'common.password' | translate }}"
+                 formControlName="password"
+                 autocomplete="off"
+                 [ngClass]="{
+                  error: formControls.password.invalid && formControls.password.touched
+                }" />
+          <span class="input-invalid-message"
+                *ngIf="formControls.password.invalid && formControls.password.touched && passwordLength !== 0">
+            {{ 'auth.passwordshouldheaveCharacters' | translate }}
+          </span>
+          <span class="input-invalid-message"
+                *ngIf="passwordLength === 0 && formControls.password.touched">
+            {{ 'auth.passwordisrequired' | translate }}
+          </span>
+        </div>
+
+        <div class="field">
+          <input class="form-input"
+                 type="password"
+                 placeholder="{{ 'common.confirmpassword' | translate }}"
+                 id="confirm-password"
+                 formControlName="confirmPassword"
+                 autocomplete="off"
+                 [ngClass]="{
+                  error:
+                    formControls.confirmPassword.invalid && formControls.confirmPassword.touched
+                  }" />
+          <span class="input-invalid-message"
+                *ngIf="confirmPasswordLength === 0 && formControls.confirmPassword.touched">
+            {{ 'auth.passwordconfirmisrequired' | translate }}
+          </span>
+          <span class="input-invalid-message"
+                *ngIf="formControls.confirmPassword.touched && formControls.confirmPassword.errors?.['passwordMismatch']">
+            {{ 'auth.passwordsdonotmetch' | translate }}
+          </span>
+        </div>
+
+        <div class="btn-wrapper" style="margin-top: 1rem;">
+          <button class="btn btn-primary w-100" type="submit">
+            {{ 'auth.register.register' | translate }}
+          </button>
+        </div>
+
+        <div class="signup-link link-acent" style="display:flex">
+          <p style="margin-right:0.5rem;">{{ 'auth.register.haveaccount' | translate }}</p>
+          <a [routerLink]="'/auth/login'">{{ 'auth.register.signin' | translate }}</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    
+
