@@ -1,25 +1,33 @@
-$success-100: #117865;
+$success: #117865;
 $success-50: #CAEAD8;
 
-$primary-100: #1da1f2;
-$primary-50: #EFF6FC;
+$primary: #1da1f2;
+$primary-50: #D1E4FC;
 
-$acent-100: #4267b2;
+$acent: #4267b2;
 $acent-50: #6489c4;
 
-$warning-100: #F2C811;
-$warning-50: #FEFDF5;
+$warning: #F2C811;
+$warning-50: #FEF8D5;
 
-$danger-100: #de4545;
+$danger: #de4545;
 $danger-50: #ff6767;
 
-$dark-100: #444444;
+$dark: #444444;
 $dark-50: #666666;
 
-$secondary-100: #E1E1E1;
+$secondary: #E1E1E1;
 $secondary-50: #F2F2F2;
 
 
 $white: #fff;
 
+$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
+$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
+$gradient-acent: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
+$shadow-10: 0 .25rem 1rem rgba(0, 0, 0, 0.15);
+$shadow-20: 0 .75rem 1.25rem rgba(0, 0, 0, 0.2);
 
+h1 {
+    background-color: $warning-50;
+}
