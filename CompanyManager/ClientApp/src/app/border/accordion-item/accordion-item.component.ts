@@ -4,6 +4,7 @@ import { Observable, map, tap } from 'rxjs';
 import { BoardService } from '../../services/board.service';
 import { FormService } from '../../services/form.service';
 import { Board } from '../../models/board.model';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-accordion-item',
@@ -18,6 +19,7 @@ export class AccordionItemComponent {
 
   constructor(
     private boardService: BoardService,
+    private localStorageService: LocalStorageService,
     //private navigationService: NavigationService,
     private formService: FormService,
     //private supabase: SupabaseService
@@ -33,9 +35,7 @@ export class AccordionItemComponent {
       )
     );
 
-    //this.loggedInUserId$ = this.supabase.getSessionObs.pipe(
-    //  map(session => session?.user.id ?? '')
-    //);
+    this.loggedInUserId$ = this.localStorageService.getUserID();
   }
 
   onForm() {

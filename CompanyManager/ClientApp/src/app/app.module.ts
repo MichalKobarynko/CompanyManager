@@ -29,6 +29,7 @@ import { TranslateICUParser } from "ngx-translate-parser-plural-select";
 import { LanguageToggleButtonmodule } from './border/language-toggle-button/language-toggle-button.module';
 import { LoadingSpinnerModule } from './border/loading-spinner/loading-spinner.module';
 import { LoadingSpinnerService } from './services/loading-spinner.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -77,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastService,
     FormService,
     LoadingSpinnerService,
+    LocalStorageService,
     ContextMenuModalService,
     {
       provide: HTTP_INTERCEPTORS,

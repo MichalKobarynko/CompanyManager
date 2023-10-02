@@ -9,6 +9,7 @@ import { AuthRestService } from '../../api/services/auth.service';
 import { FormStatus } from '../../models/types';
 import { LoadingSpinnerService } from '../../services/loading-spinner.service';
 import { ToastService } from '../../services/toast.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent {
     private authRestService: AuthRestService,
     private translateService: TranslateService,
     private loadingSpinnerService: LoadingSpinnerService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private localStorageService: LocalStorageService
   ) {
    this. loginForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -69,7 +71,7 @@ export class LoginComponent {
           this.status = FormStatus.OK;
           this.loadingSpinnerService.setSpinnerState(this.status);
 
-          localStorage.setItem("token", res.token);
+          this.localStorageService.setClaims(res.token);
           this.router.navigate(['/']);
         },
         error: (err: HttpErrorResponse) => {

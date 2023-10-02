@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Project } from '../../models/project.model';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-collapse-button',
@@ -23,13 +24,11 @@ export class CollapseButtonComponent {
   loggedInUserId$: Observable<string> | null = null;
 
   constructor(
-    //private supabase: SupabaseService
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
-    //this.loggedInUserId$ = this.supabase.getSessionObs.pipe(
-    //  map(session => session?.user.id ?? '')
-    //);
+    this.loggedInUserId$ = this.localStorageService.getUserID();
   }
 
   toggleShowContent() {
