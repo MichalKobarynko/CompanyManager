@@ -82,3 +82,11 @@
     }
   }
 }
+
+$widths: 25, 50, 75, 100;
+
+@each $i in $widths {
+  .w-#{$i} {
+    width: $i * 1%;
+  }
+}

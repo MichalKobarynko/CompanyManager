@@ -1,14 +1,19 @@
-<div class="collapse-wrapper">
-  <button type="button" class="collapse-button" (click)="toggleShowContent()">
+<div class="collapse-btn-wrapper">
+  <button type="button"
+          class="collapse-btn__btn "
+          (click)="toggleShowContent()">
+
     <img [@rotateState]="!showContent ? 'default' : 'rotated'"
          class="collapse-button-image"
          src="../../../assets/arrow-down-short.svg"
          alt="" />
     <h3 class="collapse-button-title">{{ project.title }}</h3>
   </button>
+
   <app-context-menu *ngIf="(loggedInUserId$ | async) === project.userId"
                     [id]="project.id"
                     [type]="'project'"
                     [editingProject]="project"></app-context-menu>
 </div>
+
 <p *ngIf="project === undefined">No projects</p>

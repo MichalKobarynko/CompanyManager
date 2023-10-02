@@ -20,13 +20,13 @@
     <div class="board-button-wrapper">
       <button *ngIf="status === 'ok'"
               type="button"
-              class="button-global button"
+              class="btn btn-primary w-100"
               (click)="onForm('project')">
         Add project
       </button>
-
     </div>
   </aside>
+
   <div class="board-details-wrapper">
     <!--<app-board-details *ngIf="status === 'ok'">
       <app-mobile-navigation></app-mobile-navigation>
@@ -40,11 +40,5 @@
       <h2>Something went wrong! Try later!</h2>
     </div>
   </div>
-
-
-
-
-
-
 </main>
 

@@ -1,24 +1,41 @@
 .board-sidebar {
   display: flex;
+  overflow: auto;
   flex-direction: column;
-  height: 100vh;
+  justify-content: space-between;
+  min-height: 100vh;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   background-color: $light;
   width: 22.5rem;
+  padding: 0.5rem;
+  background-color: yellow;
 
   .logo-container {
-    padding: 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .accordion-wrapper {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-self: stretch;
+    height: 100%;
+    align-self: start;
+    flex-direction: column;
+    justify-content: start;
+    background-color: red;
   }
 }
 
 
 
 
-.accordion-body {
+
+
+/*.accordion-body {
   list-style-type: none;
   overflow: hidden;
 }
@@ -30,3 +47,4 @@
 .warning-message {
   color: $danger;
 }
+*/

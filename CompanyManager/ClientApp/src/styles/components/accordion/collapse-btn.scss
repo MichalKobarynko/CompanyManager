@@ -1,0 +1,28 @@
+.collapse-btn-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .collapse-btn__btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    letter-spacing: 1px;
+    margin: 0.1rem 0;
+
+    .collapse-button-image {
+      width: 1.5rem;
+      background-color: $primary;
+      border-radius: 50%;
+    }
+
+    .collapse-button-title {
+      font-weight: 400;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+  }
+}
