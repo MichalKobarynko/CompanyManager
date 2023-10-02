@@ -4,23 +4,25 @@ app-language-toggle-button {
 }
 
 .toggle-button {
-  margin: 0.5rem 1rem 0.5rem 0.5rem;
-
+  margin: 0.5rem;
+  display: flex;
+  justify-content: end;
 
   .checkbox {
     opacity: 0;
     position: absolute;
     box-shadow: $shadow-20;
+    box-shadow: 0 0 0 0.1rem rgba($primary, 0.5);
 
     &:checked + .checkbox-label .ball {
-      transform: translateX(2.25rem);
+      transform: translateX(1.2rem);
     }
   }
 
   .checkbox-label {
     background-color: $secondary-light;
-    width: 5rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 2rem;
     border-radius: 50px;
     position: relative;
     padding: 5px;
@@ -29,24 +31,29 @@ app-language-toggle-button {
     justify-content: space-between;
     align-items: center;
     color: $acent;
+    transition: box-shadow 0.2s;
 
-    .ball {
-      background-color: $primary;
-      width: 2.25rem;
-      height: 2.25rem;
-      position: absolute;
-      border-radius: 50%;
-      transition: transform 0.2s linear;
-      color: $acent;
+    &:hover {
+      box-shadow: 0 0 0 0.1rem rgba($dark, 0.5);
 
-      &:hover {
-        box-shadow: 0 0 0 0.25rem rgba($primary, 0.5);
+      .ball {
+        box-shadow: 0 0 0 0.1rem rgba($light, 0.5);
       }
     }
 
+    .ball {
+      background-color: $primary;
+      width: 1.7rem;
+      height: 1.7rem;
+      position: absolute;
+      border-radius: 50%;
+      transition: transform 0.2s linear, box-shadow 0.2s;
+      color: $acent;
+    }
+
     .shortcut {
-      font-size: 1.2rem;
-      padding: 0.5rem;
+      font-size: 0.75rem;
+      padding: 0.1rem;
       color: $light;
     }
   }

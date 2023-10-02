@@ -13,6 +13,8 @@ import { TranslateModule } from "@ngx-translate/core";
 import { LanguageToggleButtonComponent } from "./language-toggle-button/language-toggle-button.component";
 import { LoadingSpinnerModule } from "./loading-spinner/loading-spinner.module";
 import { ControlValidationModule } from "../ui/control-validation/control-validation.module";
+import { AccordionModule } from "./accordion/accordion.module";
+import { BoardService } from "../services/board.service";
 
 @NgModule({
   declarations: [BorderComponent],
@@ -24,10 +26,11 @@ import { ControlValidationModule } from "../ui/control-validation/control-valida
     RouterModule,
     LanguageToggleButtonmodule,
     LoadingSpinnerModule,
+    AccordionModule,
     TranslateModule
   ],
   providers: [
-    
+    BoardService
   ]
 })
 export class BorderModule {

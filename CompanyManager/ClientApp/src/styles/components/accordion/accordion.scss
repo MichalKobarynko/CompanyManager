@@ -1,0 +1,32 @@
+.board-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background-color: $light;
+  width: 22.5rem;
+
+  .logo-container {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+
+
+.accordion-body {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.accordion-wrapper {
+  height: 100%;
+}
+
+.warning-message {
+  color: $danger;
+}
