@@ -24,6 +24,16 @@
               (click)="onForm()">
         Add board
       </button>
+
+      
+      <app-context-menu *ngIf="(loggedInUserId$ | async) === project.userId"
+                        [id]="project.id"
+                        [type]="'project'"
+                        [editingProject]="project"
+                        class="w-50">
+
+      </app-context-menu>
+
     </li>
   </ul>
 </div>

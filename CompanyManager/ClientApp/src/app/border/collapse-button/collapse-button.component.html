@@ -10,14 +10,10 @@
     <div class="collapse-button-title">
       {{ project.title }}
     </div>
-    
+
 
   </button>
-
-  <app-context-menu *ngIf="(loggedInUserId$ | async) === project.userId"
-                    [id]="project.id"
-                    [type]="'project'"
-                    [editingProject]="project"></app-context-menu>
+  
 </div>
 
 <p *ngIf="project === undefined">No projects</p>

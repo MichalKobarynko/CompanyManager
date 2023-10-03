@@ -1,0 +1,114 @@
+.context-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.context-menu-container {
+  position: relative;
+
+
+  .context-menu-body {
+    z-index: 200;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    min-width: 100vw;
+    background-color: $secondary-light;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+    transform: translate(0, 100%);
+    box-shadow: 0 0 1rem $dark;
+    transition-property: all;
+    transition-duration: 0.2s;
+    border-radius: 0.5rem;
+
+    button {
+        width: 10rem;
+    }
+
+    &.show {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+@media(min-width: 42rem) {
+
+  .context-menu-container {
+
+
+    .context-menu-body {
+
+      button {
+      }
+
+      &.show {
+        
+      }
+    }
+  }
+}
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+.context-menu-body-button
+
+
+
+
+
+@media (min-width: 1024px) {
+  .context-menu-container {
+    position: relative;
+  }
+
+  .context-menu-body {
+    display: none;
+    font-size: 0.8rem;
+    align-items: flex-start;
+  }
+
+  .context-menu-body-button {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .context-menu-body-close {
+    font-size: 1.25rem;
+  }
+
+  .context-menu-body.show {
+    box-shadow: 0 0 0.5rem #000;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    transform: translateX(-25%);
+  }
+
+  .context-menu-body.show-right {
+    left: 0;
+    transform: translateX(25%);
+  }
+} */

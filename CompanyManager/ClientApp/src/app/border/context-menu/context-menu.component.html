@@ -1,25 +1,26 @@
 <div class="context-menu-backdrop"
      (click)="onToggle('')"
      *ngIf="openedContextMenuOfElementId.length !== 0">
-  <button type="button" class="context-menu-button"
+</div>
+
+<div class="context-menu-container">
+  <button type="button" class="btn btn-sm btn-acent w-100"
           (click)="onToggle(id)">
-    <img src="../../../assets/three-dots-vertical.svg" alt="menu" />
+    MENU
   </button>
-  <div class="context-menu-body"
-       [ngClass]="{
-      show: openedContextMenuOfElementId.length !== 0,
-      'show-right':
-        openedContextMenuOfElementId.length !== 0 && type === 'board'
-    }"
+
+
+  <div class="context-menu-body show"
+       [ngClass]="{ show: openedContextMenuOfElementId.length !== 0 }"
        *ngIf="openedContextMenuOfElementId === id">
-    <button type="button" class="context-menu-body-button" (click)="delete()">
+    <button type="button" class="btn btn-danger" (click)="delete()">
       Remove
       <img src="../../../assets/trash-fill.svg" alt="" />
     </button>
-    <button type="button" class="context-menu-body-button" (click)="edit()">
+    <button type="button" class="btn btn-acent" (click)="edit()">
       Edit
       <img src="../../../assets/pencil-square.svg" alt="" />
     </button>
   </div>
-  </div>
+</div>
 

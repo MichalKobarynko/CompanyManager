@@ -101,6 +101,10 @@
   @include button-variant($acent, $light, $acent-dark, $acent-light);
 }
 
+.btn-danger {
+  @include button-variant($danger, $light, $danger-dark, $danger-light);
+}
+
 .link-primary {
   @include button-link-variant($primary);
 }
