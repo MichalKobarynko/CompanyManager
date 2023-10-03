@@ -1,0 +1,39 @@
+main {
+  width: 100%;
+
+  .board-sidebar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: $light;
+    width: 22.5rem;
+    padding: 0.5rem;
+
+    .logo-container {
+      height: 3rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .board-wrapper {
+      width: 100%;
+      overflow-y: scroll;
+      height: calc(100vh - 8rem);
+      position: relative;
+      top: 0;
+      display: flex;
+      justify-self: start;
+      align-self: start;
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    .board-button-wrapper {
+      height: 3rem;
+    }
+  }
+}

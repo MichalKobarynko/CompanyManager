@@ -19,7 +19,7 @@ export class AccordionComponent {
     const projects: Project[] = [
       {
         id: '1',
-        title: 'Projekt A',
+        title: 'Projekt Addddddddddddddddddddddddddddddddddddddddddd',
         users: ['user1', 'user2', 'user3'],
         userId: '12c75593-2034-4824-81b5-4f4d40d47311',
         boards: [
@@ -41,6 +41,30 @@ export class AccordionComponent {
           },
           {
             id: '3',
+            name: 'board3',
+            columns: [],
+            projectId: '1',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            id: '4',
+            name: 'boardxxxxxxx xxxxxsssseeeeeeeeeeeeeeeeeee',
+            columns: [],
+            projectId: '1',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            id: '5',
+            name: 'board1',
+            columns: [],
+            projectId: '1',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            id: '6',
             name: 'board3',
             columns: [],
             projectId: '1',

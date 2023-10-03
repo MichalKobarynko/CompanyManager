@@ -7,7 +7,11 @@
          class="collapse-button-image"
          src="../../../assets/arrow-down-short.svg"
          alt="" />
-    <h3 class="collapse-button-title">{{ project.title }}</h3>
+    <div class="collapse-button-title">
+      {{ project.title }}
+    </div>
+    
+
   </button>
 
   <app-context-menu *ngIf="(loggedInUserId$ | async) === project.userId"

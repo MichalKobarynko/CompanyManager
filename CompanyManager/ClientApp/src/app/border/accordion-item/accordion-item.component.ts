@@ -13,7 +13,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 })
 export class AccordionItemComponent {
   @Input() project!: Project;
-  showContent = true;
+  showContent = false;
   loggedInUserId$: Observable<string | undefined> | null = null;
   selectedBoardId$: Observable<string | undefined> | null = null;
 
