@@ -4,15 +4,21 @@
 </div>
 
 <div class="context-menu-container">
+  
   <button type="button" class="btn btn-sm btn-acent w-100"
           (click)="onToggle(id)">
     MENU
   </button>
 
 
-  <div class="context-menu-body show"
+  <div class="context-menu-body"
        [ngClass]="{ show: openedContextMenuOfElementId.length !== 0 }"
        *ngIf="openedContextMenuOfElementId === id">
+
+    <app-close-btn-rounded (onClose)="onToggle('')"
+                           position="right">
+    </app-close-btn-rounded>
+
     <button type="button" class="btn btn-danger" (click)="delete()">
       Remove
       <img src="../../../assets/trash-fill.svg" alt="" />

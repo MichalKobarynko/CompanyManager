@@ -30,6 +30,7 @@ import { AccordionItemModule } from "./accordion-item/accordion-item.module";
     LanguageToggleButtonmodule,
     LoadingSpinnerModule,
     AccordionModule,
+    ContextMenuModalModule,
     TranslateModule
   ],
   providers: [
