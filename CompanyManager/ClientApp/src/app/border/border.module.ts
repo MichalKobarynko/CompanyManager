@@ -18,6 +18,7 @@ import { BoardService } from "../services/board.service";
 import { ContextMenuModalModule } from "./context-menu-modal/context-menu-modal.module";
 import { CollapseButtonModule } from "./collapse-button/collapse-button.module";
 import { AccordionItemModule } from "./accordion-item/accordion-item.module";
+import { FormModule } from "./form/form.module";
 
 @NgModule({
   declarations: [BorderComponent],
@@ -31,7 +32,8 @@ import { AccordionItemModule } from "./accordion-item/accordion-item.module";
     LoadingSpinnerModule,
     AccordionModule,
     ContextMenuModalModule,
-    TranslateModule
+    TranslateModule,
+    FormModule
   ],
   providers: [
     BoardService

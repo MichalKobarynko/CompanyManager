@@ -7,9 +7,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-
-
-
 .wrapper {
   overflow: hidden;
   height: 100vh;
@@ -32,58 +29,60 @@
   .form-container {
     width: 100%;
 
-    form {
-      width: 50%;
-    }
-
-    input {
-      height: 3rem;
-      width: 100%;
-      outline: none;
-      padding-left: 1rem;
-      border-radius: 1rem;
-      border: 1px solid lightgrey;
-      border-bottom-width: 2px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      padding-right: 1rem;
-
-      &:focus {
-        border-color: $primary;
-      }
-
-      &::placeholder {
-        color: #999;
-        transition: all 0.3s ease;
-      }
-
-      &:focus::placeholder {
-        color: $primary;
-      }
-    }
-
-    .input-invalid-message {
-      font-size: $font-size-xxs;
-      padding: 0.5rem 1rem;
-      color: $danger;
-    }
-
-    .form-error {
-      margin-top: 1rem;
-      color: $danger;
-      font-weight: $font-weight-bold;
-    }
-
-    .form-inner {
-      display: flex;
-      width: 200%;
-    }
-
-    .field {
-      width: 100%;
-      margin-top: 1.5rem;
-    }
+    
   }
+}
+
+form {
+  width: 50%;
+}
+
+input {
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  padding-left: 1rem;
+  border-radius: 1rem;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding-right: 1rem;
+
+  &:focus {
+    border-color: $primary;
+  }
+
+  &::placeholder {
+    color: #999;
+    transition: all 0.3s ease;
+  }
+
+  &:focus::placeholder {
+    color: $primary;
+  }
+}
+
+.input-invalid-message {
+  font-size: $font-size-xxs;
+  padding: 0.5rem 1rem;
+  color: $danger;
+}
+
+.form-error {
+  margin-top: 1rem;
+  color: $danger;
+  font-weight: $font-weight-bold;
+}
+
+.form-inner {
+  display: flex;
+  width: 200%;
+}
+
+.field {
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
 input.ng-invalid.ng-touched {

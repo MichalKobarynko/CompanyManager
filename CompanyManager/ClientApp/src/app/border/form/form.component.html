@@ -1,0 +1,24 @@
+<app-form-wrapper>
+  <div class="forms-container">
+    <div class="form-wrapper">
+      <div class="close-button" >
+
+        <app-close-btn-rounded [position]="'left'" (onClose)="onClose()">
+        </app-close-btn-rounded>
+
+      </div>
+
+      <div *ngIf="typeOfForm$ | async as typeOfForm">
+        <app-project-form *ngIf="typeOfForm === 'project'"></app-project-form>
+        <!--<app-board-form *ngIf="typeOfForm === 'board'"></app-board-form>
+        <app-column-form *ngIf="typeOfForm === 'column'"></app-column-form>
+        <app-task-form *ngIf="typeOfForm === 'task'"></app-task-form>
+        <app-subtask-form *ngIf="typeOfForm === 'subtask'"></app-subtask-form>
+        <app-users *ngIf="typeOfForm === 'user'"></app-users>
+        <app-assign-user-form *ngIf="typeOfForm === 'assign-user'"></app-assign-user-form>
+        <app-profile *ngIf="typeOfForm === 'profile'"></app-profile>
+        <app-user-tasks *ngIf="typeOfForm === 'see-tasks'"></app-user-tasks>-->
+      </div>
+    </div>
+  </div>
+</app-form-wrapper>

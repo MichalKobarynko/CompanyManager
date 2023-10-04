@@ -1,0 +1,33 @@
+<form class="form-global" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-wrapper-global"
+       *ngIf="(isEditing$ | async) === false"
+       formGroupName="add">
+    <label class="form-label-global" for="project-name">Project Name</label>
+    <input class="form-input-global"
+           type="text"
+           id="project-name"
+           formControlName="name" />
+    <p class="text-danger-global"
+       *ngIf="(getAddControls.name.touched || submitted) && getAddControls.name.errors?.['required']">
+      Name is required
+    </p>
+  </div>
+
+  <div *ngIf="isEditing$ | async"
+       formGroupName="edit"
+       class="form-wrapper-global">
+    <label for="edit-project-name">Project name</label>
+    <input type="text"
+           class="form-input-global"
+           id="edit-project-name"
+           formControlName="name" />
+    <p class="text-danger-global"
+       *ngIf="(getEditControls.name.touched || submitted) && getEditControls.name.errors?.['required']">
+      Name is required
+    </p>
+  </div>
+
+  <button type="submit" class="button-global submit-button-global">
+    {{ (isEditing$ | async) ? 'Update' : 'Add ' + 'project' }}
+  </button>
+</form>

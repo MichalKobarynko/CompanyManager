@@ -1,83 +1,11 @@
 .accordion-warning-container {
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  
 
   .accordion-warning-message {
     font-weight: $font-weight-bold;
     color: $danger;
   }
 }
-
-
-
-
-
-/*.board-sidebar {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  background-color: $light;
-  width: 22.5rem;
-  padding: 0.5rem;
-  background-color: yellow;
-
-  .logo-container {
-    height: 3rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .accordion-wrapper {
-    height: 50%;
-    margin-top: 1rem;
-    position: relative;
-    top: 0;
-    display: flex;
-    justify-self: start;
-    align-self: start;
-    flex-direction: column;
-    justify-content: start;
-    background-color: red;
-
-    .accordion-wrapper {
-      background-color: deeppink;
-      height: 100%;
-    }
-  }
-}*/
-
-/*app-accordion {
-  overflow-y:scroll;
-}
-
-.accordion-item__list {
-    background-color: green;
-    height: 100%;
-
-    .accordion-item__btn-container {
-        margin-bottom: 1rem;
-    }
-}*/
-
-
-
-
-
-
-/*.accordion-body {
-  list-style-type: none;
-  overflow: hidden;
-}
-
-.accordion-wrapper {
-  height: 100%;
-}
-
-.warning-message {
-  color: $danger;
-}
-*/

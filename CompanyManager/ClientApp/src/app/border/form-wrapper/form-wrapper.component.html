@@ -1,0 +1,7 @@
+<div class="form-backdrop"
+     [ngClass]="{ 'form-show': (show$ | async) }"
+     (click)="close($event)">
+  <div style="position: relative">
+    <ng-content></ng-content>
+  </div>
+</div>

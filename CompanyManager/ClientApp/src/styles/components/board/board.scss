@@ -11,6 +11,8 @@ main {
     background-color: $light;
     width: 22.5rem;
     padding: 0.5rem;
+    box-shadow: 0 0 1rem $dark;
+    border: 1px solid $secondary;
 
     .logo-container {
       height: 3rem;
