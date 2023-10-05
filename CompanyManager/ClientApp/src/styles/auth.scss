@@ -7,6 +7,10 @@
   min-height: 100vh;
   background-color: $secondary;
 
+  form {
+    width: 50%;
+  }
+
   .auth-layout {
     width: 100%;
     padding: 0 0;

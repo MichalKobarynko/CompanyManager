@@ -36,6 +36,9 @@ export class AccordionItemComponent {
     );
 
     this.loggedInUserId$ = this.localStorageService.getUserID();
+    this.boardService.getSelectedProject.subscribe(res => {
+      this.showContent = this.project?.id === res?.id;
+    });
   }
 
   onForm() {

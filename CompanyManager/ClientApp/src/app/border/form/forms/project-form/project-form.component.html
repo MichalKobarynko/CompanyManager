@@ -1,33 +1,53 @@
-<form class="form-global" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-wrapper-global"
-       *ngIf="(isEditing$ | async) === false"
-       formGroupName="add">
-    <label class="form-label-global" for="project-name">Project Name</label>
-    <input class="form-input-global"
-           type="text"
-           id="project-name"
-           formControlName="name" />
-    <p class="text-danger-global"
-       *ngIf="(getAddControls.name.touched || submitted) && getAddControls.name.errors?.['required']">
-      Name is required
-    </p>
-  </div>
+<div class="app-project-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div *ngIf="isEditing$ | async"
-       formGroupName="edit"
-       class="form-wrapper-global">
-    <label for="edit-project-name">Project name</label>
-    <input type="text"
-           class="form-input-global"
-           id="edit-project-name"
-           formControlName="name" />
-    <p class="text-danger-global"
-       *ngIf="(getEditControls.name.touched || submitted) && getEditControls.name.errors?.['required']">
-      Name is required
-    </p>
-  </div>
+    <div class="field"
+         *ngIf="(isEditing$ | async) === false"
+         formGroupName="add">
 
-  <button type="submit" class="button-global submit-button-global">
-    {{ (isEditing$ | async) ? 'Update' : 'Add ' + 'project' }}
-  </button>
-</form>
+
+      <div class="title-text">
+        <span class="description">Dodaj Projekt</span>
+      </div>
+
+      <input 
+             type="text"
+             id="project-name"
+             formControlName="title" />
+      <p class="input-invalid-message"
+         *ngIf="(getAddControls.title.touched || submitted) && getAddControls.title.errors?.['required']">
+        Name is required
+      </p>
+    </div>
+
+    <div *ngIf="isEditing$ | async"
+         formGroupName="edit"
+         class="">
+
+      <div class="title-text">
+        <span class="description">Edytuj Projekt</span>
+      </div>
+
+      <div class="field">
+        <input type="text"
+               id="edit-project-name"
+               formControlName="title" />
+        <p class="input-invalid-message"
+           *ngIf="(getEditControls.title.touched || submitted) && getEditControls.title.errors?.['required']">
+          Name is required
+        </p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-50">
+      {{ (isEditing$ | async) ? 'Update' : 'Add ' + 'project' }}
+    </button>
+    <button type="button"
+            class="btn btn-danger w-50"
+            (click)="close()">
+      Cancel
+    </button>
+  </form>
+</div>
+
+

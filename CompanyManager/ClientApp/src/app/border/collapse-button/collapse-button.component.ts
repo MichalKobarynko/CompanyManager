@@ -3,6 +3,7 @@ import { Project } from '../../models/project.model';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-collapse-button',
@@ -14,8 +15,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
       state('rotated', style({ transform: 'rotate(180deg)' })),
       transition('default<=>rotated', animate('250ms')),
     ]),
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  ]
 })
 export class CollapseButtonComponent {
   @Input() project!: Project;
@@ -24,15 +24,22 @@ export class CollapseButtonComponent {
   loggedInUserId$: Observable<string> | null = null;
 
   constructor(
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private boardService: BoardService
   ) { }
 
   ngOnInit(): void {
     this.loggedInUserId$ = this.localStorageService.getUserID();
+
+    this.boardService.getSelectedProject.subscribe(res => {
+      this.showContent = this.project?.id === res?.id;
+    });
   }
 
   toggleShowContent() {
     this.showContent = !this.showContent;
     this.toggleMenu.emit(this.showContent);
+    
+    console.log("toggle accordion item; ", this.project.title);
   }
 }

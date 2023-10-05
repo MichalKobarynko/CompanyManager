@@ -15,10 +15,10 @@ export class ProjectFormComponent {
 
   form = this.formBuilder.group({
     add: this.formBuilder.group({
-      name: ['', [Validators.required]],
+      title: ['', [Validators.required]],
     }),
     edit: this.formBuilder.group({
-      name: [this.formService.getEditingProject?.title, [Validators.required]],
+      title: [this.formService.getEditingProject?.title, [Validators.required]],
     }),
   });
 
@@ -50,7 +50,7 @@ export class ProjectFormComponent {
 
     if (this.getFormControls.edit.valid) {
       const projectId = this.formService.getEditingProject?.id ?? '';
-      const projectName = this.form.value.edit?.name ?? '';
+      const projectName = this.form.value.edit?.title ?? '';
 
       //this.apollo
       //  .editProject(projectId, projectName)
@@ -71,7 +71,7 @@ export class ProjectFormComponent {
       //  );
     }
     if (this.getFormControls.add.valid) {
-      const name = this.form.value.add?.name ?? '';
+      const name = this.form.value.add?.title ?? '';
 
       //this.apollo
       //  .addProject(name)
@@ -97,6 +97,10 @@ export class ProjectFormComponent {
     }
 
     this.form.reset();
+    this.formService.onChangeFormVisibility();
+  }
+
+  close() {
     this.formService.onChangeFormVisibility();
   }
 }
