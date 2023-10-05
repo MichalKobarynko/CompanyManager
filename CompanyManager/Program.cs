@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using CompanyManager.Infrastructure.Extensions;
 using CompanyManager.Infrastructure.Services;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -26,7 +28,11 @@ builder.Services.ConfigureDBContext(connectionString)
     .ConfigureJWT(configuration)
     .ConfigureEmail(configuration)
     .ConfigureAppServices()
-    .AddSwaggerGen();
+    .AddSwaggerGen()
+    .ConfigureRepositoryManager()
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+
 
 builder.Services.AddScoped<JwtHandler>();
 

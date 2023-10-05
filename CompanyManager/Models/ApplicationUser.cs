@@ -2,8 +2,5 @@
 
 namespace CompanyManager.Models
 {
-    public class User : IdentityUser
-    {
-
-    }
+    
 }

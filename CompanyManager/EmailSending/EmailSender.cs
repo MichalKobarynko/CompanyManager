@@ -3,8 +3,11 @@ using MimeKit;
 using System.Net.Mail;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
+
 namespace CompanyManager.Models.EmailSending
 {
+    
+
     public class EmailSender : IEmailSender
     {
         private readonly EmailConfiguration configuration;

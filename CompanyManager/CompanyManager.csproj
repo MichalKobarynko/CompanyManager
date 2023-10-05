@@ -36,8 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\API\" />
     <Folder Include="Features\Commands\" />
-    <Folder Include="Features\Queries\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
