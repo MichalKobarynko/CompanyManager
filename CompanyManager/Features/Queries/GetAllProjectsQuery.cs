@@ -9,7 +9,7 @@ namespace CompanyManager.Features.Queries
 {
     public class GetAllProjectsQuery : IRequest<IEnumerable<Project>> 
     {
-        //public class GetAllprojectsQueryHandler : IRequestHandler<GetAllProjectsQuery, IEnumerable<Project>> 
+        //public class GetAllprojectsQueryHandler : IRequestHandler<GetAllProjectsQuery, IEnumerable<Project>>
         //{
         //    private readonly IRepositoryManager repository;
 

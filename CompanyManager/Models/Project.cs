@@ -19,8 +19,10 @@ namespace CompanyManager.Models
 
         public IEnumerable<Board> Boards { get; set; }
 
-        public DateTime CreateAt { get; set; }
-        public DateTime CUpdateAt { get; set; }
+        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime CUpdateAt { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; } = false;
+        public bool IsFinished { get; set; } = false;
     }
     
 
@@ -28,8 +30,10 @@ namespace CompanyManager.Models
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
-        public DateTime CreateAt { get; set; }
-        public DateTime CUpdateAt { get; set; }
+        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime CUpdateAt { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; } = false;
+        public bool IsFinished { get; set; } = false;
     }
 
     public class ProjectTask

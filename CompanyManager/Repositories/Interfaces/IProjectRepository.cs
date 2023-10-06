@@ -1,6 +1,13 @@
-﻿namespace CompanyManager.Repositories.Interfaces
+﻿using CompanyManager.Models;
+
+namespace CompanyManager.Repositories.Interfaces
 {
     public interface IProjectRepository
     {
+        Task CreateProject(Project project);
+        Task DeleteProject(Project project);
+        Task UpdateProject(Project project);
+        Task<IEnumerable<Project>> GetAllProjects();
+        Task<Project> GetProject(Guid companyId);
     }
 }
