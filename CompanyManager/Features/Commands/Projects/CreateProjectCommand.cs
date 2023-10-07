@@ -1,5 +1,6 @@
-﻿using CompanyManager.DTOs.API;
-using CompanyManager.Models;
+﻿using CompanyManager.Models;
+using CompanyManager.Models.DBContext;
+using CompanyManager.Models.DTOs.API;
 using CompanyManager.Repositories.Interfaces;
 using LoggingService;
 using MediatR;
@@ -43,7 +44,7 @@ namespace CompanyManager.Features.Commands.Projects
                     Owner = null,
                     Boards = null,
                     CreateAt = project.CreateAt,
-                    CUpdateAt = project.CUpdateAt,
+                    CUpdateAt = project.UpdateAt,
                     IsFinished = project.IsFinished
                 };
 

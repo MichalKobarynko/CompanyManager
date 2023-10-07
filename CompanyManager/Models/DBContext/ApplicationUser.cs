@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace CompanyManager.Models
+namespace CompanyManager.Models.DBContext
 {
-    
+
 }

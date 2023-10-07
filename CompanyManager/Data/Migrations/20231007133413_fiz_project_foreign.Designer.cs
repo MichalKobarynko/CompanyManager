@@ -4,6 +4,7 @@ using CompanyManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231007133413_fiz_project_foreign")]
+    partial class fiz_project_foreign
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +63,9 @@ namespace CompanyManager.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CUpdateAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
@@ -76,9 +82,6 @@ namespace CompanyManager.Data.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 
@@ -327,19 +330,19 @@ namespace CompanyManager.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bd2fa0ad-3cdc-45fe-a072-1d6a9f785520",
+                            Id = "eced7009-eb43-4077-bc77-93b86ad3ed6d",
                             Name = "viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "971baaca-cec5-4551-8485-32da1bb5f28c",
+                            Id = "0092a7d1-5f89-4b8b-8dc7-bf651d2d4ab8",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3337c133-ce97-42fa-bf1e-ba6e5e993aca",
+                            Id = "9a49a570-3548-4aa4-b02c-30b82ba54907",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });

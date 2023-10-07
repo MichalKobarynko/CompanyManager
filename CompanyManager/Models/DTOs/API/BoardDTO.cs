@@ -1,4 +1,4 @@
-﻿namespace CompanyManager.DTOs.API
+﻿namespace CompanyManager.Models.DTOs.API
 {
     public class BoardDTO
     {

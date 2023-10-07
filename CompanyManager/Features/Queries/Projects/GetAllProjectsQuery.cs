@@ -1,6 +1,6 @@
 ﻿using CompanyManager.Data;
-using CompanyManager.DTOs.API;
 using CompanyManager.Models;
+using CompanyManager.Models.DTOs.API;
 using CompanyManager.Repositories.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +35,7 @@ namespace CompanyManager.Features.Queries.Projects
                         Owner = null,
                         Boards = null,
                         CreateAt = p.CreateAt,
-                        CUpdateAt = p.CUpdateAt,
+                        CUpdateAt = p.UpdateAt,
                         IsFinished = p.IsFinished
                     }).ToList(),
 

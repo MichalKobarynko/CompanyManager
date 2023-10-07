@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CompanyManager.DTOs.Auth
+namespace CompanyManager.Models.DTOs.Auth
 {
     public class UserRegisterDTO
     {

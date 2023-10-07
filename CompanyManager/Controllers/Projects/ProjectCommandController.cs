@@ -1,8 +1,8 @@
-﻿using CompanyManager.DTOs.API;
-using CompanyManager.Features.Commands.Projects;
+﻿using CompanyManager.Features.Commands.Projects;
 using CompanyManager.Features.Queries;
 using CompanyManager.Features.Queries.Projects;
 using CompanyManager.Models;
+using CompanyManager.Models.DTOs.API;
 using CompanyManager.Repositories.Interfaces;
 using LoggingService;
 using MediatR;

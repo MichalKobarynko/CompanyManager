@@ -1,4 +1,4 @@
-﻿namespace CompanyManager.Models
+﻿namespace CompanyManager.Models.DBContext
 {
     public class Roles
     {

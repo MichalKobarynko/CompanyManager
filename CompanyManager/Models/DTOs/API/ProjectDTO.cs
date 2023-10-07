@@ -1,8 +1,8 @@
-﻿using CompanyManager.Models;
+﻿using CompanyManager.Models.DBContext;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CompanyManager.DTOs.API
+namespace CompanyManager.Models.DTOs.API
 {
     public class ProjectDTO
     {

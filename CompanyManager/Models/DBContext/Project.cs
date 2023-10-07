@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CompanyManager.Models
+namespace CompanyManager.Models.DBContext
 {
     public class User : IdentityUser
     {
@@ -13,18 +13,19 @@ namespace CompanyManager.Models
 
         public string Title { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public User Owner { get; set; }
-        public string OwnerID { get; set; }
 
+        [ForeignKey(nameof(User))]
+        public string OwnerID { get; set; }
+        public User Owner { get; set; }
+        
         public IEnumerable<Board> Boards { get; set; }
 
         public DateTime CreateAt { get; set; } = DateTime.Now;
-        public DateTime CUpdateAt { get; set; } = DateTime.Now;
+        public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
         public bool IsFinished { get; set; } = false;
     }
-    
+
 
     public class Board
     {
@@ -46,8 +47,8 @@ namespace CompanyManager.Models
 
     }
 
-    public class  Column 
+    public class Column
     {
-        
+
     }
 }

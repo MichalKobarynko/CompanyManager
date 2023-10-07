@@ -1,4 +1,4 @@
-﻿using CompanyManager.Models;
+﻿using CompanyManager.Models.DBContext;
 
 namespace CompanyManager.Repositories.Interfaces
 {

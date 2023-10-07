@@ -1,5 +1,4 @@
-﻿using CompanyManager.DTOs.API;
-using CompanyManager.Features.Queries;
+﻿using CompanyManager.Features.Queries;
 using CompanyManager.Features.Queries.Projects;
 using CompanyManager.Models;
 using CompanyManager.Repositories.Interfaces;

@@ -1,4 +1,4 @@
-﻿using CompanyManager.Models;
+﻿using CompanyManager.Models.DBContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace CompanyManager.Data

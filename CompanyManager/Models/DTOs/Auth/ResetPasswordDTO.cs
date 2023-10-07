@@ -1,7 +1,7 @@
 ﻿using Duende.IdentityServer.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace CompanyManager.DTOs.Auth
+namespace CompanyManager.Models.DTOs.Auth
 {
     public class ResetPasswordDTO
     {

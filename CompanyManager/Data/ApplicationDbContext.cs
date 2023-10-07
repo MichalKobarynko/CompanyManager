@@ -1,9 +1,9 @@
-﻿using CompanyManager.Models;
-using Duende.IdentityServer.EntityFramework.Options;
+﻿using Duende.IdentityServer.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using CompanyManager.Data.Configurations;
+using CompanyManager.Models.DBContext;
 
 namespace CompanyManager.Data
 {

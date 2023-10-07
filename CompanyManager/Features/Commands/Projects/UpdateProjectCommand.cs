@@ -1,5 +1,4 @@
-﻿using CompanyManager.DTOs.API;
-using CompanyManager.Models;
+﻿using CompanyManager.Models;
 using CompanyManager.Repositories.Interfaces;
 using LoggingService;
 using MediatR;
@@ -35,7 +34,7 @@ namespace CompanyManager.Features.Commands.Projects
                 project.ID = request.ID;
                 project.Title = request.Title;
                 project.OwnerID = request.OwnerID.ToString();
-                project.CUpdateAt = DateTime.Now;
+                project.UpdateAt = DateTime.Now;
 
                 await repository.Project.UpdateProject(project);
                 await repository.Save();

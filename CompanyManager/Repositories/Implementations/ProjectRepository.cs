@@ -1,5 +1,5 @@
 ﻿using CompanyManager.Data;
-using CompanyManager.Models;
+using CompanyManager.Models.DBContext;
 using CompanyManager.Repositories.Base;
 using CompanyManager.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
