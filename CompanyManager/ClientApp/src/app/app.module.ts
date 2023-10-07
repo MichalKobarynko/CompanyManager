@@ -30,6 +30,7 @@ import { LanguageToggleButtonmodule } from './border/language-toggle-button/lang
 import { LoadingSpinnerModule } from './border/loading-spinner/loading-spinner.module';
 import { LoadingSpinnerService } from './services/loading-spinner.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { ProjectRestService } from './api/services/project-rest.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -79,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormService,
     LoadingSpinnerService,
     LocalStorageService,
+    ProjectRestService,
     ContextMenuModalService,
     {
       provide: HTTP_INTERCEPTORS,

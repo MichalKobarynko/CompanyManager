@@ -33,10 +33,10 @@ namespace CompanyManager.Features.Queries.Projects
                 {
                     ID = project.ID,
                     Title = project.Title,
-                    Owner = null,
+                    OwnerID = project.OwnerID.ToUpper(),
                     Boards = null,
                     CreateAt = project.CreateAt,
-                    CUpdateAt = project.UpdateAt,
+                    UpdateAt = project.UpdateAt,
                     IsFinished = project.IsFinished
                 };
 

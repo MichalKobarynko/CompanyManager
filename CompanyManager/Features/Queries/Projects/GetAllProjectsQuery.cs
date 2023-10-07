@@ -32,10 +32,10 @@ namespace CompanyManager.Features.Queries.Projects
                     {
                         ID = p.ID,
                         Title = p.Title,
-                        Owner = null,
+                        OwnerID = p.OwnerID,
                         Boards = null,
                         CreateAt = p.CreateAt,
-                        CUpdateAt = p.UpdateAt,
+                        UpdateAt = p.UpdateAt,
                         IsFinished = p.IsFinished
                     }).ToList(),
 

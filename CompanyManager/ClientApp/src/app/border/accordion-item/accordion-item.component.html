@@ -14,11 +14,11 @@
       </button>
     </li>
     <p class="accordion-item-paragraph"
-       *ngIf="project.boards.length === 0 && showContent">
+       *ngIf="project.boards?.length === 0 && showContent">
       No boards
     </p>
     <li class="accordion-item__btn-container">
-      <button *ngIf="(loggedInUserId$ | async) === project.userId"
+      <button *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
               type="button"
               class="btn btn-outline btn-sm btn-acent w-50"
               (click)="onForm()">
@@ -26,12 +26,11 @@
       </button>
 
       
-      <app-context-menu *ngIf="(loggedInUserId$ | async) === project.userId"
+      <app-context-menu *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
                         [id]="project.id"
                         [type]="'project'"
                         [editingProject]="project"
                         class="w-50">
-
       </app-context-menu>
 
     </li>

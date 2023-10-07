@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CompanyManager.Controllers.Projects
 {
     [ApiController]
-    [Route("api/[controller]/query/[action]")]
+    [Route("api/project/query/[action]")]
     public class ProjectQueryController : ControllerBase
     {
         private readonly IRepositoryManager repo;

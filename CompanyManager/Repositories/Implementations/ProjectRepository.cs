@@ -33,12 +33,14 @@ namespace CompanyManager.Repositories.Implementations
             return await FindAll()
                 .OrderByDescending(p => p.CreateAt)
                 .Where(p => p.IsDeleted == false)
+                .Include(p => p.Owner)
                 .ToListAsync();
         }
 
         public async Task<Project> GetProject(Guid companyId)
         {
             return await FindByCondition(p => p.ID.Equals(companyId))
+                .Include(p => p.Owner)
                 .SingleOrDefaultAsync();
         }
     }

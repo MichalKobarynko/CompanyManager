@@ -41,10 +41,10 @@ namespace CompanyManager.Features.Commands.Projects
                 {
                     ID = project.ID,
                     Title = project.Title,
-                    Owner = null,
+                    OwnerID = null,
                     Boards = null,
                     CreateAt = project.CreateAt,
-                    CUpdateAt = project.UpdateAt,
+                    UpdateAt = project.UpdateAt,
                     IsFinished = project.IsFinished
                 };
 

@@ -33,7 +33,7 @@ namespace CompanyManager.Features.Commands.Projects
 
                 project.ID = request.ID;
                 project.Title = request.Title;
-                project.OwnerID = request.OwnerID.ToString();
+                project.OwnerID = request.OwnerID.ToString().ToUpper();
                 project.UpdateAt = DateTime.Now;
 
                 await repository.Project.UpdateProject(project);

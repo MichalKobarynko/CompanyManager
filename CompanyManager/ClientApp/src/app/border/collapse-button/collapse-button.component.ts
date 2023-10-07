@@ -31,9 +31,9 @@ export class CollapseButtonComponent {
   ngOnInit(): void {
     this.loggedInUserId$ = this.localStorageService.getUserID();
 
-    this.boardService.getSelectedProject.subscribe(res => {
-      this.showContent = this.project?.id === res?.id;
-    });
+    //this.boardService.getSelectedProject.subscribe(res => {
+    //  this.showContent = this.project?.id === res?.id;
+    //});
   }
 
   toggleShowContent() {

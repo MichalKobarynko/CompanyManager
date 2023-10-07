@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { FormStatus, FormType } from '../models/types';
 import { FormService } from '../services/form.service';
 import { ToastService } from '../services/toast.service';
+import { ProjectRestService } from '../api/services/project-rest.service';
 
 @Component({
   selector: 'app-border',
@@ -14,14 +15,17 @@ export class BorderComponent implements OnInit, OnDestroy {
   status: FormStatus = FormStatus.OK;
   destroy$ = new Subject<void>();
 
-  constructor(public formService: FormService) { }
+  constructor(
+    private formService: FormService,
+    private projectService: ProjectRestService
+  ) { }
   
   ngOnDestroy(): void {
     this.destroy$.next();
   }
 
   ngOnInit(): void {
-    //TODO
+    this.projectService.getProjects();
   }
 
   onForm(type: FormType, columnId?: string) {

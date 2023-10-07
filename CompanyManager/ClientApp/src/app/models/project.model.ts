@@ -4,7 +4,7 @@ export interface Project {
   id: string;
   title: string;
   users: string[];
-  userId: string;
+  ownerID: string;
   boards: Board[];
   createdAt: Date;
   updatedAt: Date;

@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ToastService } from '../../services/toast.service';
 import { ContextMenuModalService } from '../../services/context-menu-modal.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ProjectRestService } from '../../api/services/project-rest.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-context-menu-modal',
@@ -11,15 +13,18 @@ import { Observable } from 'rxjs';
 })
 export class ContextMenuModalComponent implements OnInit {
   show$ = new Observable<boolean>();
+  userID$ = new BehaviorSubject<string>('');
 
   constructor(
     private contextMenuModalService: ContextMenuModalService,
-    //private apollo: ApolloService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private localStorageService: LocalStorageService,
+    private projectRestService: ProjectRestService
   ) { }
 
   ngOnInit() {
     this.show$ = this.contextMenuModalService.show;
+    this.userID$ = this.localStorageService.getUserID();
   }
 
   onHide() {
@@ -32,22 +37,15 @@ export class ContextMenuModalComponent implements OnInit {
     const id = this.contextMenuModalService.id;
     const type = this.contextMenuModalService.type;
 
-    //this.apollo
-    //  .remove(id, type)
-    //  .pipe(
-    //    catchError(async error => {
-    //      this.toastService.showToast(
-    //        'warning',
-    //        `Couldn't delete this ${type}`
-    //      );
-    //      throw new Error(error);
-    //    })
-    //  )
-    //  .subscribe(() =>
-    //    this.toastService.showToast(
-    //      'confirm',
-    //      `Successfully deleted this ${type}`
-    //    )
-    //  );
+    var userID = this.userID$.getValue()
+
+    if (userID) {
+      switch (type) {
+        case 'project':
+          this.projectRestService.deleteProject(userID, id);
+          break;
+      }
+    }
+    
   }
 }

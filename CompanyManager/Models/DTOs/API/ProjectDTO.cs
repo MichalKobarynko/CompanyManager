@@ -8,10 +8,10 @@ namespace CompanyManager.Models.DTOs.API
     {
         public Guid ID { get; set; }
         public string Title { get; set; }
-        public User Owner { get; set; }
+        public string OwnerID { get; set; }
         public IEnumerable<BoardDTO> Boards { get; set; }
         public DateTime CreateAt { get; set; }
-        public DateTime CUpdateAt { get; set; }
+        public DateTime UpdateAt { get; set; }
         public bool IsFinished { get; set; } = false;
     }
 
@@ -41,4 +41,11 @@ namespace CompanyManager.Models.DTOs.API
         [Required]
         public Guid OwnerID { get; set; }
     }
+
+    public class ProjectDelteDTO
+    {
+        [Required]
+        public Guid OwnerID { get; set; }
+    }
+
 }

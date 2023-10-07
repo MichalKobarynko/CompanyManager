@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Project } from '../../models/project.model';
-import { Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { BoardService } from '../../services/board.service';
 import { FormService } from '../../services/form.service';
 import { Board } from '../../models/board.model';
@@ -14,7 +14,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class AccordionItemComponent {
   @Input() project!: Project;
   showContent = false;
-  loggedInUserId$: Observable<string | undefined> | null = null;
+  loggedInUserId$!: BehaviorSubject<string>;
   selectedBoardId$: Observable<string | undefined> | null = null;
 
   constructor(
@@ -36,6 +36,8 @@ export class AccordionItemComponent {
     );
 
     this.loggedInUserId$ = this.localStorageService.getUserID();
+
+
     this.boardService.getSelectedProject.subscribe(res => {
       this.showContent = this.project?.id === res?.id;
     });
@@ -49,6 +51,7 @@ export class AccordionItemComponent {
 
   toggleShowContent(state: boolean) {
     this.showContent = state;
+    
   }
 
   onSelectBoard(board: Board) {

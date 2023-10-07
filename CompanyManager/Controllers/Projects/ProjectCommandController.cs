@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CompanyManager.Controllers.Projects
 {
     [ApiController]
-    [Route("api/[controller]/command/[action]")]
+    [Route("api/project/command/[action]")]
     public class ProjectCommandController : ControllerBase
     {
         private readonly IRepositoryManager repo;
@@ -30,7 +30,7 @@ namespace CompanyManager.Controllers.Projects
         
 
         [HttpPost("{id}")]
-        public async Task<ActionResult> DeleteProject(Guid id, [FromBody] Guid userID)
+        public async Task<ActionResult> DeleteProject(Guid id, [FromBody] ProjectDelteDTO model)
         {
             var project = await repo.Project.GetProject(id);
 
@@ -40,7 +40,7 @@ namespace CompanyManager.Controllers.Projects
                 return BadRequest();
             }
 
-            if (project.OwnerID is null || project.OwnerID != userID.ToString())
+            if (project.OwnerID is null || project.OwnerID != model.OwnerID.ToString())
             {
                 logger.LogWarn($"Only owner can delete project with id: {id}.");
                 return Unauthorized();

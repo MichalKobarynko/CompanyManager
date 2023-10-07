@@ -56,11 +56,11 @@ export class BoardService {
     if (this.firstLoad) {
       this.firstLoad = false;
       const projectsWithBoards = projects?.filter(
-        project => project.boards.length !== 0
+        project => project.boards?.length !== 0
       );
 
       this.onChangeSelectedProject(projectsWithBoards?.at(0));
-      this.onChangeSelectedBoard(projectsWithBoards?.at(0)?.boards.at(0));
+      this.onChangeSelectedBoard(projectsWithBoards?.at(0)?.boards?.at(0));
     } else {
       this.refreshSelectedBoard();
     }
