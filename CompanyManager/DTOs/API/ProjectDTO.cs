@@ -26,8 +26,8 @@ namespace CompanyManager.DTOs.API
 
     public class ProjectListDTO
     {
-        public int Count { get; set; }
-        public List<ProjectDTO> Projects { get; set; }
+        public int Count { get; set; } = 0;
+        public List<ProjectDTO> Projects { get; set; } = new List<ProjectDTO> { };
     }
 
     public class ProjectEditDTO

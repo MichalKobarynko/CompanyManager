@@ -49,7 +49,7 @@ else
 {
     app.UseHsts();
 }
-
+app.ConfigureExceptionHandler();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
     ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.All
