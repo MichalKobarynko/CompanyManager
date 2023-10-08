@@ -3,8 +3,9 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { BoardService } from "../../services/board.service";
 import { Project } from "../../models/project.model";
-import { Observable } from "rxjs";
+import { Observable, catchError, throwError } from "rxjs";
 import { ProjectListDTO } from "../models/project-dtos/project-list.dto";
+import { ProjectCreateDTO } from "../models/project-dtos/project-create.dto";
 
 @Injectable()
 export class ProjectRestService {
@@ -30,5 +31,24 @@ export class ProjectRestService {
     this.http.post(url, body).subscribe(res => {
       this.getProjects();
     });
+  }
+
+  public createProject(userID: string, body: ProjectCreateDTO) {
+    var url = this.commandUrl + '/CreateProject';
+
+    console.log(url);
+    console.log(body);
+
+    this.http.post(url, body)
+      .pipe(
+        catchError((error) => {
+          console.error('An error occurred while creating the project:', error);
+          return throwError(error);
+        })
+      )
+      .subscribe(res => {
+        this.getProjects();
+        return res;
+      });
   }
 }

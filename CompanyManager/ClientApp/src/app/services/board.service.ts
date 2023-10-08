@@ -116,7 +116,7 @@ export class BoardService {
     combineLatest([selectedProject$, boardId$])
       .pipe(
         map(([project, boardId]) =>
-          project?.boards.filter(board => board.id === boardId).at(0)
+          project?.boards?.filter(board => board.id === boardId).at(0)
         ),
         take(1)
       )

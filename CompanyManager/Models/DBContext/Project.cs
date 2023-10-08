@@ -3,10 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CompanyManager.Models.DBContext
 {
-    public class User : IdentityUser
-    {
-        public IEnumerable<User> Users { get; set; }
-    }
+    
     public class Project
     {
         public Guid ID { get; set; }

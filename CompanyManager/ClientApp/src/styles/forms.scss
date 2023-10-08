@@ -7,7 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-input {
+input, select {
   height: 3rem;
   width: 100%;
   outline: none;
@@ -46,6 +46,7 @@ input {
   font-weight: $font-weight-bold;
 }
 
+
 .form-inner {
   display: flex;
   width: 200%;
@@ -56,10 +57,10 @@ input {
   margin-top: 1.5rem;
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
   border: 1px solid $danger;
 }
 
-input.ng-dirty.ng-valid {
+input.ng-dirty.ng-valid, select.ng-dirty.ng-valid {
   border: 1px solid $primary
 }

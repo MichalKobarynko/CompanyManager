@@ -94,7 +94,8 @@ namespace CompanyManager.Controllers.Projects
             if (createdProject is null)
                 return BadRequest();
 
-            return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
+            return BadRequest();
+            //return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
         }
     }
 }

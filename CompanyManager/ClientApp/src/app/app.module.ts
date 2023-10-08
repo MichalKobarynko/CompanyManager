@@ -31,6 +31,7 @@ import { LoadingSpinnerModule } from './border/loading-spinner/loading-spinner.m
 import { LoadingSpinnerService } from './services/loading-spinner.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { ProjectRestService } from './api/services/project-rest.service';
+import { UserRestService } from './api/services/user-rest.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingSpinnerService,
     LocalStorageService,
     ProjectRestService,
+    UserRestService,
     ContextMenuModalService,
     {
       provide: HTTP_INTERCEPTORS,

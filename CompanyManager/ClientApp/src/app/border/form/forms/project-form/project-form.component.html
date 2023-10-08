@@ -1,5 +1,5 @@
 <div class="app-project-form">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 
     <div class="field"
          *ngIf="(isEditing$ | async) === false"
@@ -10,13 +10,27 @@
         <span class="description">Dodaj Projekt</span>
       </div>
 
-      <input 
-             type="text"
+      <input type="text"
              id="project-name"
              formControlName="title" />
       <p class="input-invalid-message"
          *ngIf="(getAddControls.title.touched || submitted) && getAddControls.title.errors?.['required']">
         Name is required
+      </p>
+
+      <select type="text"
+              id="project-owner"
+              formControlName="ownerId"
+              placeholder ="Użytkownik odpowiedzialny">
+              
+        <option disabled selected>Wybierz użytkownika </option>
+        <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
+
+
+      </select>
+      <p class="input-invalid-message"
+         *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
+        Owner is required
       </p>
     </div>
 

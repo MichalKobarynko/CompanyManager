@@ -22,6 +22,7 @@ namespace CompanyManager.Models.DTOs.API
 
         [Required]
         public Guid OwnerID { get; set; }
+
     }
 
     public class ProjectListDTO
