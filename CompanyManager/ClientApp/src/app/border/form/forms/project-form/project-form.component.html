@@ -25,9 +25,8 @@
               
         <option disabled selected>Wybierz użytkownika </option>
         <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
-
-
       </select>
+
       <p class="input-invalid-message"
          *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
         Owner is required
@@ -43,12 +42,30 @@
       </div>
 
       <div class="field">
+
         <input type="text"
                id="edit-project-name"
                formControlName="title" />
         <p class="input-invalid-message"
            *ngIf="(getEditControls.title.touched || submitted) && getEditControls.title.errors?.['required']">
           Name is required
+        </p>
+
+        <select type="text"
+                id="project-owner"
+                formControlName="ownerId"
+                placeholder="Użytkownik odpowiedzialny"
+                [(ngModel)]="ownerID">
+
+          <option disabled selected>Wybierz użytkownika </option>
+          <option *ngFor="let user of userList"
+                  [value]="user.id">{{ user.userName }}
+          </option>
+        </select>
+
+        <p class="input-invalid-message"
+           *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
+          Owner is required
         </p>
       </div>
     </div>

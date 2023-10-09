@@ -55,7 +55,7 @@ namespace CompanyManager.Controllers.Projects
         }
 
         [HttpPost("{id}")]
-        public async Task<ActionResult> UpdateProject(Guid id, [FromBody] ProjectEditDTO projectDTO)
+        public async Task<ActionResult<ProjectDTO>> UpdateProject(Guid id, [FromBody] ProjectEditDTO projectDTO)
         {
             if (id != projectDTO.ProjectID)
             {
@@ -63,17 +63,17 @@ namespace CompanyManager.Controllers.Projects
                 return BadRequest();
             }
 
-            var result = await mediator.Send(new UpdateProjectCommand()
+            var updatedProject = await mediator.Send(new UpdateProjectCommand()
             {
                 ID = projectDTO.ProjectID,
                 Title = projectDTO.Title,
                 OwnerID = projectDTO.OwnerID.ToString()
             });
 
-            if(!result)
+            if(updatedProject is null)
                 return BadRequest();
 
-            return NoContent();
+            return Ok(updatedProject);
         }
 
 
@@ -94,8 +94,7 @@ namespace CompanyManager.Controllers.Projects
             if (createdProject is null)
                 return BadRequest();
 
-            return BadRequest();
-            //return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
+            return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
         }
     }
 }

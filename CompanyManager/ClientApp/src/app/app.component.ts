@@ -17,6 +17,6 @@ export class AppComponent {
     translate.setDefaultLang('pl');
     translate.use('pl');
 
-    //this.localStorageService.refreshClaims();
+    this.localStorageService.refreshClaims();
   }
 }

@@ -3,14 +3,16 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { BoardService } from "../../services/board.service";
 import { Project } from "../../models/project.model";
-import { Observable, catchError, throwError } from "rxjs";
+import { BehaviorSubject, Observable, Subject, catchError, map, of, throwError } from "rxjs";
 import { ProjectListDTO } from "../models/project-dtos/project-list.dto";
 import { ProjectCreateDTO } from "../models/project-dtos/project-create.dto";
+import { ProjectEditDTO } from "../models/project-dtos/project-edit.dto";
 
 @Injectable()
 export class ProjectRestService {
   private queryUrl: string = environment.apiUrl + '/project/query';
   private commandUrl: string = environment.apiUrl + '/project/command';
+  public newProject$!: BehaviorSubject<any | undefined>;
 
   constructor(
     private http: HttpClient,
@@ -33,22 +35,27 @@ export class ProjectRestService {
     });
   }
 
-  public createProject(userID: string, body: ProjectCreateDTO) {
+  public createProject(userID: string, body: ProjectCreateDTO): Observable<Project> {
     var url = this.commandUrl + '/CreateProject';
 
-    console.log(url);
-    console.log(body);
-
-    this.http.post(url, body)
-      .pipe(
-        catchError((error) => {
-          console.error('An error occurred while creating the project:', error);
-          return throwError(error);
-        })
-      )
-      .subscribe(res => {
+    return this.http.post<Project>(url, body).pipe(
+      map((result) => {
         this.getProjects();
-        return res;
-      });
+
+        return result;
+      })
+    );
+  }
+
+  public updateProject(userID: string, projectID: string, body: ProjectEditDTO): Observable<Project> {
+    var url = this.commandUrl + '/UpdateProject/' + projectID;
+
+    return this.http.post<Project>(url, body).pipe(
+      map((result) => {
+        this.getProjects();
+        
+        return result;
+      })
+    );
   }
 }

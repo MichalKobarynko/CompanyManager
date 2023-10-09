@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormService } from '../../../../services/form.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastService } from '../../../../services/toast.service';
@@ -8,16 +8,21 @@ import { UserDTO } from '../../../../api/models/user-dtos/user.dto';
 import { UserRestService } from '../../../../api/services/user-rest.service';
 import { LocalStorageService } from '../../../../services/local-storage.service';
 import { ProjectCreateDTO } from '../../../../api/models/project-dtos/project-create.dto';
+import { HttpErrorResponse } from '@angular/common/http';
+import { of, switchMap } from 'rxjs';
+import { ProjectEditDTO } from '../../../../api/models/project-dtos/project-edit.dto';
 
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
-  styleUrls: ['./project-form.component.css']
+  styleUrls: ['./project-form.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class ProjectFormComponent {
   isEditing$!: Observable<boolean>;
   submitted = false;
   userList: UserDTO[] = [];
+  ownerID: string = '';
 
   form = this.formBuilder.group({
     add: this.formBuilder.group({
@@ -26,16 +31,18 @@ export class ProjectFormComponent {
     }),
     edit: this.formBuilder.group({
       title: [this.formService.getEditingProject?.title, [Validators.required]],
+      ownerId: ['', [Validators.required]]
     }),
   });
 
   constructor(
-    private formService: FormService,
+    public formService: FormService,
     private formBuilder: FormBuilder,
     private toastService: ToastService,
     private localStorageService: LocalStorageService,
     private projectRestService: ProjectRestService,
-    private userRestService: UserRestService
+    private userRestService: UserRestService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   get getAddControls() {
@@ -52,10 +59,13 @@ export class ProjectFormComponent {
 
   ngOnInit(): void {
     this.isEditing$ = this.formService.getIsEditing;
+    
     this.userRestService.getAllUsers().subscribe({
       next: (res) => {
+        
         this.userList = res.users;
-        console.log(res.users);
+        this.ownerID = this.formService.getEditingProject?.ownerID.toUpperCase() || "";
+        this.cdr.detectChanges();
       }
     });
   }
@@ -63,33 +73,29 @@ export class ProjectFormComponent {
   onSubmit(formValues: any) {
     this.submitted = true;
     var userID = this.localStorageService.getUserID().getValue();
-
-    console.log("formvalues: ", formValues);
+    var projectID = this.formService.getEditingProject?.id || '';
 
     if (this.getFormControls.edit.valid) {
-      const projectId = this.formService.getEditingProject?.id ?? '';
-      const projectName = this.form.value.edit?.title ?? '';
 
-      //this.apollo
-      //  .editProject(projectId, projectName)
-      //  .pipe(
-      //    catchError(async error => {
-      //      this.toastService.showToast(
-      //        'warning',
-      //        `Couldn't update this project`
-      //      );
-      //      throw new Error(error);
-      //    })
-      //  )
-      //  .subscribe(() =>
-      //    this.toastService.showToast(
-      //      'confirm',
-      //      'Successfully updated this project'
-      //    )
-      //  );
+      const formValue = { ...formValues };
+
+      const model: ProjectEditDTO = {
+        projectID: projectID,
+        title: formValues.edit.title,
+        ownerId: formValues.edit.ownerId
+      };
+
+      this.projectRestService.updateProject(userID, projectID, model).subscribe({
+
+        next: (res) => {
+          this.toastService.showToast('confirm', `Edytowano projekt: ${res.title}`);
+        },
+        error: (err: HttpErrorResponse) => {
+          this.toastService.showToast('warning', `Błąd podczas edycji projektu!`);
+        }
+      })
     }
     if (this.getFormControls.add.valid) {
-      //const name = this.form.value.add?.title ?? '';
 
       const formValue = { ...formValues };
       const model: ProjectCreateDTO = {
@@ -97,31 +103,14 @@ export class ProjectFormComponent {
         ownerId: formValues.add.ownerId
       };
 
-      try {
-        this.projectRestService.createProject(userID, model);
-      }
-      catch {
-        this.toastService.showToast('warning', "Error");
-      }
-      
-
-      //this.apollo
-      //  .addProject(name)
-      //  .pipe(
-      //    catchError(async error => {
-      //      this.toastService.showToast(
-      //        'warning',
-      //        `Couldn't add a new project`
-      //      );
-      //      throw new Error(error);
-      //    })
-      //  )
-      //  .subscribe(() =>
-      //    this.toastService.showToast(
-      //      'confirm',
-      //      'Successfully added a new project'
-      //    )
-      //  );
+      this.projectRestService.createProject(userID, model).subscribe({
+        next: (res) => {
+          this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
+        },
+        error: (err: HttpErrorResponse) => {
+          this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);
+        }
+      })
     }
 
     if (this.getFormControls.add.invalid && this.getFormControls.edit.invalid) {
