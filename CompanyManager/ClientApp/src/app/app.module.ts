@@ -32,6 +32,8 @@ import { LoadingSpinnerService } from './services/loading-spinner.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { ProjectRestService } from './api/services/project-rest.service';
 import { UserRestService } from './api/services/user-rest.service';
+import { DatePipe } from '@angular/common';
+import { DateFormatDirective } from './directives/date-format.directive';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -77,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    DatePipe,
     ToastService,
     FormService,
     LoadingSpinnerService,

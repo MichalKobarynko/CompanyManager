@@ -1,5 +1,5 @@
 <div class="app-project-form">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="field"
          *ngIf="(isEditing$ | async) === false"
@@ -13,72 +13,94 @@
       <input type="text"
              id="project-name"
              formControlName="title" />
-      <p class="input-invalid-message"
-         *ngIf="(getAddControls.title.touched || submitted) && getAddControls.title.errors?.['required']">
-        Name is required
-      </p>
 
-      <select type="text"
-              id="project-owner"
-              formControlName="ownerId"
-              placeholder ="Użytkownik odpowiedzialny">
-              
-        <option disabled selected>Wybierz użytkownika </option>
-        <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
-      </select>
-
-      <p class="input-invalid-message"
-         *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
-        Owner is required
-      </p>
-    </div>
-
-    <div *ngIf="isEditing$ | async"
-         formGroupName="edit"
-         class="">
-
-      <div class="title-text">
-        <span class="description">Edytuj Projekt</span>
+      <div *ngIf="addForm?.get('title')?.invalid && (addForm?.get('title')?.dirty || addForm?.get('title')?.touched)" class="text-danger">
+        <div *ngIf="addForm?.get('title')?.errors?.required">
+          Latitude is required.
+        </div>
       </div>
 
-      <div class="field">
 
-        <input type="text"
-               id="edit-project-name"
-               formControlName="title" />
-        <p class="input-invalid-message"
-           *ngIf="(getEditControls.title.touched || submitted) && getEditControls.title.errors?.['required']">
-          Name is required
-        </p>
+        <!--<p class="input-invalid-message"
+       *ngIf="(getAddControls.title.touched || submitted) && getAddControls.title.errors?.['required']">
+      Name is required
+    </p>-->
 
         <select type="text"
                 id="project-owner"
                 formControlName="ownerId"
-                placeholder="Użytkownik odpowiedzialny"
-                [(ngModel)]="ownerID">
+                placeholder="Użytkownik odpowiedzialny">
 
           <option disabled selected>Wybierz użytkownika </option>
-          <option *ngFor="let user of userList"
-                  [value]="user.id">{{ user.userName }}
-          </option>
+          <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
         </select>
 
-        <p class="input-invalid-message"
-           *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
-          Owner is required
-        </p>
+        <!--<p class="input-invalid-message"
+       *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
+      Owner is required
+    </p>-->
       </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary w-50">
-      {{ (isEditing$ | async) ? 'Update' : 'Add ' + 'project' }}
-    </button>
-    <button type="button"
-            class="btn btn-danger w-50"
-            (click)="close()">
-      Cancel
-    </button>
-  </form>
+      <div *ngIf="isEditing$ | async"
+           formGroupName="edit"
+           class="">
+
+        <div class="title-text">
+          <span class="description">Edytuj Projekt</span>
+        </div>
+
+        <div class="field">
+          <input type="text"
+                 id="edit-project-name"
+                 formControlName="projectId"
+                 hidden />
+
+
+          <input type="text"
+                 id="edit-project-name"
+                 formControlName="title" />
+          <!--<p class="input-invalid-message"
+         *ngIf="(getEditControls.title.touched || submitted) && getEditControls.title.errors?.['required']">
+        Name is required
+      </p>-->
+
+          <select type="text"
+                  id="project-owner"
+                  formControlName="ownerId"
+                  placeholder="Użytkownik odpowiedzialny">
+
+            <option disabled selected>Wybierz użytkownika </option>
+            <option *ngFor="let user of userList"
+                    [value]="user.id | lowercase">
+              {{ user.userName }}
+            </option>
+          </select>
+
+          <!--<p class="input-invalid-message"
+         *ngIf="(getAddControls.ownerId.touched || submitted) && getAddControls.ownerId.errors?.['required']">
+        Owner is required
+      </p>-->
+          <!--value="{{ createAt | date:'yyyy-MM-dd' }}"-->
+
+          <input type="date" value="{{createAt | date:'yyyy-MM-dd'}}" disabled />
+
+          <input type="date" value="{{updateAt | date:'yyyy-MM-dd'}}" disabled />
+
+
+          
+
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-50">
+        {{ (isEditing$ | async) ? 'Update' : 'Add ' + 'project' }}
+      </button>
+      <button type="button"
+              class="btn btn-danger w-50"
+              (click)="close()">
+        Cancel
+      </button>
+</form>
 </div>
 
 

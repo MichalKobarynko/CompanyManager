@@ -6,6 +6,6 @@ export interface Project {
   users: string[];
   ownerID: string;
   boards: Board[];
-  createdAt: Date;
-  updatedAt: Date;
+  createAt: Date;
+  updateAt: Date;
 }

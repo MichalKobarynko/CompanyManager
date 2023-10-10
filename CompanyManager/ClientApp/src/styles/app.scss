@@ -185,6 +185,11 @@ body {
   text-shadow: none;
 }
 
+input:disabled,
+button:disabled {
+  cursor: not-allowed;
+}
+
 h1 {
   font-size: $font-size-g;
 }
