@@ -13,6 +13,7 @@ import { of, switchMap } from 'rxjs';
 import { ProjectEditDTO } from '../../../../api/models/project-dtos/project-edit.dto';
 import { DatePipe } from '@angular/common';
 import { ProjectAddFormGroup, ProjectEditFormGroup } from '../../../../models/forms/project-form-groups';
+import { AppFormGroup } from '../../../../models/forms/app-form-group.model';
 
 @Component({
   selector: 'app-project-form',
@@ -22,7 +23,7 @@ import { ProjectAddFormGroup, ProjectEditFormGroup } from '../../../../models/fo
 })
 export class ProjectFormComponent {
   private activityLog: string = "";
-  isEditing$!: Observable<boolean>;
+  isEditing: boolean = false;
   submitted = false;
   userList: UserDTO[] = [];
 
@@ -42,26 +43,16 @@ export class ProjectFormComponent {
     private datePipe: DatePipe
   ) { }
 
- 
   ngOnInit(): void {
-    this.isEditing$ = this.formService.getIsEditing;
+    this.formService.getIsEditing.subscribe(result => {
+      this.isEditing = result;
+    })
 
     this.form = this.formBuilder.group({
       add: new ProjectAddFormGroup(),
       edit: new ProjectEditFormGroup()
     });
 
-    //this.form = this.formBuilder.group({
-    //  add: this.formBuilder.group({
-    //    title: ['', [Validators.required]],
-    //    ownerId: ['', [Validators.required]]
-    //  }),
-    //  edit: this.formBuilder.group({
-    //    projectId: ['', [Validators.required]],
-    //    title:     ['', [Validators.required]],
-    //    ownerId:   ['', [Validators.required]],
-    //  }),
-    //});
     this.loadData();
   }
 
@@ -84,55 +75,68 @@ export class ProjectFormComponent {
     this.cdr.detectChanges();
   }
 
-  get addForm() {
-    return this.form.get('add') || null;
+  get addForm(): AppFormGroup {
+    return (this.form.get('add') || null) as AppFormGroup;
   }
 
-  get editForm() {
-    return this.form.get('edit') || null;
+  get editForm(): AppFormGroup {
+    return (this.form.get('edit') || null) as AppFormGroup;
   }
 
+  get isFormValid() {
+    if (this.isEditing && this.editForm.valid)
+      return true;
+    else if (!this.isEditing && this.addForm.valid)
+      return true;
+    else
+      return false;
+  }
+
+  private editProject(userID: string) {
+    var editProject: ProjectEditDTO = <ProjectEditDTO>{};
+
+    const editForm = this.form.get('edit');
+    editProject.projectID = editForm?.get('projectId')?.value;
+    editProject.title = editForm?.get('title')?.value;
+    editProject.ownerId = editForm?.get('ownerId')?.value;
+
+
+    this.projectRestService.updateProject(userID, editProject.projectID, editProject).subscribe({
+      next: (res) => {
+        this.toastService.showToast('confirm', `Edytowano projekt: ${res.title}`);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showToast('warning', `Błąd podczas edycji projektu!`);
+      }
+    })
+  }
+  private addProject(userID: string) {
+    var addProject: ProjectCreateDTO = <ProjectCreateDTO>{};
+
+    const addForm = this.form.get('add');
+    addProject.title = addForm?.get('title')?.value;
+    addProject.ownerId = addForm?.get('ownerId')?.value;
+
+    this.projectRestService.createProject(userID, addProject).subscribe({
+      next: (res) => {
+        this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);
+      }
+    })
+  }
 
 
   onSubmit() {
-    this.submitted = true;
     var userID = this.localStorageService.getUserID().getValue();
 
-    if (this.editForm?.valid) {
-      var editProject: ProjectEditDTO = <ProjectEditDTO>{};
-
-      const editForm = this.form.get('edit');
-      editProject.projectID = editForm?.get('projectId')?.value;
-      editProject.title = editForm?.get('title')?.value;
-      editProject.ownerId = editForm?.get('ownerId')?.value;
-
-      
-      this.projectRestService.updateProject(userID, editProject.projectID, editProject).subscribe({
-        next: (res) => {
-          this.toastService.showToast('confirm', `Edytowano projekt: ${res.title}`);
-        },
-        error: (err: HttpErrorResponse) => {
-          this.toastService.showToast('warning', `Błąd podczas edycji projektu!`);
-        }
-      })
-    }
-
-    if (this.addForm?.valid) {
-      var addProject: ProjectCreateDTO = <ProjectCreateDTO>{};
-
-      const addForm = this.form.get('add');
-      addProject.title = addForm?.get('title')?.value;
-      addProject.ownerId = addForm?.get('ownerId')?.value;
-
-      this.projectRestService.createProject(userID, addProject).subscribe({
-        next: (res) => {
-          this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
-        },
-        error: (err: HttpErrorResponse) => {
-          this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);
-        }
-      })
-    }
+    if (this.editForm?.valid) 
+      this.editProject(userID);
+    
+    if (this.addForm?.valid) 
+      this.addProject(userID);
+    
 
     if (this.addForm?.invalid && this.editForm?.invalid) {
       return;
