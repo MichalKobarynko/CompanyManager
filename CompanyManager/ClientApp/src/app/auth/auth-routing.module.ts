@@ -11,17 +11,22 @@ import { LoginComponent } from "./login/login.component";
 import { PrivacyComponent } from "./privacy/privacy.component";
 import { RegisterComponent } from "./register/register.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   {
     path: "auth",
-    redirectTo: "auth/login",
+    redirectTo: "auth/home",
     pathMatch: "full",
   },
   {
     path: "auth",
     component: AuthComponent,
     children: [
+      {
+        path: "home",
+        component: HomeComponent
+      },
       {
         path: "login",
         component: LoginComponent

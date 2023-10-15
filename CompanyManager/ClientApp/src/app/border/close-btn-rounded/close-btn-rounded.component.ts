@@ -11,11 +11,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 export class CloseBtnRoundedComponent {
   @Output() onClose = new EventEmitter();
   @Input() position: 'left' | 'right' | undefined;
-
+  @Input() theme: 'light' | 'danger' | undefined;
+    
   classContainer() {
     return {
       'position-right': this.position === 'right',
-      'position-left': this.position === 'left'
+      'position-left': this.position === 'left',
+      'theme-light': this.theme === 'light',
+      'theme-danger': this.theme === 'danger',
     }
   }
 

@@ -8,7 +8,7 @@
 
       </div>
 
-      <div *ngIf="typeOfForm$ | async as typeOfForm" style="margin-top: 3rem;">
+      <div *ngIf="typeOfForm$ | async as typeOfForm" class="w-75">
         <app-project-form *ngIf="typeOfForm === 'project'"></app-project-form>
         <!--<app-board-form *ngIf="typeOfForm === 'board'"></app-board-form>
         <app-column-form *ngIf="typeOfForm === 'column'"></app-column-form>

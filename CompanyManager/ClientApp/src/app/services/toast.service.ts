@@ -36,7 +36,7 @@ export class ToastService {
 
     this.timeout = setTimeout(() => {
       this.closeToast();
-    }, 5000);
+    }, 50000);
   }
 
   closeToast() {

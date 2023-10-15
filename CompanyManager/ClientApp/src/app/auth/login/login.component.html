@@ -1,73 +1,63 @@
 
 
-<div class="wrapper">
+<div class="auth-layout-wrapper">
 
-  <div class="title-text">
-    <div class="title">{{ 'auth.login.signintoyouraccount' | translate }}</div>
-    <span class="description">{{ 'auth.login.welcomeback' | translate  }}</span>
-  </div>
-  <div class="form-container">
-    <div class="form-inner">
-      <form class="form"
-            [formGroup]="loginForm"
+  <app-form-header [title]="'auth.login.signintoyouraccount' | translate"
+                   [subTitle]="'auth.login.welcomeback' | translate "></app-form-header>
+
+  
+      <form [formGroup]="loginForm"
             (ngSubmit)="onSubmit(loginForm.value)">
 
-        <span class="form-error"
-              *ngIf="status === 'error'"
-              [innerHTML]="errorMessage">
-        </span>
+        <app-form-validation-message [formStatus]="status"
+                                     [errorMessage]="errorMessage"></app-form-validation-message>
 
         <!--EMAIL-->
-        <div class="field">
-          <input type="email"
+        <div class="form-group">
+          <label class="form-label">Adres email</label>
+          <input class="form-control"
+                 type="email"
                  id="email"
                  name="email"
+                 autocomplete="off"
                  placeholder="{{ 'common.email' | translate }}"
-                 formControlName="email"
-                 [ngClass]="{
-                    error: formControls.email.invalid && formControls.email.touched
-                  }">
-
-          <p class="input-invalid-message"
-             *ngIf="formControls.email.invalid && formControls.email.touched">
-            {{ 'auth.pleaseprovidevalidemail' | translate }}
-          </p>
+                 formControlName="email">
         </div>
+        <app-input-validation [control]="loginForm.getControl('email')"></app-input-validation>
+
 
         <!--PASSWORD-->
-        <div class="field">
-          <input class="form-input"
+        <div class="form-group">
+          <label class="form-label">Hasło</label>
+          <input  class="form-control"
+                 
                  type="password"
+                 appPasswordToggle
                  id="password"
                  name="password"
                  autocomplete="off"
                  placeholder="{{ 'common.password' | translate }}"
-                 [ngClass]="{
-                    error: formControls.password.invalid && formControls.password.touched
-                   }"
                  formControlName="password" />
-
-          <p class="input-invalid-message"
-             *ngIf="formControls.password.invalid && formControls.password.touched">
-            {{ 'auth.passwordshouldheaveCharacters' | translate }}
-          </p>
+          <span class="show-password-icon"></span>
         </div>
-        <div class="pass-link link-acent">
+        <app-input-validation [control]="loginForm.getControl('password')"></app-input-validation>
+
+        <div class="link-primary" >
           <a [routerLink]="'/auth/forgotpassword'">{{ 'auth.login.forgotpassword' | translate }}</a>
         </div>
-        <div class="btn-wrapper">
-          <button class="btn btn-primary w-100">
+
+        <div class="btn-container">
+          <button class="button button-primary">
             {{ 'auth.login.login' | translate }}
           </button>
-        </div>
-        <div class="signup-link link-acent">
-          Not a member?
-          <a [routerLink]="'/auth/register'">{{ 'auth.login.registernow' | translate }}</a>
+          <button class="button button-secondary"
+                  [routerLink]="'/auth/register'">
+            {{ 'auth.login.registernow' | translate }}
+          </button>
         </div>
       </form>
     </div>
-  </div>
-</div>
+
 
 
 

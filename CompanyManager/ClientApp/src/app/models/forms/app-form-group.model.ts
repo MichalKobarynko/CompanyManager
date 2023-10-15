@@ -11,7 +11,9 @@ export class AppFormGroup extends FormGroup {
   }
 
   getControl(name: string): AppFormControl {
-    return (this.controls[name] as AppFormControl)
+    var c = (this.controls[name] as AppFormControl)
+
+    return c;
   }
 
   getFormValidationMessages(): string[] {

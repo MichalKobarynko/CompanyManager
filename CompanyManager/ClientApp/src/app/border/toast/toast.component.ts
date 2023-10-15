@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ToastType } from '../../models/types';
 import { ToastService } from '../../services/toast.service';
@@ -14,6 +14,7 @@ export class ToastComponent implements OnInit {
   show$: Observable<boolean> | null = null;
   type$: Observable<ToastType> | null = null;
 
+ 
   constructor(private toastService: ToastService) { }
 
   ngOnInit(): void {

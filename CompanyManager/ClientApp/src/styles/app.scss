@@ -1,42 +1,3 @@
-/*$success: #117865;
-$success-50: #CAEAD8;
-
-$primary: #1da1f2;
-$primary-50: #D1E4FC;
-
-$acent: #4267b2;
-$acent-50: #6489c4;
-
-$warning: #F2C811;
-$warning-50: #FEF8D5;
-
-$danger: #de4545;
-$danger-50: #ff6767;
-
-$dark: #444444;
-$dark-50: #666666;
-
-$secondary: #E1E1E1;
-$secondary-50: #F2F2F2;
-
-
-$white: #fff;
-
-$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
-$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
-$gradient-acent: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
-$shadow-10: 0 .25rem 1rem rgba(0, 0, 0, 0.15);
-$shadow-20: 0 .75rem 1.25rem rgba(0, 0, 0, 0.2);
-
-h1 {
-    background-color: $warning-50;
-}*/
-
-
-
-/*
-    KOLORY
-*/
 
 
 $success: #8BC34A;
@@ -98,30 +59,52 @@ $teal-dark: darken($teal, 10%);
 $cyan-light: lighten($cyan, 10%);
 $cyan-dark: darken($cyan, 10%);
 
+/*qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq*/
 
-$primary: #1da1f2;
-$primary-light: $purple-light;
-$primary-dark: $purple-dark;
+$primary: #914ECF;
+$primary-light: #B360FF; //do wywalenia
+$primary-dark: #8849C2;
 
 
-$secondary: $gray-light;
-$secondary-light: #999;
+$secondary: #888;
+$secondary-light: #999;   //do wywalenia
 $secondary-dark: #777;
 
-$acent: #4267b2;
-$acent-light: #78A2F5;
-$acent-dark: $pink-dark;
+
+$acent: #3698F9;
+$acent-dark: #318BE3;
+
+$success: #13c1a3;
+$success-light: #13c1a3;
+$success-dark: #12B397;
+
 
 $danger: #de4545;
 $danger-light: $red-light;
-$danger-dark: $red-dark;
+$danger-dark: #C73E3E;
 
-$success: #13c1a3;
-$success-light: $green-light;
-$success-dark: $green-dark;
+
+$grey: #888;
+$grey-dark: #777;
+$grey-light: #999;
+
 
 $light: #fff;
 $dark: #000;
+
+$bg-color: #DAF9FE;
+
+/*qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq*/
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -132,9 +115,9 @@ $dark: #000;
 /*/*
     GRADIENTY
 */
-$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
-$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
-$gradient-primary: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
+//$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
+//$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
+//$gradient-primary: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
 //$gradient-secondary: linear-gradient(45deg, $additional 0, lighten($additional, 15%) 75%, $additional 100%);
 
 /*
@@ -162,6 +145,7 @@ $transition-duration: .2s; // Domyślna szybkość animacji.
 
 
 
+
 html {
   overflow: hidden;
 }
@@ -172,7 +156,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
-  background-color: $gray-light;
+  background-color: $bg-color;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
@@ -181,7 +165,7 @@ body {
 
 ::selection {
   background: $primary;
-  color: $light;
+  color: $dark;
   text-shadow: none;
 }
 

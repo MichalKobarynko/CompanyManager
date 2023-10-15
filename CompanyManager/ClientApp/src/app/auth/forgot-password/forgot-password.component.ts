@@ -8,6 +8,8 @@ import { UserLoginDTO } from '../../api/models/user-login.dto';
 import { AuthRestService } from '../../api/services/auth.service';
 import { FormStatus } from '../../models/types';
 import { ToastService } from '../../services/toast.service';
+import { ForgotPassworsdFormGroup } from '../../models/forms/forgot-password-form-group';
+import { LoadingSpinnerService } from '../../services/loading-spinner.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,46 +17,44 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-  forgotPasswordForm: FormGroup = <FormGroup>{};
-  public successMessage?: string;
-  public errorMessage?: string;
-  public showSuccess?: boolean;
-  public showError?: boolean;
+  formGroup: ForgotPassworsdFormGroup = <ForgotPassworsdFormGroup>{};
+  public successMessage?: string = "";
+  public errorMessage: string = "";
+  public showSuccess: boolean = false;
+  public showError: boolean = false; 
 
   constructor(
     private authRestService: AuthRestService,
     private toastService: ToastService,
-    private router: Router) { }
+    private router: Router,
+    private loadingSpinner: LoadingSpinnerService) { }
 
   ngOnInit(): void {
-    this.forgotPasswordForm = new FormGroup({
-      email: new FormControl("", [Validators.required])
-    })
+    this.formGroup = new ForgotPassworsdFormGroup();
+  }
+
+  isFormValid() {
+    return this.formGroup.valid;
   }
  
 
-  get formControls() {
-    return this.forgotPasswordForm.controls;
-  }
-
-  public onSubmit(forgotPasswordFormValue: any) {
-
+  public onSubmit() {
+    this.loadingSpinner.setSpinnerState(FormStatus.Loading);
     this.showError = this.showSuccess = false;
 
-    const formValues = { ...forgotPasswordFormValue };
-
-    const forgotPassDto: ForgotPasswordDTO = {
-      email: formValues.email,
-      clientURI: environment.resetPasswordUrl
-    }
+    var forgotPassDto: ForgotPasswordDTO = <ForgotPasswordDTO>{};
+    forgotPassDto.email = this.formGroup.get('email')?.value;
+    forgotPassDto.clientURI = environment.resetPasswordUrl;
 
     this.authRestService.forgotPassword(forgotPassDto)
       .subscribe({
         next: (_) => {
           this.toastService.showToast('confirm', "Email został wysłany.");
+          this.loadingSpinner.setSpinnerState(FormStatus.OK);
           this.router.navigate(['/auth/login']);
         },
         error: (err: HttpErrorResponse) => {
+          this.loadingSpinner.setSpinnerState(FormStatus.error);
           this.showError = true;
           this.errorMessage = err.message;
         }

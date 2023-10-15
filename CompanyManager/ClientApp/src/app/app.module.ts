@@ -34,6 +34,7 @@ import { ProjectRestService } from './api/services/project-rest.service';
 import { UserRestService } from './api/services/user-rest.service';
 import { DatePipe } from '@angular/common';
 import { DateFormatDirective } from './directives/date-format.directive';
+import { PasswordToggleDirective } from './directives/password-toggle.directive';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,7 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         allowedDomains: ["localhost:7218"],
         disallowedRoutes: ["localhost:7218/auth/"]
       }
-    })
+    }),
+    
   ],
   providers: [
     DatePipe,

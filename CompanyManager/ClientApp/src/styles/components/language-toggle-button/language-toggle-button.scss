@@ -1,16 +1,13 @@
-app-language-toggle-button {
-  position: relative;
-  z-index: 100;
-}
+
 
 .toggle-button {
-  margin: 0.5rem;
+  position: relative;
   display: flex;
-  justify-content: end;
+  justify-content: start;
 
   .checkbox {
+    width: 0;
     opacity: 0;
-    position: absolute;
     box-shadow: $shadow-20;
     box-shadow: 0 0 0 0.1rem rgba($primary, 0.5);
 
@@ -20,7 +17,7 @@ app-language-toggle-button {
   }
 
   .checkbox-label {
-    background-color: $secondary-light;
+    background-color: $grey-light;
     width: 3.5rem;
     height: 2rem;
     border-radius: 50px;
@@ -30,7 +27,7 @@ app-language-toggle-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $acent;
+    color: $primary;
     transition: box-shadow 0.2s;
 
     &:hover {
@@ -48,7 +45,7 @@ app-language-toggle-button {
       position: absolute;
       border-radius: 50%;
       transition: transform 0.2s linear, box-shadow 0.2s;
-      color: $acent;
+      color: $primary;
     }
 
     .shortcut {
@@ -58,5 +55,3 @@ app-language-toggle-button {
     }
   }
 }
-
-

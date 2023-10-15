@@ -10,23 +10,29 @@
         <span class="description">Dodaj Projekt</span>
       </div>
 
-      <input type="text"
-             id="project-name"
-             formControlName="title" />
 
+      <app-form-field label="Project title">
+        <input type="text"
+               name="first-name"
+               autocomplete="off"
+               required 
+               formControlName="title" />
+      </app-form-field>
       <app-input-validation [control]="addForm.getControl('title')"></app-input-validation>
 
 
+      <app-form-field label="Project owner">
+        <select type="text"
+                id="project-owner"
+                formControlName="ownerId"
+                placeholder="Użytkownik odpowiedzialny">
+
+          <option disabled [value]="'default'">Wybierz użytkownika </option>
+          <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
+        </select>
+      </app-form-field>
 
 
-      <select type="text"
-              id="project-owner"
-              formControlName="ownerId"
-              placeholder="Użytkownik odpowiedzialny">
-
-        <option disabled selected>Wybierz użytkownika </option>
-        <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
-      </select>
       <app-input-validation [control]="addForm.getControl('ownerId')"></app-input-validation>
 
     </div>
@@ -84,5 +90,7 @@
       </button>
 </form>
 </div>
+
+
 
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input } from '@angular/core';
 import { FormService } from '../../../../services/form.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from '../../../../services/toast.service';
@@ -61,8 +61,11 @@ export class ProjectFormComponent {
       next: (res) => {
         this.userList = res.users;
         this.cdr.detectChanges();
+        console.log('uzytkownicy: ', this.userList);
       }
     });
+
+   
 
     this.form.get('edit')?.patchValue({
       projectId: this.formService.getEditingProject?.id,
@@ -73,6 +76,7 @@ export class ProjectFormComponent {
     this.createAt = this.formService.getEditingProject?.createAt || new Date();
     this.updateAt = this.formService.getEditingProject?.updateAt || new Date();
     this.cdr.detectChanges();
+    
   }
 
   get addForm(): AppFormGroup {
@@ -120,6 +124,7 @@ export class ProjectFormComponent {
     this.projectRestService.createProject(userID, addProject).subscribe({
       next: (res) => {
         this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
+        this.close();
       },
       error: (err: HttpErrorResponse) => {
         this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);

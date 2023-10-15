@@ -7,13 +7,13 @@
 <app-form></app-form>
 <app-context-menu-modal></app-context-menu-modal>
 <main class="main">
-  <aside class="board-sidebar" >
+  <aside class="board-sidebar">
 
     <div class="logo-container">
       <h2 class="board-logo">{{ 'common.title' | translate }}</h2>
       <app-language-toggle-button></app-language-toggle-button>
     </div>
-    
+
     <div class="board-wrapper">
       <app-accordion class="accordion-body"></app-accordion>
     </div>
@@ -26,14 +26,15 @@
       </button>
     </div>
   </aside>
+  
+  <div class="board-details-wrapper">-->
 
-  <div class="board-details-wrapper">
     <!--<app-board-details *ngIf="status === 'ok'">
       <app-mobile-navigation></app-mobile-navigation>
     </app-board-details>-->
 
     <div class="loading-wrapper" *ngIf="status === 'loading'">
-      <img src="../../assets/fan-solid.svg" alt="fan" class="loading-spinner" />
+
       <p>Loading...</p>
     </div>
     <div class="loading-wrapper" *ngIf="status === 'error'">

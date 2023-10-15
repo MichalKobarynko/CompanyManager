@@ -10,17 +10,20 @@ import { FormStatus } from '../../models/types';
 import { LoadingSpinnerService } from '../../services/loading-spinner.service';
 import { ToastService } from '../../services/toast.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { LoginFormGroup } from '../../models/forms/login-form-group.model';
+import { AppFormGroup } from '../../models/forms/app-form-group.model';
+import { AppFormControl } from '../../models/forms/app-form-control.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   isSubmitted: boolean = false;
   status: FormStatus = FormStatus.OK;
   errorMessage: string = '';
-  loginForm: FormGroup;
+  loginForm!: LoginFormGroup ;
   
   
   constructor(
@@ -32,18 +35,12 @@ export class LoginComponent {
     private toastService: ToastService,
     private localStorageService: LocalStorageService
   ) {
-   this. loginForm = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.minLength(8), Validators.required]]
-   });
+    
   }
 
-  get formControls() {
-    return this.loginForm.controls;
-  }
-
-  getControl(name: string): FormControl | undefined {
-    return (this.loginForm.controls[name] as FormControl)
+  ngOnInit(): void {
+    this.loginForm = new LoginFormGroup();
+    this.status = FormStatus.Loading;
   }
 
   async onSubmit(loginFormValue: any) {

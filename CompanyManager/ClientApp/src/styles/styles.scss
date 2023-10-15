@@ -6,7 +6,8 @@
 @import "auth.scss";
 
 
-@import "components/auth-login/auth-login.scss";
+@import "components/auth-layout/auth-layout.scss";
+@import "components/auth-layout/home.scss";
 @import "components/loading-spinner/loading-spinner.scss";
 @import "components/toast/toast.scss";
 @import "components/language-toggle-button/language-toggle-button.scss";
@@ -20,3 +21,7 @@
 @import "components/form/form.scss";
 @import "components/form/form-wrapper.scss";
 @import "components/form/project-form.scss";
+@import "components/input-validation/input-validation.scss";
+@import "components/form-field/form-field.scss";
+@import "components/form-validation-message/form-validation-message.scss";
+@import "components/form-header/form-header.scss";

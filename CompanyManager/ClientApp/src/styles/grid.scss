@@ -19,8 +19,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: -1rem;
-  margin-right: -1rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 [class*="col-"] {
@@ -90,3 +90,22 @@ $widths: 25, 50, 75, 100;
     width: $i * 1%;
   }
 }
+
+@for $i from 1 through 5 {
+  .mx-#{$i} {
+    margin: 0 #{$i}rem;
+  }
+}
+
+@for $i from 1 through 5 {
+  .my-#{$i} {
+    margin: #{$i}rem 0;
+  }
+}
+
+@for $i from 1 through 5 {
+  .m-#{$i} {
+    margin: #{$i}rem #{$i}rem;
+  }
+}
+

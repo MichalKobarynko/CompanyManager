@@ -1,5 +1,6 @@
 .toast-wrapper {
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   position: fixed;
@@ -27,11 +28,12 @@
 
 .show {
   transform: translate(0, 0);
-  box-shadow: 0 0 2rem $dark;
+  box-shadow: 0 0 1rem $danger;
 }
 
 .informative {
   background-color: $success;
+  box-shadow: 0 0 1rem $success;
   color: $light;
 }
 
