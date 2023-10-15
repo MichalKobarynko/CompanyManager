@@ -6,25 +6,44 @@
 <app-toast></app-toast>
 <app-form></app-form>
 <app-context-menu-modal></app-context-menu-modal>
-<main class="main">
-  <aside class="board-sidebar">
 
-    <div class="logo-container">
+
+<main>
+  <!--SIDEBAR-->
+  <div class="board-side">
+    <!--LOGO-->
+    <div class="board-side__logo">
       <h2 class="board-logo">{{ 'common.title' | translate }}</h2>
       <app-language-toggle-button></app-language-toggle-button>
     </div>
-
-    <div class="board-wrapper">
+    <!--ACCORDION-->
+    <div class="board-side__list_wrapper ">
       <app-accordion class="accordion-body"></app-accordion>
     </div>
-    <div class="board-button-wrapper">
+    <!--ADD BUTTON-->
+    <div class="btn-container">
       <button *ngIf="status === 'ok'"
               type="button"
-              class="btn btn-primary w-100"
+              class="board-button-wrapper button-primary"
               (click)="onForm('project')">
         Add project
       </button>
     </div>
+  </div>
+  <!--MAIN-->
+  <div class="board-main">
+    sdad
+  </div>
+</main>
+
+
+<!--<main class="main">
+  <aside class="board-sidebar">
+
+    
+
+    
+    
   </aside>
   
   <div class="board-details-wrapper">-->
@@ -33,7 +52,7 @@
       <app-mobile-navigation></app-mobile-navigation>
     </app-board-details>-->
 
-    <div class="loading-wrapper" *ngIf="status === 'loading'">
+    <!--<div class="loading-wrapper" *ngIf="status === 'loading'">
 
       <p>Loading...</p>
     </div>
@@ -41,6 +60,6 @@
       <h2>Something went wrong! Try later!</h2>
     </div>
   </div>
-</main>
+</main>-->
 
 

@@ -1,4 +1,54 @@
 main {
+  $main-padding: 1rem;
+
+  padding: 1rem;
+  width: 100%;
+  height: 100vh;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+
+  .board-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: clamp(20rem, 20%, 30rem);
+    min-height: calc(100vh - $main-padding * 2);
+    background-color: green;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    .board-side__logo {
+      background-color: blue;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .board-side__list_wrapper {
+      height: calc(100vh - 8rem);
+      background-color: yellow;
+      min-width: 100%;
+      position: relative;
+      top: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+
+
+
+  .board-main {
+    width: 80%;
+    height: 100%;
+  }
+}
+
+
+
+
+/*main {
   width: 100%;
 
   .board-sidebar {
@@ -38,4 +88,4 @@ main {
       height: 3rem;
     }
   }
-}
+}*/
