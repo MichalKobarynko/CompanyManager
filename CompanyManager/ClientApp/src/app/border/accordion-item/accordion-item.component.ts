@@ -16,6 +16,7 @@ export class AccordionItemComponent {
   showContent = false;
   loggedInUserId$!: BehaviorSubject<string>;
   selectedBoardId$: Observable<string | undefined> | null = null;
+  isSelected: boolean = false;
 
   constructor(
     private boardService: BoardService,

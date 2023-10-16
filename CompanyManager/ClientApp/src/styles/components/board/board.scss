@@ -4,7 +4,6 @@ main {
   padding: 1rem;
   width: 100%;
   height: 100vh;
-  background-color: red;
   display: flex;
   flex-direction: row;
 
@@ -14,21 +13,26 @@ main {
     justify-content: space-between;
     width: clamp(20rem, 20%, 30rem);
     min-height: calc(100vh - $main-padding * 2);
-    background-color: green;
     padding: 1rem;
     border-radius: 1rem;
+    background-color: $light;
+    box-shadow: $shadow-10;
 
     .board-side__logo {
-      background-color: blue;
+      padding: 0 0.5rem;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
+      .board-side__logo-title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+      }
     }
 
     .board-side__list_wrapper {
       height: calc(100vh - 8rem);
-      background-color: yellow;
       min-width: 100%;
       position: relative;
       top: 0;
@@ -42,6 +46,7 @@ main {
   .board-main {
     width: 80%;
     height: 100%;
+    background-color: yellow;
   }
 }
 

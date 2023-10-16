@@ -12,6 +12,7 @@
   height: 100vh;
   margin: auto;
 
+
   .auth-layout__form {
     display: flex;
     flex-direction: column;
@@ -20,9 +21,10 @@
     width: 100%;
     background-color: #fff;
     border-radius: 2rem;
+    box-shadow: $shadow-10;
   }
 
-  .auth-layout__form-container {
+  /*.auth-layout__form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,6 +33,7 @@
   }
 
   .auth-layout__graphics {
+    margin: 1rem;
     display: none;
     background-size: cover;
     border-radius: 2rem;
@@ -39,7 +42,7 @@
       width: 100%;
       height: auto;
     }
-  }
+  }*/
 }
 
   @media( min-width: 48rem) {

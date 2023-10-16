@@ -1,4 +1,5 @@
-<div class="collapse-btn-wrapper">
+<div class="collapse-btn-wrapper"
+     [ngClass]="{ selected : isSelected}">
   <button type="button"
           class="collapse-btn__btn "
           (click)="toggleShowContent()">

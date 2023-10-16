@@ -1,6 +1,6 @@
 {
   "common": {
-    "title": "My Jira",
+    "title": "Company Manager",
     "email": "Email",
     "password": "Password",
     "confirmpassword": "Confirm password",

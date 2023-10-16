@@ -19,6 +19,7 @@ import { LanguageToggleButtonmodule } from "../border/language-toggle-button/lan
 import { LoadingSpinnerModule } from "../border/loading-spinner/loading-spinner.module";
 import { ControlValidationModule } from "../ui/control-validation/control-validation.module";
 import { HomeModule } from "./home/home.module";
+import { PictureModule } from "../border/picture/picture.module";
 
 @NgModule({
   declarations: [AuthComponent],
@@ -34,6 +35,7 @@ import { HomeModule } from "./home/home.module";
     ResetPasswordModule,
     HomeModule,
     ToastModule,
+    PictureModule,
     TranslateModule,
     LoadingSpinnerModule,
     LanguageToggleButtonmodule

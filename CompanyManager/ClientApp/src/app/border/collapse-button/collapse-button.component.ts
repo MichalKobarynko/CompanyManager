@@ -22,6 +22,7 @@ export class CollapseButtonComponent {
   @Output() toggleMenu = new EventEmitter<boolean>();
   @Input() showContent!: boolean;
   loggedInUserId$: Observable<string> | null = null;
+  isSelected: boolean = false;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -31,9 +32,10 @@ export class CollapseButtonComponent {
   ngOnInit(): void {
     this.loggedInUserId$ = this.localStorageService.getUserID();
 
-    //this.boardService.getSelectedProject.subscribe(res => {
-    //  this.showContent = this.project?.id === res?.id;
-    //});
+    this.boardService.getSelectedProject.subscribe(res => {
+      this.isSelected = res?.id === this.project.id;
+      console.log('selected project: ', res?.title);
+    });
   }
 
   toggleShowContent() {

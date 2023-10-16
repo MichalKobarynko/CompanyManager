@@ -19,10 +19,11 @@ import { ContextMenuModalModule } from "./context-menu-modal/context-menu-modal.
 import { CollapseButtonModule } from "./collapse-button/collapse-button.module";
 import { AccordionItemModule } from "./accordion-item/accordion-item.module";
 import { FormModule } from "./form/form.module";
+import { PictureModule } from "./picture/picture.module";
 
 @NgModule({
   declarations: [BorderComponent],
-  exports: [BorderComponent],
+  exports: [BorderComponent, PictureModule],
   imports: [
     CommonModule,
     ToastModule,
@@ -33,6 +34,7 @@ import { FormModule } from "./form/form.module";
     AccordionModule,
     ContextMenuModalModule,
     TranslateModule,
+    PictureModule,
     FormModule
   ],
   providers: [

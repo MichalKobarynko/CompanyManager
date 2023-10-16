@@ -3,7 +3,7 @@
                        (toggleMenu)="toggleShowContent($event)"
                        [showContent]="showContent"></app-collapse-button>
 
-
+ 
   <ul class="accordion-item__list " [ngClass]="{ show__item: showContent }">
     <li *ngFor="let board of project.boards">
       <button type="button"
@@ -14,18 +14,18 @@
       </button>
     </li>
     <p class="accordion-item-paragraph"
-       *ngIf="project.boards?.length === 0 && showContent">
+       *ngIf="project.boards?.length === 0">
       No boards
     </p>
-    <li class="accordion-item__btn-container">
+    <li class="accordion-item__btn-container btn-container">
       <button *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
               type="button"
-              class="btn btn-outline btn-sm btn-acent w-50"
+              class="button button-primary"
               (click)="onForm()">
         Add board
       </button>
 
-      
+
       <app-context-menu *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
                         [id]="project.id"
                         [type]="'project'"

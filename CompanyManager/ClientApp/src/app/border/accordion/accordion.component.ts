@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AccordionComponent {
   projects$!: Observable<Project[] | undefined>;
 
+
   constructor(private boardService: BoardService) { }
 
   ngOnInit(): void {

@@ -4,6 +4,7 @@ import { FormStatus, FormType } from '../models/types';
 import { FormService } from '../services/form.service';
 import { ToastService } from '../services/toast.service';
 import { ProjectRestService } from '../api/services/project-rest.service';
+import { BoardService } from '../services/board.service';
 
 @Component({
   selector: 'app-border',
@@ -14,10 +15,12 @@ import { ProjectRestService } from '../api/services/project-rest.service';
 export class BorderComponent implements OnInit, OnDestroy {
   status: FormStatus = FormStatus.OK;
   destroy$ = new Subject<void>();
+  showBoard: boolean = false;
 
   constructor(
     private formService: FormService,
-    private projectService: ProjectRestService
+    private projectService: ProjectRestService,
+    private boardService: BoardService
   ) { }
   
   ngOnDestroy(): void {
@@ -26,6 +29,9 @@ export class BorderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.projectService.getProjects();
+    this.boardService.getSelectedBoard.subscribe(result => {
+      this.showBoard = result !== undefined;
+    });
   }
 
   onForm(type: FormType, columnId?: string) {
