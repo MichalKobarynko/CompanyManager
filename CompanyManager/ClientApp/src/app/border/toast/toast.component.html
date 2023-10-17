@@ -1,0 +1,17 @@
+<div class="toast-wrapper"
+     [ngClass]="{
+    show: show$ | async,
+    informative: (type$ | async) === 'confirm'
+  }">
+
+  <i *ngIf="( type$ | async) === 'confirm'"
+     class="fa-solid fa-circle-check fa-lg"></i>
+  <i *ngIf="( type$ | async) === 'warning'"
+     class="fa-solid fa-triangle-exclamation fa-lg"></i>
+
+  <div class="text-wrapper">
+    <p>{{ message$ | async }}</p>
+  </div>
+
+  <app-close-btn-rounded theme="light" position="right" (onClose)="onClose()"></app-close-btn-rounded>
+</div>

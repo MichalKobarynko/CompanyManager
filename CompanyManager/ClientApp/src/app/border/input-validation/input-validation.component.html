@@ -1,0 +1,13 @@
+
+
+
+<ul class="input-validation__list" *ngIf="control && control.invalid && (control.dirty || control.touched)">
+  <li *ngFor="let error of control?.getValidationMessages()">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    {{ error }}
+  </li>
+</ul>
+
+
+
+

@@ -1,0 +1,397 @@
+.button {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.75rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  
+
+  &:hover {
+    color: $secondary;
+    font-weight: $font-weight-bold;
+  }
+
+  &:disabled, .disabled {
+    pointer-events: none;
+    opacity: 0.65;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($secondary, 0.25);
+  }
+
+  &.btn-sm {
+    font-size: $font-size-xs;
+    padding: 0.25rem 0.3rem;
+    border-radius: 0.5rem;
+  }
+}
+
+@mixin button-variant ($bg-color, $text-color, $dark-color, $border-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  border-color: $text-color;
+  padding: 0.5rem 0.5rem;
+
+  &:hover {
+    color: $text-color;
+    background-color: $dark-color;
+    border-color: $border-color;
+  }
+
+  &:focus {
+    color: $text-color;
+    background-color: $dark-color;
+    border-color: $bg-color;
+    box-shadow: 0 0 0 0.3rem rgba($bg-color, 0.3);
+  }
+
+  &:active {
+    color: $text-color;
+    background-color: $dark-color;
+    border-color: $border-color;
+    box-shadow: 0 0 0 0.25rem rgba($bg-color, 0.3);
+  }
+}
+
+@mixin button-link-variant($text-color) {
+  text-decoration: none;
+  margin: 0.5rem 0;
+  transition: color 0.2s;
+
+  a {
+    display: block;
+    color: $text-color;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+  }
+
+  &:hover a {
+    text-decoration: underline;
+  }
+
+  &:focus a {
+    text-decoration: underline;
+  }
+
+  &:disabled a {
+    color: $secondary;
+    cursor: default;
+  }
+}
+
+.button-primary {
+  @include button-variant($primary, $light, $primary-dark, $dark);
+}
+
+.button-secondary {
+  @include button-variant($secondary, $light, $secondary-dark, $dark);
+}
+
+.button-acent {
+  @include button-variant($acent, $light, $acent-dark, $dark);
+}
+
+.button-success {
+  @include button-variant($success, $light, $success-dark, $dark);
+}
+
+.button-danger {
+  @include button-variant($danger, $light, $danger-dark, $dark);
+}
+
+.link-primary {
+  @include button-link-variant($primary);
+}
+
+
+.link-primary {
+  @include button-link-variant($primary);
+}
+
+.link-secondary {
+  @include button-link-variant($secondary);
+}
+
+.link-success {
+  @include button-link-variant($success);
+}
+
+.link-acent {
+  @include button-link-variant($acent);
+}
+
+
+
+.btn-container {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  button {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+
+
+
+/*
+
+.btn-primary {
+  @include button-variant($primary, $light, $primary-dark, $primary-light);
+}
+
+.btn-secondary {
+  @include button-variant($secondary, $light, $secondary-dark, $secondary-light);
+}
+
+.btn-acent {
+  @include button-variant($acent, $light, $acent-dark, $acent-light);
+}
+
+.btn-danger {
+  @include button-variant($danger, $light, $danger-dark, $danger-light);
+}
+
+*/
+
+
+
+
+
+
+
+
+/*$btn-primary-color: $light;
+$btn-primary-bg: $primary;
+$btn-primary-hover: $primary-dark;
+
+.btn-primary {
+  $btn-color: $btn-primary-color;
+  $btn-bg: $btn-primary-bg;*/ /* Główny kolor tła */
+
+
+  /*$btn-hover-border-color: $btn-primary-hover;*/ /* Lekko przyciemniony kolor tła dla hover */
+  /*$btn-hover-color: $btn-primary-color;*/ /* Kolor tekstu podczas hover */
+  /*$btn-hover-bg: $btn-primary-hover;*/ /* Lekko przyciemniony kolor tła dla hover */
+  /*$btn-hover-border-color: $btn-primary-hover;*/ /* Lekko przyciemniony kolor tła dla bordera podczas hover */
+
+
+  /*$btn-focus-shadow-rgb: 111, 66, 193;*/ /* RGB wartość głównego koloru tła */
+  /*$btn-active-color: $btn-primary-color;*/ /* Kolor tekstu podczas aktywacji */
+  /*$btn-active-bg: $btn-primary-hover;*/ /* Lekko przyciemniony kolor tła dla aktywacji */
+  /*$btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);*/ /* Cień wewnętrzny */
+  /*$btn-disabled-color: $btn-primary-color;*/ /* Kolor tekstu dla wyłączonego przycisku */
+  /*$btn-disabled-bg: $btn-primary-bg;*/ /* Główny kolor tła dla wyłączonego przycisku */
+  /*$btn-disabled-border-color: #1b86b2;*/ /* Lekko przyciemniony kolor tła dla bordera wyłączonego przycisku */
+/*}
+
+
+
+
+
+.btn {
+  $btn-padding-x: 0.75rem;
+  $btn-padding-y: 0.375rem;
+  $btn-font-family: "";
+  $btn-font-size: 1.2rem;
+  $btn-font-weight: 600;
+  $btn-line-height: 2rem;
+  $btn-color: #212529;
+  $btn-bg: transparent;
+  $btn-border: 1px;
+  $btn-border-radius: 0.375rem;
+  $btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
+  $btn-disabled-opacity: 0.65;
+  $btn-focus-box-shadow: 0 0 0 0.25rem rgba(var($bs-btn-focus-shadow-rgb), .5);
+  display: inline;
+  padding: var($btn-padding-y) var($btn-padding-x);
+  font-size: var($btn-font-size);
+  font-family: var($btn-font-family);
+  font-weight: var($btn-font-weight);
+  line-height: var($btn-line-height);
+  color: var($btn-color);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $btn-border-width solid $btn-border-color);
+  border-radius: var($btn-border-radius);
+  background-color: var($btn-bg);
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  &:hover {
+    color: var($btn-color-hover);
+    background-color: var($btn-hover-bg);
+    border-color: var($btn-hover-border-color);
+  }
+
+  &:focus {
+    box-shadow: var($btn-focus-box-shadow)
+  }
+
+  &.disable, &::disabled {
+    color: var($btn-disabled-color);
+    pointer-events: none;
+    background-color: var($btn-disabled-bg);
+    border-color: var($btn-disabled-border-color);
+    opacity: var($btn-disabled-opacity);
+  }
+
+  .btn-neon {
+    $btn-color: #000;
+    $btn-bg: #e8fe93;*/ /* Główny kolor tła */
+
+
+    /*$btn-hover-border-color: #cbd573;*/ /* Lekko przyciemniony kolor tła dla hover */
+    /*$btn-hover-color: #000;*/ /* Kolor tekstu podczas hover */
+    /*$btn-hover-bg: #d1e87f;*/ /* Lekko przyciemniony kolor tła dla hover */
+    /*$btn-hover-border-color: #cbd573;*/ /* Lekko przyciemniony kolor tła dla bordera podczas hover */
+
+
+    /*$btn-focus-shadow-rgb: 60,153,110;*/ /* RGB wartość głównego koloru tła */
+    /*$btn-active-color: #000;*/ /* Kolor tekstu podczas aktywacji */
+    /*$btn-active-bg: #e8fe93;*/ /* Lekko przyciemniony kolor tła dla aktywacji */
+    /*$btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);*/ /* Cień wewnętrzny */
+    /*$btn-disabled-color: #000;*/ /* Kolor tekstu dla wyłączonego przycisku */
+    /*$btn-disabled-bg: #e8fe93;*/ /* Główny kolor tła dla wyłączonego przycisku */
+    /*$btn-disabled-border-color: #cbd573;*/ /* Lekko przyciemniony kolor tła dla bordera wyłączonego przycisku */
+  /*}
+}*/
+
+
+// Button variants
+//
+/*// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+
+// scss-docs-start btn-variant-mixin
+@mixin button-variant( $background, $border, $color: color-contrast($background), $hover-background: if($color == $color-contrast-light, shade-color($background, $btn-hover-bg-shade-amount), tint-color($background, $btn-hover-bg-tint-amount)), $hover-border: if($color == $color-contrast-light, shade-color($border, $btn-hover-border-shade-amount), tint-color($border, $btn-hover-border-tint-amount)), $hover-color: color-contrast($hover-background), $active-background: if($color == $color-contrast-light, shade-color($background, $btn-active-bg-shade-amount), tint-color($background, $btn-active-bg-tint-amount)), $active-border: if($color == $color-contrast-light, shade-color($border, $btn-active-border-shade-amount), tint-color($border, $btn-active-border-tint-amount)), $active-color: color-contrast($active-background), $disabled-background: $background, $disabled-border: $border, $disabled-color: color-contrast($disabled-background) ) {
+  color: $color;
+  @include gradient-bg($background);
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  &:hover {
+    color: $hover-color;
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    color: $hover-color;
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+
+    @if $enable-shadows {
+      @include box-shadow($btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5));
+    }
+    @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5);
+    }
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  .show > &.dropdown-toggle {
+    color: $active-color;
+    background-color: $active-background;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows {
+        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5));
+      }
+      @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width rgba(mix($color, $border, 15%), .5);
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $disabled-color;
+    background-color: $disabled-background;
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: $disabled-border;
+  }
+}
+// scss-docs-end btn-variant-mixin
+
+// scss-docs-start btn-outline-variant-mixin
+@mixin button-outline-variant( $color, $color-hover: color-contrast($color), $active-background: $color, $active-border: $color, $active-color: color-contrast($active-background) ) {
+  color: $color;
+  border-color: $color;
+
+  &:hover {
+    color: $color-hover;
+    background-color: $active-background;
+    border-color: $active-border;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  &.dropdown-toggle.show {
+    color: $active-color;
+    background-color: $active-background;
+    border-color: $active-border;
+
+    &:focus {
+      @if $enable-shadows {
+        @include box-shadow($btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($color, .5));
+      }
+      @else {
+        // Avoid using mixin so we can pass custom focus shadow properly
+        box-shadow: 0 0 0 $btn-focus-width rgba($color, .5);
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $color;
+    background-color: transparent;
+  }
+}
+// scss-docs-end btn-outline-variant-mixin
+
+// scss-docs-start btn-size-mixin
+@mixin button-size($padding-y, $padding-x, $font-size, $border-radius) {
+  padding: $padding-y $padding-x;
+  @include font-size($font-size);
+  // Manually declare to provide an override to the browser default
+  @include border-radius($border-radius, 0);
+}
+// scss-docs-end btn-size-mixin
+*/

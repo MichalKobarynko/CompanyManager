@@ -1,0 +1,57 @@
+
+.collapse-btn-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  /*border-bottom: 1px solid $secondary;*/
+  background-color: $grey-100;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  transition-property: all;
+  transition-duration: 0.2s;
+  background-color: $light;
+
+  &.selected {
+    background-color: rgba($bg-color, 1);
+  }
+
+  &:hover {
+    background-color: rgba($secondary, 0.2);
+    box-shadow: $shadow-10;
+  }
+
+  &:focus {
+    background-color: $bg-color;
+    box-shadow: 0 0 0 0.25rem rgba($primary, 0.3);
+  }
+
+  .collapse-btn__btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    letter-spacing: 1px;
+    margin: 0.1rem 0;
+
+    .collapse-button-image {
+      width: 1.5rem;
+      background-color: $primary;
+      border-radius: 50%;
+
+      &:hover {
+        box-shadow: 0 0 0 0.25rem rgba($primary, 0.3);
+      }
+    }
+
+    .collapse-button-title {
+      width: 16rem;
+      overflow: hidden;
+      white-space: nowrap;
+      font-weight: 400;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+  }
+}

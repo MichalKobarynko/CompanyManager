@@ -1,0 +1,137 @@
+/*.header {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  background-color: var(--info);
+}
+
+  .header h1 {
+    margin-bottom: 2rem;
+    display: none;
+  }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+  position: absolute;
+  inset: 0;
+  grid-column: 1 / 2;
+  background-color: var(--info);
+}
+
+.home {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.home-heading {
+  margin-bottom: 2rem;
+  background-color: var(--info);
+}
+
+  .home-heading h2 {
+    font-size: 2rem;
+  }
+
+.home-change {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.header-heading {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+    .header h1 {
+      margin-right: 5rem;
+      font-size: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    grid-template-columns: 500px 1fr;
+    grid-template-rows: 1fr;
+  }
+
+    .header h1 {
+      display: block;
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      text-align: center;
+    }
+
+  .container {
+    justify-content: center;
+    position: relative;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--info);
+  }
+
+  .home {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .header-heading {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--secondary);
+  }
+
+  .header {
+    background-color: var(--secondary);
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    grid-template-columns: 700px 1fr;
+    place-items: center;
+  }
+
+  .home {
+    max-width: 400px;
+  }
+
+  .header h1 {
+    font-size: 4rem;
+  }
+}
+
+.overlay {
+  position: absolute;
+  z-index: 100;
+}
+*/

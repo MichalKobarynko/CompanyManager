@@ -1,0 +1,20 @@
+.form-header__header {
+  padding: 2rem 0;
+
+  .form-header__header-title {
+  display: flex;
+  flex-direction: column;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-xl;
+  margin-bottom: 1rem;
+
+  
+}
+
+.form-header__header-description {
+  font-weight: $font-weight-normal;
+  font-size: $font-size-md;
+}
+}
+
+

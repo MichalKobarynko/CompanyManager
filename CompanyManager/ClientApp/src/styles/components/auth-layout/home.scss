@@ -1,0 +1,14 @@
+.home-layout {
+
+  .home-layout__header {
+    width: 75%;
+    font-weight: $font-weight-bold;
+  }
+
+  .home-layout__description {
+    width: 75%;
+    margin: 2rem 0;
+    padding: 0 1rem;
+    border-left: 4px solid $primary;
+  }
+}

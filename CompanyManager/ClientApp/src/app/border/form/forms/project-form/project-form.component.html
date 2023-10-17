@@ -1,0 +1,96 @@
+<div class="app-project-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="field"
+         *ngIf="isEditing === false"
+         formGroupName="add">
+
+
+      <div class="title-text">
+        <span class="description">Dodaj Projekt</span>
+      </div>
+
+
+      <app-form-field label="Project title">
+        <input type="text"
+               name="first-name"
+               autocomplete="off"
+               required 
+               formControlName="title" />
+      </app-form-field>
+      <app-input-validation [control]="addForm.getControl('title')"></app-input-validation>
+
+
+      <app-form-field label="Project owner">
+        <select type="text"
+                id="project-owner"
+                formControlName="ownerId"
+                placeholder="Użytkownik odpowiedzialny">
+
+          <option disabled [value]="'default'">Wybierz użytkownika </option>
+          <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
+        </select>
+      </app-form-field>
+
+
+      <app-input-validation [control]="addForm.getControl('ownerId')"></app-input-validation>
+
+    </div>
+
+      <div *ngIf="isEditing"
+           formGroupName="edit"
+           class="">
+
+        <div class="title-text">
+          <span class="description">Edytuj Projekt</span>
+        </div>
+
+        <div class="field">
+          <input type="text"
+                 id="edit-project-name"
+                 formControlName="projectId"
+                 hidden />
+
+
+          <input type="text"
+                 id="edit-project-name"
+                 formControlName="title" />
+          <app-input-validation [control]="editForm.getControl('title')"></app-input-validation>
+
+          <select type="text"
+                  id="project-owner"
+                  formControlName="ownerId"
+                  placeholder="Użytkownik odpowiedzialny">
+
+            <option disabled selected>Wybierz użytkownika </option>
+            <option *ngFor="let user of userList"
+                    [value]="user.id | lowercase">
+              {{ user.userName }}
+            </option>
+          </select>
+          <app-input-validation [control]="editForm.getControl('ownerId')"></app-input-validation>
+
+          <input type="date" value="{{createAt | date:'yyyy-MM-dd'}}" disabled />
+
+          <input type="date" value="{{updateAt | date:'yyyy-MM-dd'}}" disabled />
+
+
+
+
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-50" [disabled]="!isFormValid">
+        {{ isEditing ? 'Update' : 'Add ' + 'project' }}
+      </button>
+      <button type="button"
+              class="btn btn-danger w-50"
+              (click)="close()">
+        Cancel
+      </button>
+</form>
+</div>
+
+
+
+

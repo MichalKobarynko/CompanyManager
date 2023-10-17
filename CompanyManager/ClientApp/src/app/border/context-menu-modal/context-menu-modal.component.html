@@ -1,0 +1,21 @@
+<div class="context-menu-modal__backdrop"
+     *ngIf="show$ | async"
+     (click)="onHide()"></div>
+<div class="context-menu-modal" *ngIf="show$ | async">
+  <div class="context-menu-modal__title">
+    <p>Are you sure?</p>
+  </div>
+  
+  <div class="context-menu-modal-buttons">
+    <button type="button"
+            class="button button-primary"
+            (click)="onDelete()">
+      Yes
+    </button>
+    <button type="button"
+            class="button button-acent"
+            (click)="onHide()">
+      No
+    </button>
+  </div>
+</div>

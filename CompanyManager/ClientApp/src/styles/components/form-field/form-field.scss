@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+app-form-field {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-field {
+  color: $primary;
+  position: relative;
+  height: 5rem;
+  width: 100%;
+  min-width: 10rem;
+  overflow: hidden;
+  margin: 0.5rem 0;
+
+  &.acent {
+    color: $acent;
+
+    .label-wrapper::after {
+      border-bottom: 3px solid $acent;
+    }
+  }
+
+  input, select {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    line-height: rem;
+    background-color: inherit;
+    outline: 0;
+    padding-top: 2rem;
+    border: none;
+    box-sizing: border-box;
+
+    &:focus {
+      .label-wrapper {
+        border-bottom: none;
+      }
+    }
+  }
+
+  select {
+    background-position: right bottom;
+    line-height: 0rem;
+  }
+
+  .label-wrapper {
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    color: $dark;
+    background-color: inherit;
+    left: 0;
+    pointer-events: none;
+    bottom: -1px;
+    border-bottom: 1px solid $secondary;
+
+    .label-text {
+      font-weight: $font-weight-bold;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .label-wrapper::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid $primary;
+    left: 0;
+    bottom: -2px;
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  input:focus + .label-wrapper .label-text,
+  input:valid + .label-wrapper .label-text,
+  select:focus + .label-wrapper .label-text,
+  select:valid + .label-wrapper .label-text {
+    font-size: 1rem;
+    color: $secondary;
+    transform: translateY(-150%);
+  }
+
+  input:focus + .label-wrapper::after,
+  input:valid + .label-wrapper::after,
+  select:focus + .label-wrapper::after,
+  select:valid + .label-wrapper::after {
+    transform: translateX(0%);
+  }
+
+  input:valid + .label-wrapper::after,
+  select:valid + .label-wrapper::after {
+    color: $danger;
+  }
+}

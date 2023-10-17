@@ -1,0 +1,18 @@
+
+.app-project-form {
+ 
+
+  .field {
+   margin: 1rem 0;
+
+    input, select {
+        margin-top: 1rem;
+    }
+  }
+
+  .title-text {
+    margin-top: 2rem;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+  }
+}

@@ -22,7 +22,72 @@ namespace CompanyManager.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CompanyManager.Models.User", b =>
+            modelBuilder.Entity("CompanyManager.Models.DBContext.Board", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CUpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProjectID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Boards");
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.Project", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OwnerID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("OwnerID");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -70,6 +135,9 @@ namespace CompanyManager.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -83,6 +151,8 @@ namespace CompanyManager.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -257,19 +327,19 @@ namespace CompanyManager.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "348868d3-5832-400a-9e87-5dc1fad9c6ec",
+                            Id = "bd2fa0ad-3cdc-45fe-a072-1d6a9f785520",
                             Name = "viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "050da526-0b55-4d71-9d3d-5eed1c41374c",
+                            Id = "971baaca-cec5-4551-8485-32da1bb5f28c",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4e8f266a-4df7-4938-a766-302e981c06c2",
+                            Id = "3337c133-ce97-42fa-bf1e-ba6e5e993aca",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -381,6 +451,31 @@ namespace CompanyManager.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CompanyManager.Models.DBContext.Board", b =>
+                {
+                    b.HasOne("CompanyManager.Models.DBContext.Project", null)
+                        .WithMany("Boards")
+                        .HasForeignKey("ProjectID");
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.Project", b =>
+                {
+                    b.HasOne("CompanyManager.Models.DBContext.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.User", b =>
+                {
+                    b.HasOne("CompanyManager.Models.DBContext.User", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -392,7 +487,7 @@ namespace CompanyManager.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("CompanyManager.Models.User", null)
+                    b.HasOne("CompanyManager.Models.DBContext.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -401,7 +496,7 @@ namespace CompanyManager.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("CompanyManager.Models.User", null)
+                    b.HasOne("CompanyManager.Models.DBContext.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -416,7 +511,7 @@ namespace CompanyManager.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CompanyManager.Models.User", null)
+                    b.HasOne("CompanyManager.Models.DBContext.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -425,11 +520,21 @@ namespace CompanyManager.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("CompanyManager.Models.User", null)
+                    b.HasOne("CompanyManager.Models.DBContext.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.Project", b =>
+                {
+                    b.Navigation("Boards");
+                });
+
+            modelBuilder.Entity("CompanyManager.Models.DBContext.User", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

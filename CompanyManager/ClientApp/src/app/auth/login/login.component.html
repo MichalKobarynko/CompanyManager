@@ -1,0 +1,63 @@
+
+
+<div class="auth-layout-wrapper">
+
+  <app-form-header [title]="'auth.login.signintoyouraccount' | translate"
+                   [subTitle]="'auth.login.welcomeback' | translate "></app-form-header>
+
+  
+      <form [formGroup]="loginForm"
+            (ngSubmit)="onSubmit(loginForm.value)">
+
+        <app-form-validation-message [formStatus]="status"
+                                     [errorMessage]="errorMessage"></app-form-validation-message>
+
+        <!--EMAIL-->
+        <div class="form-group">
+          <label class="form-label">Adres email</label>
+          <input class="form-control"
+                 type="email"
+                 id="email"
+                 name="email"
+                 autocomplete="off"
+                 placeholder="{{ 'common.email' | translate }}"
+                 formControlName="email">
+        </div>
+        <app-input-validation [control]="loginForm.getControl('email')"></app-input-validation>
+
+
+        <!--PASSWORD-->
+        <div class="form-group">
+          <label class="form-label">Hasło</label>
+          <input  class="form-control"
+                 
+                 type="password"
+                 appPasswordToggle
+                 id="password"
+                 name="password"
+                 autocomplete="off"
+                 placeholder="{{ 'common.password' | translate }}"
+                 formControlName="password" />
+          <span class="show-password-icon"></span>
+        </div>
+        <app-input-validation [control]="loginForm.getControl('password')"></app-input-validation>
+
+        <div class="link-primary" >
+          <a [routerLink]="'/auth/forgotpassword'">{{ 'auth.login.forgotpassword' | translate }}</a>
+        </div>
+
+        <div class="btn-container">
+          <button class="button button-primary">
+            {{ 'auth.login.login' | translate }}
+          </button>
+          <button class="button button-secondary"
+                  [routerLink]="'/auth/register'">
+            {{ 'auth.login.registernow' | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+
+

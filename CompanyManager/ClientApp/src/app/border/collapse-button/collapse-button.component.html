@@ -1,0 +1,20 @@
+<div class="collapse-btn-wrapper"
+     [ngClass]="{ selected : isSelected}">
+  <button type="button"
+          class="collapse-btn__btn "
+          (click)="toggleShowContent()">
+
+    <img [@rotateState]="!showContent ? 'default' : 'rotated'"
+         class="collapse-button-image"
+         src="../../../assets/arrow-down-short.svg"
+         alt="" />
+    <div class="collapse-button-title">
+      {{ project.title }}
+    </div>
+
+
+  </button>
+  
+</div>
+
+<p *ngIf="project === undefined">No projects</p>

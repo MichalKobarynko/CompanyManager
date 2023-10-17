@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using CompanyManager.Data;
-using CompanyManager.Models;
 using CompanyManager.Models.EmailSending;
 using System.Runtime.CompilerServices;
 using System.Text;
+using CompanyManager.Repositories.Interfaces;
+using CompanyManager.Repositories.Implementations;
+using CompanyManager.Models.DBContext;
 
 namespace CompanyManager.Infrastructure.Extensions
 {
@@ -121,6 +123,13 @@ namespace CompanyManager.Infrastructure.Extensions
         public static IServiceCollection ConfigureAppServices(this IServiceCollection services)
         {
             services.AddScoped<ApplicationDbContext>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
 
             return services;
         }

@@ -1,0 +1,9 @@
+<div *ngIf="(projects$ | async)?.length === 0"
+     class="accordion-warning-container">
+  <p class="accordion-warning-message">No projects to display</p>
+</div>
+<div class="accordion-wrapper">
+  <div class="accordion-item-wrapper" *ngFor="let project of projects$ | async">
+    <app-accordion-item [project]="project"></app-accordion-item>
+  </div>
+</div>

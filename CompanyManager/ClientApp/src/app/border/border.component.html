@@ -1,0 +1,76 @@
+
+
+
+
+
+<app-toast></app-toast>
+<app-form></app-form>
+<app-context-menu-modal></app-context-menu-modal>
+
+
+<main>
+  <!--SIDEBAR-->
+  <div class="board-side">
+    <!--LOGO-->
+    <div class="board-side__logo">
+      <div class="board-side__logo-title">{{ 'common.title' | translate }}</div>
+      <app-language-toggle-button></app-language-toggle-button>
+    </div>
+    <hr />
+    <h3>Lista projektów</h3>
+    <hr />
+
+    <!--ACCORDION-->
+    <div class="board-side__list_wrapper ">
+      <app-accordion class="accordion-body"></app-accordion>
+    </div>
+    <!--ADD BUTTON-->
+    <div class="btn-container">
+      <button *ngIf="status === 'ok'"
+              type="button"
+              class="button button-primary"
+              (click)="onForm('project')">
+        Add project
+      </button>
+    </div>
+  </div>
+  <!--MAIN-->
+  <div *ngIf="showBoard; else logo"
+       [ngClass]="{'board-main': showBoard, 'picture-container': !showBoard}"
+       class="board-main">
+  </div>
+</main>
+
+<ng-template #logo>
+  <div class="picture-container">
+    <app-picture></app-picture>
+  </div>
+</ng-template>
+
+
+<!--<main class="main">
+  <aside class="board-sidebar">
+
+    
+
+    
+    
+  </aside>
+  
+  <div class="board-details-wrapper">-->
+
+    <!--<app-board-details *ngIf="status === 'ok'">
+      <app-mobile-navigation></app-mobile-navigation>
+    </app-board-details>-->
+
+    <!--<div class="loading-wrapper" *ngIf="status === 'loading'">
+
+      <p>Loading...</p>
+    </div>
+    <div class="loading-wrapper" *ngIf="status === 'error'">
+      <h2>Something went wrong! Try later!</h2>
+    </div>
+  </div>
+</main>-->
+
+

@@ -1,33 +1,219 @@
-$success: #117865;
-$success-50: #CAEAD8;
 
-$primary: #1da1f2;
-$primary-50: #D1E4FC;
 
-$acent: #4267b2;
-$acent-50: #6489c4;
+$success: #8BC34A;
 
-$warning: #F2C811;
-$warning-50: #FEF8D5;
+$dark: rgba(#000, .87);
+$dark-secondary: rgba(#000, .54);
+$dark-disabled: rgba(#000, .38);
+
+
+$grey-50: #fafafa;
+$grey-100: #f5f5f5;
+$grey-300: #e0e0e0;
+
+
+// Główne kolory
+$blue: #007bff;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #28a745;
+$teal: #20c997;
+$cyan: #17a2b8;
+$white: #fff;
+$gray: #6c757d;
+$gray-dark: #343a40;
+$gray-light: #888;
+
+// Odcienie
+$blue-light: lighten($blue, 10%);
+$blue-dark: darken($blue, 10%);
+
+$indigo-light: lighten($indigo, 10%);
+$indigo-dark: darken($indigo, 10%);
+
+$purple-light: lighten($purple, 10%);
+$purple-dark: darken($purple, 10%);
+
+$pink-light: lighten($pink, 10%);
+$pink-dark: darken($pink, 10%);
+
+$red-light: lighten($red, 10%);
+$red-dark: darken($red, 10%);
+
+$orange-light: lighten($orange, 10%);
+$orange-dark: darken($orange, 10%);
+
+$yellow-light: lighten($yellow, 10%);
+$yellow-dark: darken($yellow, 10%);
+
+$green-light: lighten($green, 10%);
+$green-dark: darken($green, 10%);
+
+$teal-light: lighten($teal, 10%);
+$teal-dark: darken($teal, 10%);
+
+$cyan-light: lighten($cyan, 10%);
+$cyan-dark: darken($cyan, 10%);
+
+/*qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq*/
+
+$primary: #914ECF;
+$primary-light: #B360FF; //do wywalenia
+$primary-dark: #8849C2;
+
+
+$secondary: #888;
+$secondary-light: #999;   //do wywalenia
+$secondary-dark: #777;
+
+
+$acent: #3698F9;
+$acent-dark: #318BE3;
+
+$success: #13c1a3;
+$success-light: #13c1a3;
+$success-dark: #12B397;
+
 
 $danger: #de4545;
-$danger-50: #ff6767;
-
-$dark: #444444;
-$dark-50: #666666;
-
-$secondary: #E1E1E1;
-$secondary-50: #F2F2F2;
+$danger-light: $red-light;
+$danger-dark: #C73E3E;
 
 
-$white: #fff;
+$grey: #888;
+$grey-dark: #777;
+$grey-light: #999;
 
-$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
-$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
-$gradient-acent: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
+
+$light: #fff;
+$dark: #000;
+
+$bg-color: #DAF9FE;
+$bg-color-dark: #D0EDF2;
+
+/*qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*/*
+    GRADIENTY
+*/
+//$gradient-primary: linear-gradient(45deg, $primary 0, lighten($primary, 17%) 50%, $primary 100%);
+//$gradient-secondary: linear-gradient(45deg, $secondary 0, lighten($secondary, 15%) 75%, $secondary 100%);
+//$gradient-primary: linear-gradient(45deg, $acent 0, lighten($acent, 17%) 50%, $acent 100%);
+//$gradient-secondary: linear-gradient(45deg, $additional 0, lighten($additional, 15%) 75%, $additional 100%);
+
+/*
+    FONT SIZE
+*/
+$font-size-xxs: .625rem;
+$font-size-xs: .75rem;
+$font-size-sm: .9rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-xxl: 2rem;
+$font-size-g: 3rem;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
 $shadow-10: 0 .25rem 1rem rgba(0, 0, 0, 0.15);
 $shadow-20: 0 .75rem 1.25rem rgba(0, 0, 0, 0.2);
+$shadow-primary: 0 .75rem 1.25rem rgba($primary, 0.2);
+$shadow-secondary: 0 .75rem 1.25rem rgba($secondary, 0.2);
+$shadow-acent: 0 .75rem 1.25rem rgba($acent, 0.2);
+//$shadow-additional: 0 .75rem 1.25rem rgba($additional, 0.2);
+
+$transition-duration: .2s; // Domyślna szybkość animacji.
+
+
+
+
+html {
+  overflow: hidden;
+}
+
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  background-color: $bg-color;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+
+
+::selection {
+  background: $primary;
+  color: $dark;
+  text-shadow: none;
+}
+
+input:disabled,
+button:disabled {
+  cursor: not-allowed;
+}
 
 h1 {
-    background-color: $warning-50;
+  font-size: $font-size-g;
 }
+
+h2 {
+  font-size: $font-size-xxl;
+}
+
+h3 {
+  font-size: $font-size-xl;
+}
+
+h4 {
+  font-size: $font-size-lg;
+}
+
+h5 {
+  font-size: $font-size-md;
+}
+
+h6 {
+  font-size: $font-size-sm;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  transition: transform $transition-duration;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 100;
+}
+
+@for $i from 1 through 4 {
+  .w-#{25*$i} {
+    width: 25% * $i;
+  }
+}
+

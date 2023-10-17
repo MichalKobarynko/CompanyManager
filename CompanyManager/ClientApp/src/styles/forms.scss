@@ -1,0 +1,51 @@
+.form-group {
+  $control-height: 2.5rem;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.025rem;
+
+  .form-label {
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+  }
+
+  .form-control {
+    border-radius: 0.5rem;
+    border: 2px solid $secondary;
+    background-color: $bg-color;
+    padding-left: 1rem;
+    width: 100%;
+    height: $control-height;
+  }
+}
+
+.password-input .show-password-icon::after {
+  content: "👁️";
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input {
+  background-color: $bg-color;
+
+  &:focus {
+    border: 2px solid $secondary;
+  }
+}
+
+input[type="password"] {
+  position: relative;
+  padding-right: 1rem;
+}
+
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+  border-left: 3px solid $danger;
+}
+
+input.ng-dirty.ng-valid, select.ng-dirty.ng-valid {
+  border-left: 3px solid $success;
+}

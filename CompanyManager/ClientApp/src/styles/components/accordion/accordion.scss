@@ -1,0 +1,10 @@
+.accordion-warning-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .accordion-warning-message {
+    font-weight: $font-weight-bold;
+    color: $secondary;
+  }
+}

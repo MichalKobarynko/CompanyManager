@@ -1,0 +1,57 @@
+
+
+.toggle-button {
+  position: relative;
+  display: flex;
+  justify-content: start;
+
+  .checkbox {
+    width: 0;
+    opacity: 0;
+    box-shadow: $shadow-20;
+    box-shadow: 0 0 0 0.1rem rgba($primary, 0.5);
+
+    &:checked + .checkbox-label .ball {
+      transform: translateX(1.2rem);
+    }
+  }
+
+  .checkbox-label {
+    background-color: $grey-light;
+    width: 3.5rem;
+    height: 2rem;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $primary;
+    transition: box-shadow 0.2s;
+
+    &:hover {
+      box-shadow: 0 0 0 0.1rem rgba($dark, 0.5);
+
+      .ball {
+        box-shadow: 0 0 0 0.1rem rgba($light, 0.5);
+      }
+    }
+
+    .ball {
+      background-color: $primary;
+      width: 1.7rem;
+      height: 1.7rem;
+      position: absolute;
+      border-radius: 50%;
+      transition: transform 0.2s linear, box-shadow 0.2s;
+      color: $primary;
+    }
+
+    .shortcut {
+      font-size: 0.75rem;
+      padding: 0.1rem;
+      color: $light;
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<div class="auth-layout-wrapper">
+
+  <app-form-header [title]="'auth.login.signintoyouraccount' | translate"
+                   [subTitle]="'auth.login.welcomeback' | translate "></app-form-header>
+
+
+  <form [formGroup]="formGroup"
+        (ngSubmit)="onSubmit(formGroup.value)">
+
+    <app-form-validation-message [formStatus]="status"
+                                 [errorMessage]="errorMessage"></app-form-validation-message>
+
+    <!--USERNAME-->
+    <div class="form-group">
+      <label class="form-label">Nazwa użytkownika</label>
+      <input class="form-control"
+             type="text"
+             placeholder="{{ 'common.nick' | translate }}"
+             id="username"
+             formControlName="username"
+             autocomplete="off" />
+    </div>
+    <app-input-validation [control]="formGroup.getControl('username')"></app-input-validation>
+
+    <!--EMAIL-->
+    <div class="form-group">
+      <label class="form-label">Adres email</label>
+      <input class="form-control"
+             placeholder="Email"
+             type="email"
+             id="email"
+             name="email"
+             autocomplete="off"
+             formControlName="email"/>
+    </div>
+    <app-input-validation [control]="formGroup.getControl('email')"></app-input-validation>
+
+
+    <!--PASSWORD-->
+    <div class="form-group">
+      <label class="form-label">Hasło</label>
+      <input class="form-control"
+             placeholder="Hasło"
+             type="password"
+             appPasswordToggle
+             id="password"
+             name="password"
+             autocomplete="off"
+             formControlName="password" />
+    </div>
+    <app-input-validation [control]="formGroup.getControl('password')"></app-input-validation>
+
+    <!--CONFIRM_PASSWORD-->
+    <div class="form-group">
+      <label class="form-label">Powtórz Hasło</label>
+      <input class="form-control"
+             placeholder="Powtórz hasło"
+             type="password"
+             id="confirm-password"
+             formControlName="confirmPassword"
+             autocomplete="off" />
+      <span class="show-password-icon"></span>
+    </div>
+    <app-input-validation [control]="formGroup.getControl('confirmPassword')"></app-input-validation>
+
+    <div class="btn-container">
+      <button class="button button-primary">
+        Zarejestruj się
+      </button>
+    </div>
+
+    <div class="link-primary">
+      <p style="margin-right:0.5rem;">Masz konto już konto<!--{{ 'auth.register.haveaccount' | translate }}--></p>
+      <a [routerLink]="'/auth/login'">Zaloguj się<!--{{ 'auth.register.signin' | translate }}--></a>
+    </div>
+
+  </form>
+</div>
+
+
+
+
+
+

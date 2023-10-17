@@ -1,0 +1,44 @@
+.picture-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-wrapper {
+  margin: 1rem;
+  display: none;
+  background-size: cover;
+  border-radius: 2rem;
+
+
+  img {
+    width: 100%;
+    height: auto;
+
+  }
+}
+
+@media( min-width: 48rem) {
+  .picture-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+
+  .picture-wrapper  {
+      display: flex;
+  }
+}
+
+@media( min-width: 75rem) {
+  .picture-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 66.66%;
+    max-width: calc(100vw - 33.33%);
+  }
+}

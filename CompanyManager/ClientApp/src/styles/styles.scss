@@ -1,20 +1,28 @@
+@import "reset.scss";
 @import "app.scss";
+@import "grid.scss";
+@import "buttons.scss";
+@import "forms.scss";
+@import "auth.scss";
 
 
-a {
-  color: #0366d6;
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-code {
-  color: #e01a76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+@import "components/auth-layout/auth-layout.scss";
+@import "components/auth-layout/home.scss";
+@import "components/loading-spinner/loading-spinner.scss";
+@import "components/toast/toast.scss";
+@import "components/language-toggle-button/language-toggle-button.scss";
+@import "components/accordion/accordion.scss";
+@import "components/accordion/accordion-item.scss";
+@import "components/accordion/collapse-btn.scss";
+@import "components/board/board.scss";
+@import "components/context-menu/context-menu.scss";
+@import "components/context-menu-modal/context-menu-modal.scss";
+@import "components/close-btn-rounded/close-btn-rounded.scss";
+@import "components/form/form.scss";
+@import "components/form/form-wrapper.scss";
+@import "components/form/project-form.scss";
+@import "components/input-validation/input-validation.scss";
+@import "components/form-field/form-field.scss";
+@import "components/form-validation-message/form-validation-message.scss";
+@import "components/form-header/form-header.scss";
+@import "components/picture/picture.scss";

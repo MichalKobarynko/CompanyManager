@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using CompanyManager.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CompanyManager.Models.DBContext;
 
 namespace CompanyManager.Infrastructure.Services
 {
@@ -30,7 +30,8 @@ namespace CompanyManager.Infrastructure.Services
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Email)
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
             var roles = await userManager.GetRolesAsync(user);

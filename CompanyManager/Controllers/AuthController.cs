@@ -1,15 +1,17 @@
 ﻿using CompanyManager.Data;
-using CompanyManager.DTOs.Auth;
 using CompanyManager.Infrastructure.Services;
-using CompanyManager.Models;
+using CompanyManager.Models.DBContext;
+using CompanyManager.Models.DTOs.Auth;
 using CompanyManager.Models.EmailSending;
 using LoggingService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using MojaJIRA.Responses.Auth;
 using System.IdentityModel.Tokens.Jwt;
+
 
 namespace CompanyManager.Controllers
 {
@@ -19,6 +21,7 @@ namespace CompanyManager.Controllers
     {
         private readonly ILoggerManager logger;
         private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         private readonly JwtHandler jwtHandler;
         private readonly IEmailSender emailSender;
         private readonly ApplicationDbContext context;
@@ -170,6 +173,48 @@ namespace CompanyManager.Controllers
                 return BadRequest("Invalid Email Confirmation Request");
 
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> CreateDefaultUsers()
+        {
+            string user = Roles.User;
+            string viewer = Roles.Viewer;
+            string admin = Roles.Admin;
+
+
+            var addedUserList = new List<User>();
+
+            var email_Admin = "kobass18@wp.pl";
+            if (await userManager.FindByEmailAsync(email_Admin) == null)
+            {
+                var user_Admin = new User()
+                {
+                    Id = "77BB20FF-8CE2-4AA6-8E05-10D188891488",
+                    SecurityStamp = "77BB20FF-8CE2-4AA6-8E05-10D188891488",
+                    UserName = "Admin",
+                    Email = email_Admin
+                };
+                IdentityResult r1 = await userManager.CreateAsync(user_Admin, "password");
+                IdentityResult r2 = await userManager.AddToRoleAsync(user_Admin, admin);
+                IdentityResult r3 = await userManager.AddToRoleAsync(user_Admin, user);
+                IdentityResult r4 = await userManager.AddToRoleAsync(user_Admin, viewer);
+
+                user_Admin.EmailConfirmed = true;
+                user_Admin.LockoutEnabled = false;
+
+                addedUserList.Add(user_Admin);
+            }
+
+            
+            if (addedUserList.Count > 0)
+                await context.SaveChangesAsync();
+
+            return new JsonResult(new
+            {
+                Count = addedUserList.Count,
+                Users = addedUserList
+            });
         }
 
         [HttpGet]
