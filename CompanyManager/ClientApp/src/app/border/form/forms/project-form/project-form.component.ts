@@ -18,15 +18,14 @@ import { AppFormGroup } from '../../../../models/forms/app-form-group.model';
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
-  styleUrls: ['./project-form.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./project-form.component.css']
 })
 export class ProjectFormComponent {
   private activityLog: string = "";
-  isEditing: boolean = false;
+  isEditing!: boolean;
   submitted = false;
   userList: UserDTO[] = [];
-
+  projectTitle: string = '';
   createAt: Date = new Date();
   updateAt: Date = new Date();
 
@@ -46,7 +45,7 @@ export class ProjectFormComponent {
   ngOnInit(): void {
     this.formService.getIsEditing.subscribe(result => {
       this.isEditing = result;
-    })
+    });
 
     this.form = this.formBuilder.group({
       add: new ProjectAddFormGroup(),
@@ -54,6 +53,7 @@ export class ProjectFormComponent {
     });
 
     this.loadData();
+    this.projectTitle = this.formService.getEditingProject?.title || '';
   }
 
   loadData() {
@@ -70,7 +70,7 @@ export class ProjectFormComponent {
     this.form.get('edit')?.patchValue({
       projectId: this.formService.getEditingProject?.id,
       title: this.formService.getEditingProject?.title,
-      ownerId: this.formService.getEditingProject?.ownerID.toLowerCase()
+      ownerId: this.formService.getEditingProject?.ownerID.toUpperCase()
     });
 
     this.createAt = this.formService.getEditingProject?.createAt || new Date();
@@ -88,12 +88,13 @@ export class ProjectFormComponent {
   }
 
   get isFormValid() {
-    if (this.isEditing && this.editForm.valid)
+    if (this.isEditing && this.editForm.valid) {
       return true;
-    else if (!this.isEditing && this.addForm.valid)
+    }
+    else if (!this.isEditing && this.addForm.valid) {
       return true;
-    else
-      return false;
+    }
+    return false; 
   }
 
   private editProject(userID: string) {
@@ -124,7 +125,6 @@ export class ProjectFormComponent {
     this.projectRestService.createProject(userID, addProject).subscribe({
       next: (res) => {
         this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
-        this.close();
       },
       error: (err: HttpErrorResponse) => {
         this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);

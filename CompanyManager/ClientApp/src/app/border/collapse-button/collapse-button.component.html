@@ -12,6 +12,13 @@
       {{ project.title }}
     </div>
 
+    <app-context-menu *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
+                      [id]="project.id"
+                      [type]="'project'"
+                      [editingProject]="project"
+                      class="w-50">
+    </app-context-menu>
+
 
   </button>
   

@@ -1,0 +1,65 @@
+<div class="app-project-form">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+    <!--ADD FORM-->
+    <div class="auth-layout-wrapper"
+         *ngIf="isEditing === false"
+         formGroupName="add">
+
+      <app-form-header title="Dodaj Tablicę"></app-form-header>
+
+      <div class="form-group">
+        <label class="form-label">Nazwa tablicy</label>
+        <input class="form-control"
+               type="text"
+               id="email"
+               name="name"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="name">
+        <app-input-validation [control]="addForm.getControl('name')"></app-input-validation>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Projekt</label>
+        <select type="text"
+                class="form-control"
+                id="projectId"
+                formControlName="projectId"
+                placeholder="Wybierz projekt">
+
+         
+          <option *ngFor="let project of (projects$ | async)" [value]="project.id">{{ project.title }}</option>
+        </select>
+        <app-input-validation [control]="addForm.getControl('projectId')"></app-input-validation>
+      </div>
+    </div>
+
+    <!--EDIT FORM-->
+   
+
+    <!--BUTTONS-->
+    <div class="btn-container">
+      <button type="submit"
+              class="button button-primary"
+              [disabled]="!isFormValid">
+        {{ isEditing ? 'Update' : 'Add ' + 'board' }}
+      </button>
+      <button type="button"
+              class="button button-secondary"
+              (click)="close()">
+        Cancel
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+
+
+
+

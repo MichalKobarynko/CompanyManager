@@ -31,17 +31,14 @@
     box-shadow: 0 0 0 0.25rem rgba($secondary, 0.25);
   }
 
-  &.btn-sm {
+  &.small {
     font-size: $font-size-xs;
     padding: 0.25rem 0.3rem;
     border-radius: 0.5rem;
   }
 }
 
-.button-small {
-  padding: 0.12rem 0.3rem;
-  font-size: 0.75rem;
-}
+
 
 @mixin button-variant ($bg-color, $text-color, $dark-color, $border-color) {
   background-color: $bg-color;

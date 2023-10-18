@@ -1,4 +1,5 @@
 ﻿using CompanyManager.Models.DBContext;
+using CompanyManager.Models.DTOs.API.BoardDTOs;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

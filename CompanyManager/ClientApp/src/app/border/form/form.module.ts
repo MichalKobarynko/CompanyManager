@@ -4,6 +4,7 @@ import { CloseBtnRoundedModule } from "../close-btn-rounded/close-btn-rounded.mo
 import { FormComponent } from "./form.component";
 import { FormWrapperModule } from "../form-wrapper/form-wrapper.module";
 import { ProjectFormModule } from "./forms/project-form/project-form.module";
+import { BoardFormModule } from "./forms/board-form/board-form.module";
 
 @NgModule({
   declarations: [FormComponent],
@@ -11,7 +12,8 @@ import { ProjectFormModule } from "./forms/project-form/project-form.module";
     CommonModule,
     CloseBtnRoundedModule,
     FormWrapperModule,
-    ProjectFormModule
+    ProjectFormModule,
+    BoardFormModule
   ],
   exports: [FormComponent]
 })

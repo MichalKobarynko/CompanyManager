@@ -28,8 +28,12 @@ namespace CompanyManager.Models.DBContext
     {
         public Guid ID { get; set; }
         public string Name { get; set; }
+
+        [ForeignKey(nameof(Project))]
+        public Guid ProjectID { get; set; }
+        public Project Project { get; set; }    
         public DateTime CreateAt { get; set; } = DateTime.Now;
-        public DateTime CUpdateAt { get; set; } = DateTime.Now;
+        public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
         public bool IsFinished { get; set; } = false;
     }

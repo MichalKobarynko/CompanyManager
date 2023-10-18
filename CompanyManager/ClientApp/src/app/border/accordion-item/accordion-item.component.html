@@ -17,23 +17,6 @@
        *ngIf="project.boards?.length === 0">
       No boards
     </p>
-    <li class="accordion-item__btn-container btn-container">
-      <button *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
-              type="button"
-              class="button button-primary"
-              (click)="onForm()">
-        Add board
-      </button>
-
-
-      <app-context-menu *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
-                        [id]="project.id"
-                        [type]="'project'"
-                        [editingProject]="project"
-                        class="w-50">
-      </app-context-menu>
-
-    </li>
   </ul>
 </div>
 

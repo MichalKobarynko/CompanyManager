@@ -42,7 +42,5 @@ export class CollapseButtonComponent {
     this.showContent = !this.showContent;
     this.boardService.onChangeSelectedProject(this.project);
     this.toggleMenu.emit(this.showContent);
-    
-    console.log("toggle accordion item; ", this.project.title);
   }
 }

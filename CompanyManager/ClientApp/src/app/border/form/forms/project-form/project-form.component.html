@@ -1,28 +1,30 @@
 <div class="app-project-form">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="field"
+    <!--ADD FORM-->
+    <div class="auth-layout-wrapper"
          *ngIf="isEditing === false"
          formGroupName="add">
+       
+      <app-form-header title="Dodaj Projekt"></app-form-header>
 
-
-      <div class="title-text">
-        <span class="description">Dodaj Projekt</span>
+      <div class="form-group">
+        <label class="form-label">Nazwa projektu</label>
+        <input class="form-control"
+               type="text"
+               id="email"
+               name="title"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="title">
+        <app-input-validation [control]="addForm.getControl('title')"></app-input-validation>
       </div>
 
 
-      <app-form-field label="Project title">
-        <input type="text"
-               name="first-name"
-               autocomplete="off"
-               required 
-               formControlName="title" />
-      </app-form-field>
-      <app-input-validation [control]="addForm.getControl('title')"></app-input-validation>
-
-
-      <app-form-field label="Project owner">
+      <div class="form-group">
+        <label class="form-label">Osoba odpowiedzialna</label>
         <select type="text"
+                class="form-control"
                 id="project-owner"
                 formControlName="ownerId"
                 placeholder="Użytkownik odpowiedzialny">
@@ -30,66 +32,94 @@
           <option disabled [value]="'default'">Wybierz użytkownika </option>
           <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
         </select>
-      </app-form-field>
+
+        <app-input-validation [control]="addForm.getControl('ownerId')"></app-input-validation>
+      </div>
+    </div>
+
+    <!--EDIT FORM-->
+    <div class="auth-layout-wrapper"
+         *ngIf="isEditing === true"
+         formGroupName="edit">
+
+      <app-form-header title="Edytuj Projekt:"
+                       [subTitle]="projectTitle"></app-form-header>
+
+      <input class="form-control"
+             type="text"
+             id="projectId"
+             name="projectId"
+             autocomplete="off"
+             placeholder="Nazwa"
+             formControlName="projectId"
+             hidden>
+
+      <div class="form-group">
+        <label class="form-label">Nazwa projektu</label>
+        <input class="form-control"
+               type="text"
+               id="email"
+               name="title"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="title">
+        <app-input-validation [control]="editForm.getControl('title')"></app-input-validation>
+      </div>
 
 
-      <app-input-validation [control]="addForm.getControl('ownerId')"></app-input-validation>
+      <div class="form-group">
+        <label class="form-label">Osoba odpowiedzialna</label>
+        <select type="text"
+                class="form-control"
+                id="project-owner"
+                formControlName="ownerId"
+                placeholder="Użytkownik odpowiedzialny">
+
+          <option disabled [value]="'default'">Wybierz użytkownika </option>
+          <option *ngFor="let user of userList" [value]="user.id">{{ user.userName }}</option>
+        </select>
+
+        <app-input-validation [control]="editForm.getControl('ownerId')"></app-input-validation>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data utworzenia</label>
+        <input type="date"
+               class="form-control"
+               value="{{createAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data modyfikacji</label>
+        <input type="date"
+               class="form-control"
+               value="{{updateAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
 
     </div>
 
-      <div *ngIf="isEditing"
-           formGroupName="edit"
-           class="">
-
-        <div class="title-text">
-          <span class="description">Edytuj Projekt</span>
-        </div>
-
-        <div class="field">
-          <input type="text"
-                 id="edit-project-name"
-                 formControlName="projectId"
-                 hidden />
-
-
-          <input type="text"
-                 id="edit-project-name"
-                 formControlName="title" />
-          <app-input-validation [control]="editForm.getControl('title')"></app-input-validation>
-
-          <select type="text"
-                  id="project-owner"
-                  formControlName="ownerId"
-                  placeholder="Użytkownik odpowiedzialny">
-
-            <option disabled selected>Wybierz użytkownika </option>
-            <option *ngFor="let user of userList"
-                    [value]="user.id | lowercase">
-              {{ user.userName }}
-            </option>
-          </select>
-          <app-input-validation [control]="editForm.getControl('ownerId')"></app-input-validation>
-
-          <input type="date" value="{{createAt | date:'yyyy-MM-dd'}}" disabled />
-
-          <input type="date" value="{{updateAt | date:'yyyy-MM-dd'}}" disabled />
-
-
-
-
-        </div>
+      <!--BUTTONS-->
+      <div class="btn-container">
+        <button type="submit"
+                class="button button-primary"
+                [disabled]="!isFormValid">
+          {{ isEditing ? 'Update' : 'Add ' + 'project' }}
+        </button>
+        <button type="button"
+                class="button button-secondary"
+                (click)="close()">
+          Cancel
+        </button>
       </div>
 
-      <button type="submit" class="btn btn-primary w-50" [disabled]="!isFormValid">
-        {{ isEditing ? 'Update' : 'Add ' + 'project' }}
-      </button>
-      <button type="button"
-              class="btn btn-danger w-50"
-              (click)="close()">
-        Cancel
-      </button>
 </form>
+
 </div>
+
+
+
 
 
 

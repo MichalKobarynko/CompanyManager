@@ -5,6 +5,7 @@ import { BoardService } from '../../services/board.service';
 import { FormService } from '../../services/form.service';
 import { Board } from '../../models/board.model';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { FormType } from '../../models/types';
 
 @Component({
   selector: 'app-accordion-item',
@@ -44,16 +45,11 @@ export class AccordionItemComponent {
     });
   }
 
-  onForm() {
-    this.boardService.onChangeSelectedProject(this.project);
-    this.boardService.onChangeSelectedBoard(this.project.boards.at(0));
-    this.formService.onChangeFormVisibility('board');
-  }
-
   toggleShowContent(state: boolean) {
     this.showContent = state;
     
   }
+
 
   onSelectBoard(board: Board) {
     this.boardService.onChangeSelectedProject(this.project);

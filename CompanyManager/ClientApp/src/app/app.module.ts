@@ -35,6 +35,7 @@ import { UserRestService } from './api/services/user-rest.service';
 import { DatePipe } from '@angular/common';
 import { DateFormatDirective } from './directives/date-format.directive';
 import { PasswordToggleDirective } from './directives/password-toggle.directive';
+import { BoardRestService } from './api/services/board-rest.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoadingSpinnerService,
     LocalStorageService,
     ProjectRestService,
+    BoardRestService,
     UserRestService,
     ContextMenuModalService,
     {

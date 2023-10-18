@@ -6,7 +6,7 @@
   /*border-bottom: 1px solid $secondary;*/
   background-color: $grey-100;
   border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.1 0.25rem;
   transition-property: all;
   transition-duration: 0.2s;
   background-color: $light;
@@ -36,7 +36,8 @@
     margin: 0.1rem 0;
 
     .collapse-button-image {
-      width: 1.5rem;
+      width: 1rem;
+      height: 1rem;
       background-color: $primary;
       border-radius: 50%;
 
@@ -50,7 +51,7 @@
       overflow: hidden;
       white-space: nowrap;
       font-weight: 400;
-      font-size: 1.2rem;
+      font-size: 1rem;
       text-align: left;
     }
   }

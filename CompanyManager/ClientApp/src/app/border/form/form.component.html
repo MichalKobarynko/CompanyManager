@@ -8,6 +8,7 @@
 
       <div *ngIf="typeOfForm$ | async as typeOfForm" class="w-75">
         <app-project-form *ngIf="typeOfForm === 'project'"></app-project-form>
+        <app-board-form *ngIf="typeOfForm === 'board'"></app-board-form>
       </div>
     </div>
   </div>
