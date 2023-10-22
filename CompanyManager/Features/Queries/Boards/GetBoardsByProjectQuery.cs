@@ -28,7 +28,16 @@ namespace CompanyManager.Features.Queries.Boards
 
                 var boardListDTO = new BoardListDTO
                 {
-                    Boards
+                    Boards = boards.Select(b => new BoardDTO
+                    {
+                        ID = b.ID,
+                        Name = b.Name,
+                        ProjectID = b.ProjectID,
+                        CreateAt = b.CreateAt,
+                        UpdateAt = b.UpdateAt,
+                        IsFinished = b.IsFinished
+                    }).ToList(),
+                    Count = boards.Count()
                 };
 
                 return boardListDTO;

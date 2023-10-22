@@ -4,7 +4,13 @@
   .accordion-item__list {
     display: none;
     list-style-type: none;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.2rem;
+
+    .accordion-item__list-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
     &.show__item {
       display: block;
@@ -17,6 +23,10 @@
     }
 
     .accordion-item {
+       
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       background: none;
       color: $dark;
       cursor: pointer;
@@ -29,20 +39,27 @@
       overflow: hidden;
       margin: 0.125rem 0;
       padding: 0.25rem 0.5rem;
-      border-radius: 0.5rem;
-      border-bottom: 1px solid $secondary-light;
+      border-radius: 0.25rem;
+      border-bottom: 1px solid rgba($secondary, 0.3)t;
       transition-property: all;
       transition-duration: 0.2s;
 
+      .accordion-item__title {
+        width: calc(100% - 3rem);
+      }
+
+      app-context-menu{
+        width: 2rem;
+      }
+
       &:hover {
-        background-color: $grey-300;
+        background-color: rgba($secondary, 0.2);
       }
       /*background-color: grey;*/
 
       &.highlight {
-        margin: 1rem 0;
-        box-shadow: 0 0 0 0.25rem rgba($acent, 0.3);
-        border-radius: 0.25rem;
+        background-color: $bg-color;
+        border-left: 3px solid $primary;
       }
     }
 

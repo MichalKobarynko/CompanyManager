@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
           this.loadingSpinnerService.setSpinnerState(this.status);
 
           this.localStorageService.setClaims(res.token);
+          this.toastService.showToast('confirm', `Zalogowano użytkownika o adresie email: ${model.email}`);
           this.router.navigate(['/']);
         },
         error: (err: HttpErrorResponse) => {

@@ -7,6 +7,25 @@
 .context-menu-container {
   position: relative;
 
+  &.primary {
+    button {
+      background-color: $primary;
+    }
+  }
+
+  &.secondary {
+    button {
+      background-color: $secondary;
+    }
+  }
+
+  &.acent {
+    button {
+      background-color: $acent;
+    }
+  }
+
+
 
   .context-menu-body {
     z-index: 200;
@@ -24,7 +43,7 @@
     transition-property: all;
     transition-duration: 0.2s;
     border-radius: 0.5rem;
-    
+
 
     .btn {
       width: 10rem;

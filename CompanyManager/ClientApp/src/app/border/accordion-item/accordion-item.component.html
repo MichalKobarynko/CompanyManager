@@ -5,13 +5,24 @@
 
  
   <ul class="accordion-item__list " [ngClass]="{ show__item: showContent }">
-    <li *ngFor="let board of project.boards">
-      <button type="button"
-              class="accordion-item"
-              [ngClass]="{ highlight: (selectedBoardId$ | async) === board.id }"
-              (click)="onSelectBoard(board)">
-        {{ board.name }}
-      </button>
+    <li *ngFor="let board of boards">
+
+     
+        <!--BOARD TITLE-->
+        <div class="accordion-item"
+             [ngClass]="{ highlight: (selectedBoardId$ | async) === board.id }"
+             (click)="onSelectBoard(board)">
+          <div class="accordion-item__title">{{ board.name }}</div>
+          <!--MENU CONTEXT-->
+          <app-context-menu *ngIf="(loggedInUserId$ | async) === project.ownerID.toUpperCase()"
+                            [id]="board.id"
+                            [type]="'board'"
+                            [editingProject]="project"
+                            class="margin-right: 0.25rem;"
+                            [theme]="'secondary'">
+          </app-context-menu>
+        </div>
+
     </li>
     <p class="accordion-item-paragraph"
        *ngIf="project.boards?.length === 0">
