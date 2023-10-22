@@ -41,6 +41,11 @@ input[type="password"] {
   padding-right: 1rem;
 }
 
+input[type="color"] {
+  position: relative;
+  padding-right: 1rem;
+}
+
 
 input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
   border-left: 3px solid $danger;

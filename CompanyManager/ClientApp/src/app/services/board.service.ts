@@ -86,7 +86,7 @@ export class BoardService {
   }
 
   allTagsFromOneBoard(board: Board | undefined) {
-    const columns = board?.columns.flatMap(column => column.column);
+    const columns = board?.columns?.flatMap(column => column.column);
 
     const tags = columns?.flatMap(column =>
       column.tasks.flatMap(task => task.tagNames)

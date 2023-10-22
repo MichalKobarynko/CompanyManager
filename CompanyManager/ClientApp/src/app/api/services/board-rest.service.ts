@@ -9,6 +9,7 @@ import { ProjectCreateDTO } from "../models/project-dtos/project-create.dto";
 import { ProjectEditDTO } from "../models/project-dtos/project-edit.dto";
 import { BoardCreateDTO } from "../models/board-dtos/board-create.dto";
 import { Board } from "../../models/board.model";
+import { BoardListDTO } from "../models/board-dtos/board-list.dto";
 
 @Injectable()
 export class BoardRestService {
@@ -20,12 +21,11 @@ export class BoardRestService {
     private http: HttpClient,
     private boardService: BoardService) { }
 
-  public getProjects() {
-    var url = this.queryUrl + '/getboards';
-
-    this.http.get<ProjectListDTO>(url).subscribe(res => {
-      this.boardService.onSetProjects(res.projects);
-    });
+  //TO na pewno do zmiany
+  public getBoards(projectId: string): Observable<BoardListDTO> {
+    var url = this.queryUrl + '/GetBoardsByProject/' + projectId;
+    console.log(url)
+    return this.http.get<BoardListDTO>(url);
   }
 
   //public deleteProject(userID: string, projectID: string) {

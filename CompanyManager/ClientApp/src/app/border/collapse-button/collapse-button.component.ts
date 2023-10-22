@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { BoardService } from '../../services/board.service';
+import { BoardRestService } from '../../api/services/board-rest.service';
 
 @Component({
   selector: 'app-collapse-button',
@@ -26,7 +27,8 @@ export class CollapseButtonComponent {
 
   constructor(
     private localStorageService: LocalStorageService,
-    private boardService: BoardService
+    private boardService: BoardService,
+    private boardRestService: BoardRestService
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,6 @@ export class CollapseButtonComponent {
 
     this.boardService.getSelectedProject.subscribe(res => {
       this.isSelected = res?.id === this.project.id;
-      console.log('selected project: ', res?.title);
     });
   }
 

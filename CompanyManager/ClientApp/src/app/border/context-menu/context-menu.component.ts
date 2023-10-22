@@ -23,6 +23,7 @@ export class ContextMenuComponent implements OnInit  {
   @Input() editingColumn?: Column;
   @Input() editingTask?: Task;
   @Input() editingSubtask?: Subtask;
+  @Input() theme?: 'primary' | 'secondary' | 'acent';
 
   loggedInUserId$!: BehaviorSubject<string>;
   openedContextMenuOfElementId = '';
@@ -33,13 +34,22 @@ export class ContextMenuComponent implements OnInit  {
     private contextMenuModalService: ContextMenuModalService
   ) { }
 
+  classContainer() {
+    return {
+      'button-primary': this.theme === 'primary',
+      'button-secondary': this.theme === 'secondary',
+      'button-acent': this.theme === 'acent'
+    }
+  }
+
   ngOnInit(): void {
 
     this.loggedInUserId$ = this.localStorageService.getUserID();
   }
 
-  onToggle(id: string) {
+  onToggle(event: Event, id: string) {
     this.openedContextMenuOfElementId = id;
+    event.stopPropagation();
   }
 
   delete() {
@@ -49,10 +59,11 @@ export class ContextMenuComponent implements OnInit  {
     this.openedContextMenuOfElementId = '';
   }
 
-  addBoard() {
+  addElement(formType: FormType) {
     this.openedContextMenuOfElementId = '';
-    this.formService.onChangeFormVisibility('board');
+    this.formService.onChangeFormVisibility(formType);
   }
+
 
   editProject() {
     this.openedContextMenuOfElementId = '';

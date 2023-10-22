@@ -5,6 +5,7 @@ import { FormComponent } from "./form.component";
 import { FormWrapperModule } from "../form-wrapper/form-wrapper.module";
 import { ProjectFormModule } from "./forms/project-form/project-form.module";
 import { BoardFormModule } from "./forms/board-form/board-form.module";
+import { ColumnFormModule } from "./forms/column-form/column-form.module";
 
 @NgModule({
   declarations: [FormComponent],
@@ -13,7 +14,8 @@ import { BoardFormModule } from "./forms/board-form/board-form.module";
     CloseBtnRoundedModule,
     FormWrapperModule,
     ProjectFormModule,
-    BoardFormModule
+    BoardFormModule,
+    ColumnFormModule
   ],
   exports: [FormComponent]
 })

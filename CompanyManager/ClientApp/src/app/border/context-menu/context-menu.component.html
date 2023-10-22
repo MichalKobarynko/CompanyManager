@@ -1,5 +1,5 @@
 <div class="context-menu-backdrop"
-     (click)="onToggle('')"
+     (click)="onToggle($event,'')"
      *ngIf="openedContextMenuOfElementId.length !== 0">
 </div>
 
@@ -7,8 +7,9 @@
   
   <button type="button"
           style="padding: 0.1rem 0.3rem;"
-          class="button small button-secondary"
-          (click)="onToggle(id)">
+          class="button small"
+          [ngClass]="classContainer()"
+          (click)="onToggle($event, id)">
     <i class="fa-solid fa-bars"></i>
   </button>
 
@@ -17,24 +18,38 @@
        [ngClass]="{ show: openedContextMenuOfElementId.length !== 0 }"
        *ngIf="openedContextMenuOfElementId === id">
 
-    <app-close-btn-rounded (onClose)="onToggle('')"
+    <app-close-btn-rounded (onClose)="onToggle($event,'')"
                            position="right">
     </app-close-btn-rounded>
 
     <div class="container">
       <div class="btn-container">
-        <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase()"
+        <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'project'"
                 type="button"
                 class="button button-primary"
-                (click)="addBoard()">
-          Add board to project
+                (click)="addElement('board')">
+          Add board
+          <i class="fa-solid fa-circle-plus fa-lg"></i>
+        </button>
+        <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'board'"
+                type="button"
+                class="button button-primary"
+                (click)="addElement('column')">
+          Add Column
+          <i class="fa-solid fa-circle-plus fa-lg"></i>
+        </button>
+        <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'board'"
+                type="button"
+                class="button button-primary"
+                >
+          Add Task
           <i class="fa-solid fa-circle-plus fa-lg"></i>
         </button>
         <button type="button" class="button button-secondary" (click)="editProject()">
           Edit
           <i class="fa-solid fa-square-pen fa-lg"></i>
         </button>
-        <button type="button" class="button small button-danger" (click)="delete()">
+        <button type="button" class="button button-danger" (click)="delete()">
           Remove
           <i class="fa-solid fa-trash-can fa-lg"></i>
         </button>
