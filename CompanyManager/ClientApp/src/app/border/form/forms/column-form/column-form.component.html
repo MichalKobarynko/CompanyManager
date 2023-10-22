@@ -1,0 +1,108 @@
+<div class="app-project-form">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <!--ADD FROM-->
+    <div class="auth-layout-wrapper"
+         *ngIf="isEditing === false"
+         formGroupName="add">
+
+      <app-form-header title="Dodaj Kolumnę"></app-form-header>
+
+      <div class="form-group">
+        <label class="form-label">Nazwa columny</label>
+        <input class="form-control"
+               type="text"
+               id="name"
+               name="name"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="name">
+        <app-input-validation [control]="addForm.getControl('name')"></app-input-validation>
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-label">Kolor kolumny</label>
+        <input type="color"
+               class="form-control"
+               id="project-owner"
+               formControlName="ownerId">
+
+        <app-input-validation [control]="addForm.getControl('dotColor')"></app-input-validation>
+      </div>
+
+    </div>
+
+    <!--EDIT FROM-->
+    <div class="auth-layout-wrapper"
+         *ngIf="isEditing === true"
+         formGroupName="edit">
+
+      <app-form-header title="Edytuj Kolumnę"></app-form-header>
+
+      <input class="form-control"
+             type="text"
+             id="columnId"
+             name="projectId"
+             autocomplete="off"
+             placeholder="Nazwa"
+             formControlName="projectId"
+             hidden>
+
+      <div class="form-group">
+        <label class="form-label">Nazwa columny</label>
+        <input class="form-control"
+               type="text"
+               id="name"
+               name="name"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="name">
+        <app-input-validation [control]="editForm.getControl('name')"></app-input-validation>
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-label">Kolor kolumny</label>
+        <input type="color"
+               class="form-control"
+               id="project-owner"
+               formControlName="ownerId">
+
+        <app-input-validation [control]="editForm.getControl('dotColor')"></app-input-validation>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data utworzenia</label>
+        <input type="date"
+               class="form-control"
+               value="{{createAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data modyfikacji</label>
+        <input type="date"
+               class="form-control"
+               value="{{updateAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
+
+    </div>
+
+
+    <!--BUTTONS-->
+    <div class="btn-container">
+      <button type="submit"
+              class="button button-primary"
+              [disabled]="!isFormValid">
+        {{ isEditing ? 'Update' : 'Add ' + 'column' }}
+      </button>
+      <button type="button"
+              class="button button-secondary"
+              (click)="close()">
+        Cancel
+      </button>
+    </div>
+
+  </form>
+</div>

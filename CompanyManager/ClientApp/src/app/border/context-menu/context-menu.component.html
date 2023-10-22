@@ -27,14 +27,21 @@
         <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'project'"
                 type="button"
                 class="button button-primary"
-                (click)="addBoard()">
+                (click)="addElement('board')">
           Add board
           <i class="fa-solid fa-circle-plus fa-lg"></i>
         </button>
         <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'board'"
                 type="button"
                 class="button button-primary"
-                (click)="addBoard()">
+                (click)="addElement('column')">
+          Add Column
+          <i class="fa-solid fa-circle-plus fa-lg"></i>
+        </button>
+        <button *ngIf="(loggedInUserId$ | async) === editingProject?.ownerID?.toUpperCase() && type === 'board'"
+                type="button"
+                class="button button-primary"
+                >
           Add Task
           <i class="fa-solid fa-circle-plus fa-lg"></i>
         </button>

@@ -59,10 +59,11 @@ export class ContextMenuComponent implements OnInit  {
     this.openedContextMenuOfElementId = '';
   }
 
-  addBoard() {
+  addElement(formType: FormType) {
     this.openedContextMenuOfElementId = '';
-    this.formService.onChangeFormVisibility('board');
+    this.formService.onChangeFormVisibility(formType);
   }
+
 
   editProject() {
     this.openedContextMenuOfElementId = '';
