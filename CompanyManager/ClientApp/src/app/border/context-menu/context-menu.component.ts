@@ -6,6 +6,8 @@ import { Subtask } from '../../models/subtask.model';
 import { FormType } from '../../models/types';
 import { ContextMenuModalService } from '../../services/context-menu-modal.service';
 import { FormService } from '../../services/form.service';
+import { BehaviorSubject } from 'rxjs';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-context-menu',
@@ -13,7 +15,7 @@ import { FormService } from '../../services/form.service';
   styleUrls: ['./context-menu.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContextMenuComponent  {
+export class ContextMenuComponent implements OnInit  {
   @Input() id!: string;
   @Input() type!: FormType;
   @Input() editingProject?: Project;
@@ -22,12 +24,19 @@ export class ContextMenuComponent  {
   @Input() editingTask?: Task;
   @Input() editingSubtask?: Subtask;
 
+  loggedInUserId$!: BehaviorSubject<string>;
   openedContextMenuOfElementId = '';
 
   constructor(
     private formService: FormService,
+    private localStorageService: LocalStorageService,
     private contextMenuModalService: ContextMenuModalService
   ) { }
+
+  ngOnInit(): void {
+
+    this.loggedInUserId$ = this.localStorageService.getUserID();
+  }
 
   onToggle(id: string) {
     this.openedContextMenuOfElementId = id;
@@ -40,7 +49,12 @@ export class ContextMenuComponent  {
     this.openedContextMenuOfElementId = '';
   }
 
-  edit() {
+  addBoard() {
+    this.openedContextMenuOfElementId = '';
+    this.formService.onChangeFormVisibility('board');
+  }
+
+  editProject() {
     this.openedContextMenuOfElementId = '';
     this.formService.onChangeFormVisibility();
 

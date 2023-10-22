@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DateFormatDirective } from "../../../../directives/date-format.directive";
 import { InputValidationModule } from "../../../input-validation/input-validation.module";
 import { FormFieldModule } from "../../../form-field/form-field.module";
+import { FormHeaderModule } from "../../../form-header/form-header.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [ProjectFormComponent, DateFormatDirective],
@@ -12,7 +14,9 @@ import { FormFieldModule } from "../../../form-field/form-field.module";
     CommonModule,
     ReactiveFormsModule,
     InputValidationModule,
-    FormFieldModule
+    FormHeaderModule,
+    FormFieldModule,
+    TranslateModule
   ],
   exports: [ProjectFormComponent]
 })
