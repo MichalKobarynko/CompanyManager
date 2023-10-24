@@ -7,8 +7,8 @@ import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 })
 export class LocalStorageService{
   public token$ = new BehaviorSubject<string>('');
-  public userName$ = new BehaviorSubject<string>('');
-  public userId$ = new BehaviorSubject<string>('');
+  public loggedUserName$ = new BehaviorSubject<string>('');
+  public loggedUserId$ = new BehaviorSubject<string>('');
 
   constructor(
     private jwtHelper: JwtHelperService
@@ -41,8 +41,8 @@ export class LocalStorageService{
     localStorage.setItem('currentUserName', userName);
 
     this.token$.next(token);
-    this.userName$.next(userName);
-    this.userId$.next(userId);
+    this.loggedUserName$.next(userName);
+    this.loggedUserId$.next(userId);
   }
 
   public removeClaims() {
@@ -51,8 +51,8 @@ export class LocalStorageService{
     localStorage.removeItem('currentUserName');
 
     this.token$.next('');
-    this.userName$.next('');
-    this.userId$.next('');
+    this.loggedUserName$.next('');
+    this.loggedUserId$.next('');
   }
 
   public refreshClaims() {
@@ -72,15 +72,15 @@ export class LocalStorageService{
   }
   
 
-  public getToken(): BehaviorSubject<string> {
-    return this.token$;
-  }
+  //public getToken(): BehaviorSubject<string> {
+  //  return this.token$;
+  //}
 
-  public getUserName(): BehaviorSubject<string>{
-    return this.userName$;
-  }
+  //public getUserName(): BehaviorSubject<string>{
+  //  return this.loggedUserName$;
+  //}
 
-  public getUserID(): any {
-    return this.userId$;
-  }
+  //public getUserID(): any {
+  //  return this.loggedUserId$;
+  //}
 }

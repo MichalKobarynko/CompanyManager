@@ -6,15 +6,15 @@ import { FormType } from "../models/types";
   providedIn: 'root'
 })
 export class ContextMenuModalService {
-  show = new BehaviorSubject<boolean>(false);
+  show$ = new BehaviorSubject<boolean>(false);
   id: string = '';
   type!: FormType;
 
   onShow() {
-    this.show.next(true);
+    this.show$.next(true);
   }
 
   onHide() {
-    this.show.next(false);
+    this.show$.next(false);
   }
 }

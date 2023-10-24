@@ -11,8 +11,15 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AccordionComponent {
   projects$!: Observable<Project[] | undefined>;
 
-
   constructor(private boardService: BoardService) { }
+
+  isSelected(project: Project): boolean {
+    return this.boardService.getSelectedProject.getValue()?.id === project.id;
+  }
+
+  setSelectedProject(project: Project) {
+    this.boardService.onChangeSelectedProject(project);
+  }
 
   ngOnInit(): void {
     this.projects$ = this.boardService.getProjects;

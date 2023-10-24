@@ -1,6 +1,7 @@
 ﻿using CompanyManager.Controllers.Projects;
 using CompanyManager.Features.Commands.Boards;
 using CompanyManager.Features.Commands.Projects;
+using CompanyManager.Models.DTOs.API;
 using CompanyManager.Models.DTOs.API.BoardDTOs;
 using CompanyManager.Repositories.Interfaces;
 using LoggingService;
@@ -47,6 +48,28 @@ namespace CompanyManager.Controllers.Boards
 
             return Ok(createdBoard);
             //return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
+        }
+
+        [HttpPost("{boardId}")]
+        public async Task<ActionResult> DeleteBoard(Guid boardId, [FromBody] BoardDeleteDTO model)
+        {
+            var board = await repo.Board.GetBoard(boardId, false);
+
+            if (board is null)
+            {
+                logger.LogWarn($"Board with id: {boardId} dosn't exist in the database.");
+                return BadRequest();
+            }
+
+            var result = await mediator.Send(new DeleteBoardCommand()
+            {
+                Board = board
+            });
+
+            if (!result)
+                return BadRequest();
+
+            return NoContent();
         }
     }
 }

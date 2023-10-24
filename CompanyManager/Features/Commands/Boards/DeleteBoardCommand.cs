@@ -1,15 +1,14 @@
 ﻿using CompanyManager.Models.DBContext;
 using CompanyManager.Repositories.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
-namespace CompanyManager.Features.Commands.Projects
+namespace CompanyManager.Features.Commands.Boards
 {
-    public class DeleteProjectCommand : IRequest<bool>
+    public class DeleteBoardCommand : IRequest<bool>
     {
-        public Project Project { get; set; }
+        public Board Board { get; set; }
 
-        public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, bool>
+        public class DeleteProjectCommandHandler : IRequestHandler<DeleteBoardCommand, bool>
         {
             private readonly IRepositoryManager repository;
 
@@ -18,14 +17,14 @@ namespace CompanyManager.Features.Commands.Projects
                 this.repository = repository;
             }
 
-            public async Task<bool> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(DeleteBoardCommand request, CancellationToken cancellationToken)
             {
                 try
                 {
-                    request.Project.IsDeleted = true;
-                    request.Project.UpdateAt = DateTime.Now;
+                    request.Board.IsDeleted = true;
+                    request.Board.UpdateAt = DateTime.Now;
 
-                    await repository.Project.UpdateProject(request.Project);
+                    await repository.Board.UpdateBoard(request.Board);
                     await repository.Save();
 
                     return true;

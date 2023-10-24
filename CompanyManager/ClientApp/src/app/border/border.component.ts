@@ -5,6 +5,7 @@ import { FormService } from '../services/form.service';
 import { ToastService } from '../services/toast.service';
 import { ProjectRestService } from '../api/services/project-rest.service';
 import { BoardService } from '../services/board.service';
+import { BoardRestService } from '../api/services/board-rest.service';
 
 @Component({
   selector: 'app-border',
@@ -20,6 +21,7 @@ export class BorderComponent implements OnInit, OnDestroy {
   constructor(
     private formService: FormService,
     private projectService: ProjectRestService,
+    private boardRestService: BoardRestService,
     private boardService: BoardService
   ) { }
   
@@ -32,6 +34,7 @@ export class BorderComponent implements OnInit, OnDestroy {
     this.boardService.getSelectedBoard.subscribe(result => {
       this.showBoard = result !== undefined;
     });
+    
   }
 
   onForm(type: FormType, columnId?: string) {

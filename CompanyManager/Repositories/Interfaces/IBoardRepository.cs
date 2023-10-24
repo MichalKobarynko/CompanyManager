@@ -8,6 +8,6 @@ namespace CompanyManager.Repositories.Interfaces
         Task DeleteBoard(Board board);
         Task UpdateBoard(Board board);
         Task<IEnumerable<Board>> GetAllBoardsByProjectID(Guid projectID);
-        Task<Project> GetBoard(Guid boardID);
+        Task<Board> GetBoard(Guid boardID, bool withIncludes);
     }
 }

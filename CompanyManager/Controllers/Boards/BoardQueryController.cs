@@ -24,17 +24,18 @@ namespace CompanyManager.Controllers.Boards
         }
 
         //[HttpGet("{id}")]
-        //public async Task<ActionResult> GetProject(Guid id)
+        //public async Task<ActionResult> GetBoard(Guid id)
         //{
-        //    var projectDTO = await mediator.Send(new GetProjectByID() { ID = id });
+        //    //var boardDTO = await mediator.Send(new GetProjectByID() { ID = id });
 
-        //    if (projectDTO is null)
+        //    if (boardDTO is null)
         //    {
-        //        logger.LogWarn($"Project with id: {id} dosn't exist in the database.");
+        //        logger.LogWarn($"Board with id: {id} dosn't exist in the database.");
         //        return NotFound();
         //    }
 
-        //    return Ok(projectDTO);
+        //    return Ok(boardDTO);
+        //}
 
 
         [HttpGet("{projectId}")]

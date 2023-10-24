@@ -33,14 +33,20 @@ namespace CompanyManager.Repositories.Implementations
                 .ToListAsync();
         }
 
-        public Task<Project> GetBoard(Guid boardID)
+        public async Task<Board> GetBoard(Guid boardID, bool withIncludes)
         {
-            throw new NotImplementedException();
+            if(withIncludes)
+                return FindByCondition(b => b.ID.Equals(boardID))
+                    .Include(b => b.Columns)
+                    .SingleOrDefault();
+
+            return FindByCondition(b => b.ID.Equals(boardID))
+                    .SingleOrDefault();
         }
 
-        public Task UpdateBoard(Board board)
+        public async Task UpdateBoard(Board board)
         {
-            throw new NotImplementedException();
+            Update(board);
         }
     }
 }

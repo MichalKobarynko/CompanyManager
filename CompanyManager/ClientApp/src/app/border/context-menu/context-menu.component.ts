@@ -43,8 +43,7 @@ export class ContextMenuComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-
-    this.loggedInUserId$ = this.localStorageService.getUserID();
+    this.loggedInUserId$ = this.localStorageService.loggedUserId$;
   }
 
   onToggle(event: Event, id: string) {
@@ -65,7 +64,7 @@ export class ContextMenuComponent implements OnInit  {
   }
 
 
-  editProject() {
+  editElement() {
     this.openedContextMenuOfElementId = '';
     this.formService.onChangeFormVisibility();
 

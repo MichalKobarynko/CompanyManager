@@ -50,8 +50,13 @@ namespace CompanyManager.Controllers.Projects
             {
                 Project = project
             });
-            
+
+            if (!result)
+                return BadRequest();
+
             return NoContent();
+
+
         }
 
         [HttpPost("{id}")]

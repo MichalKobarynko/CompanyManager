@@ -22,27 +22,30 @@ export class BoardRestService {
     private boardService: BoardService) { }
 
   //TO na pewno do zmiany
-  public getBoards(projectId: string): Observable<BoardListDTO> {
+  public getBoards(projectId: string) {
     var url = this.queryUrl + '/GetBoardsByProject/' + projectId;
-    console.log(url)
-    return this.http.get<BoardListDTO>(url);
+
+    this.http.get<BoardListDTO>(url).subscribe(result => {
+      this.boardService.onChangeBoardListByProject(result.boards);
+    });
   }
 
-  //public deleteProject(userID: string, projectID: string) {
-  //  var url = this.commandUrl + '/DeleteProject/' + projectID;
-  //  const body = { OwnerID: userID };
+  public deleteBoard(boardId: string, projectId: string) {
+    var url = this.commandUrl + '/DeleteBoard/' + boardId;
+    const body = { boardID: boardId };
 
-  //  this.http.post(url, body).subscribe(res => {
-  //    this.getProjects();
-  //  });
-  //}
+    this.http.post(url, body).subscribe(() => {
+      this.getBoards(projectId);
+    });
+  }
 
-  public createBoard(body: BoardCreateDTO): Observable<Board> {
+  public createBoard(body: BoardCreateDTO, projectId: string): Observable<Board> {
     var url = this.commandUrl + '/CreateBoard';
 
     return this.http.post<Board>(url, body).pipe(
       map((result) => {
-        //this.getProjects();
+
+        this.getBoards(projectId);
         return result;
       })
     );

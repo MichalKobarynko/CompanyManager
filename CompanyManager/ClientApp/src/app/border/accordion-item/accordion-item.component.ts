@@ -15,11 +15,14 @@ import { BoardRestService } from '../../api/services/board-rest.service';
 })
 export class AccordionItemComponent {
   @Input() project!: Project;
-  showContent = false;
+  showBoardList: boolean = false;
+  showContent: boolean = false;
+  selectedProjectId: string = '';
+  isSelected: boolean = false;
+
   loggedInUserId$!: BehaviorSubject<string>;
   selectedBoardId$: Observable<string | undefined> | null = null;
-  isSelected: boolean = false;
-  boards?: Board[] = [];
+  boards$!: BehaviorSubject<Board[] | undefined>;
 
   constructor(
     private boardService: BoardService,
@@ -28,7 +31,6 @@ export class AccordionItemComponent {
     private cdr: ChangeDetectorRef,
     //private navigationService: NavigationService,
     private formService: FormService,
-    //private supabase: SupabaseService
   ) { }
 
   ngOnInit(): void {
@@ -36,29 +38,24 @@ export class AccordionItemComponent {
       map(board => board?.id),
       tap(boardId =>
         this.project?.boards?.filter(board =>
-          board.id === boardId ? (this.showContent = true) : null
+          board.id === boardId ? (this.showBoardList = true) : null
         )
       )
     );
 
-    this.loggedInUserId$ = this.localStorageService.getUserID();
-
-
-    this.boardService.getSelectedProject.subscribe(res => {
-      this.showContent = this.project?.id === res?.id;
-      
+    this.loggedInUserId$ = this.localStorageService.loggedUserId$;
+    this.boards$ = this.boardService.getBoardsBySelectedProject;
+    this.boardService.getSelectedProject.subscribe(result => {
+      this.selectedProjectId = result?.id || '';
+      this.showBoardList = this.project.id === this.selectedProjectId;
+      this.cdr.detectChanges();
     });
   }
 
   toggleShowContent(state: boolean) {
-    console.log('project id: ', this.project.id);
-    console.log("collapse button click");
-    this.showContent = state;
-    
-    this.boardRestService.getBoards(this.project.id).subscribe(result => {
-      this.boards = result.boards;
-      this.cdr.detectChanges();
-    });
+    this.showBoardList = state && this.project.id === this.selectedProjectId;
+    this.boardRestService.getBoards(this.project.id);
+    this.cdr.detectChanges();
   }
 
 
@@ -68,3 +65,4 @@ export class AccordionItemComponent {
     //this.navigationService.onMenu();
   }
 }
+

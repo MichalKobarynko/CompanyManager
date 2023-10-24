@@ -4,6 +4,8 @@ import { ContextMenuModalService } from '../../services/context-menu-modal.servi
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProjectRestService } from '../../api/services/project-rest.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { BoardRestService } from '../../api/services/board-rest.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-context-menu-modal',
@@ -17,14 +19,16 @@ export class ContextMenuModalComponent implements OnInit {
 
   constructor(
     private contextMenuModalService: ContextMenuModalService,
+    private boardService: BoardService,
     private toastService: ToastService,
     private localStorageService: LocalStorageService,
-    private projectRestService: ProjectRestService
+    private projectRestService: ProjectRestService,
+    private boardRestService: BoardRestService
   ) { }
 
   ngOnInit() {
-    this.show$ = this.contextMenuModalService.show;
-    this.userID$ = this.localStorageService.getUserID();
+    this.show$ = this.contextMenuModalService.show$;
+    this.userID$ = this.localStorageService.loggedUserId$;
   }
 
   onHide() {
@@ -37,12 +41,16 @@ export class ContextMenuModalComponent implements OnInit {
     const id = this.contextMenuModalService.id;
     const type = this.contextMenuModalService.type;
 
-    var userID = this.userID$.getValue()
+    var userID = this.userID$.getValue();
+    var selectedProject = this.boardService.getSelectedProject.getValue();
 
     if (userID) {
       switch (type) {
         case 'project':
           this.projectRestService.deleteProject(userID, id);
+          break;
+        case 'board':
+          this.boardRestService.deleteBoard(id, selectedProject?.id || '');
           break;
       }
     }

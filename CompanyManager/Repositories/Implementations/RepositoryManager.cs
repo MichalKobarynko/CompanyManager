@@ -8,6 +8,7 @@ namespace CompanyManager.Repositories.Implementations
         private readonly ApplicationDbContext context;
         private  IProjectRepository projectRepository;
         private  IBoardRepository boardRepository;
+        private IColumnRepository columnRepository;
 
         public RepositoryManager(ApplicationDbContext context)
         {
@@ -23,7 +24,6 @@ namespace CompanyManager.Repositories.Implementations
 
                 return projectRepository;
             }
-
         }
 
         public IBoardRepository Board
@@ -35,7 +35,17 @@ namespace CompanyManager.Repositories.Implementations
 
                 return boardRepository;
             }
+        }
 
+        public IColumnRepository Column
+        {
+            get
+            {
+                if (columnRepository is null)
+                    columnRepository = new ColumnRepository(context);
+
+                return columnRepository;
+            }
         }
 
         public async Task Save()

@@ -5,6 +5,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ColumnAddFormGroup, ColumnEditFormGroup } from '../../../../models/forms/column-form-group';
 import { AppFormGroup } from '../../../../models/forms/app-form-group.model';
 import { LocalStorageService } from '../../../../services/local-storage.service';
+import { ColumnCreateDTO } from '../../../../api/models/column-dtos/column-create.dto';
+import { ColumnRestService } from '../../../../api/services/column-rest.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { BoardService } from '../../../../services/board.service';
+import { Board } from '../../../../models/board.model';
 
 @Component({
   selector: 'app-column-form',
@@ -17,9 +22,12 @@ export class ColumnFormComponent implements OnInit {
   createAt: Date = new Date();
   updateAt: Date = new Date();
   formGroup!: FormGroup;
+  selectedBoard!: Board;
 
   constructor(
     private formService: FormService,
+    private columnRestService: ColumnRestService,
+    private boardService: BoardService,
     private toastService: ToastService,
     private formBuilder: FormBuilder,
     private localStorageService: LocalStorageService,
@@ -45,6 +53,10 @@ export class ColumnFormComponent implements OnInit {
       name: this.formService.getEditingColumn?.name,
       dotColor: this.formService.getEditingColumn?.dotColor,
     })
+
+    this.boardService.getSelectedBoard.subscribe(result => {
+      this.selectedBoard = result || <Board>{};
+    });
 
     this.createAt = this.formService.getEditingColumn?.createdAt || new Date();
     this.updateAt = this.formService.getEditingColumn?.updatedAt || new Date();
@@ -88,24 +100,25 @@ export class ColumnFormComponent implements OnInit {
     //})
   }
   private addColumn(userID: string) {
-    //var addProject: ProjectCreateDTO = <ProjectCreateDTO>{};
+    var addColumn: ColumnCreateDTO = <ColumnCreateDTO>{};
 
-    //const addForm = this.form.get('add');
-    //addProject.title = addForm?.get('title')?.value;
-    //addProject.ownerId = addForm?.get('ownerId')?.value;
+    const addForm = this.formGroup.get('add');
+    addColumn.name = addForm?.get('name')?.value;
+    addColumn.dotColor = addForm?.get('dotColor')?.value;
+    addColumn.boardId = this.selectedBoard.id;
 
-    //this.projectRestService.createProject(userID, addProject).subscribe({
-    //  next: (res) => {
-    //    this.toastService.showToast('confirm', `Utworzono projekt: ${res.title}`);
-    //  },
-    //  error: (err: HttpErrorResponse) => {
-    //    this.toastService.showToast('warning', `Błąd podczas tworzenia projektu!`);
-    //  }
-    //})
+    this.columnRestService.createColumn(addColumn).subscribe({
+      next: (res) => {
+        this.toastService.showToast('confirm', `Utworzono columnę: ${res.name}`);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showToast('warning', `Błąd podczas tworzenia columny!`);
+      }
+    })
   }
 
   onSubmit() {
-    var userID = this.localStorageService.getUserID().getValue();
+    var userID = this.localStorageService.loggedUserId$.getValue();
 
     if (this.editForm?.valid)
       this.editColumn(userID);

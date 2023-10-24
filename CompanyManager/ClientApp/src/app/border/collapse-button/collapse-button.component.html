@@ -1,7 +1,7 @@
 <div class="collapse-btn-wrapper"
      [ngClass]="{ selected : isSelected}">
   <button type="button"
-          class="collapse-btn__btn "
+          class="collapse-btn__btn"
           (click)="toggleShowContent()">
 
     <img [@rotateState]="!showContent ? 'default' : 'rotated'"

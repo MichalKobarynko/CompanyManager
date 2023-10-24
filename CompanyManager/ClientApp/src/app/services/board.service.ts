@@ -11,38 +11,41 @@ export class BoardService {
   private selectedColumnId$ = new BehaviorSubject<string>('');
   private selectedTaskId$ = new BehaviorSubject<string>('');
   private selectedBoard$ = new BehaviorSubject<Board | undefined>(undefined);
-  private selectedProject$ = new BehaviorSubject<Project | undefined>(
-    undefined
-  );
+  private selectedProject$ = new BehaviorSubject<Project | undefined>(undefined);
+  private boardListBySelectedProject = new BehaviorSubject<Board[] | undefined>(undefined);
   private taskTagsFromTheSelectedBoard$ = new BehaviorSubject<string[]>([]);
   private firstLoad = true;
   private usersInTheProject$ = new BehaviorSubject<{ user: User }[]>([]);
 
-  get getProjects(): Observable<Project[] | undefined> {
+  get getProjects(): BehaviorSubject<Project[] | undefined> {
     return this.projects;
   }
 
-  get getTags(): Observable<string[]> {
+  get getTags(): BehaviorSubject<string[]> {
     return this.taskTagsFromTheSelectedBoard$;
   }
 
-  get getSelectedColumnId(): Observable<string> {
+  get getSelectedColumnId(): BehaviorSubject<string> {
     return this.selectedColumnId$;
   }
 
-  get getSelectedTaskId(): Observable<string> {
+  get getSelectedTaskId(): BehaviorSubject<string> {
     return this.selectedTaskId$;
   }
 
-  get getSelectedBoard(): Observable<Board | undefined> {
+  get getSelectedBoard(): BehaviorSubject<Board | undefined> {
     return this.selectedBoard$;
   }
 
-  get getSelectedProject(): Observable<Project | undefined> {
+  get getSelectedProject(): BehaviorSubject<Project | undefined> {
     return this.selectedProject$;
   }
 
-  get getUsersInTheProject(): Observable<{ user: User }[]> {
+  get getBoardsBySelectedProject(): BehaviorSubject<Board[] | undefined> {
+    return this.boardListBySelectedProject;
+  }
+
+  get getUsersInTheProject(): BehaviorSubject<{ user: User }[]> {
     return this.usersInTheProject$;
   }
 
@@ -67,7 +70,15 @@ export class BoardService {
   }
 
   onChangeSelectedProject(project: Project | undefined) {
-    this.selectedProject$.next(project);
+    if (this.selectedProject$?.getValue()?.id !== project?.id) {
+      this.selectedProject$.next(project);
+      console.log('Selected project: ', project);
+    }
+      
+  }
+
+  onChangeBoardListByProject(boards: Board[] | undefined) {
+    this.boardListBySelectedProject.next(boards);
   }
 
   onChangeSelectedBoard(board: Board | undefined) {

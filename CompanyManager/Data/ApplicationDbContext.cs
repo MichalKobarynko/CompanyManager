@@ -11,6 +11,7 @@ namespace CompanyManager.Data
     {
         public DbSet<Project> Projects { get; set; }    
         public DbSet<Board> Boards { get; set; }    
+        public DbSet<Column> Columns { get; set; }  
 
 
         public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)

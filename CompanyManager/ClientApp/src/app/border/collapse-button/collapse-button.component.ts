@@ -21,7 +21,8 @@ import { BoardRestService } from '../../api/services/board-rest.service';
 export class CollapseButtonComponent {
   @Input() project!: Project;
   @Output() toggleMenu = new EventEmitter<boolean>();
-  @Input() showContent!: boolean;
+
+  showContent: boolean = false;
   loggedInUserId$: Observable<string> | null = null;
   isSelected: boolean = false;
 
@@ -32,16 +33,16 @@ export class CollapseButtonComponent {
   ) { }
 
   ngOnInit(): void {
-    this.loggedInUserId$ = this.localStorageService.getUserID();
-
-    this.boardService.getSelectedProject.subscribe(res => {
-      this.isSelected = res?.id === this.project.id;
+    this.loggedInUserId$ = this.localStorageService.loggedUserId$;
+    this.boardService?.getSelectedProject.subscribe(result => {
+      this.isSelected = result?.id === this.project?.id;
+      this.showContent = result?.id !== this.project?.id;
     });
   }
 
   toggleShowContent() {
     this.showContent = !this.showContent;
     this.boardService.onChangeSelectedProject(this.project);
-    this.toggleMenu.emit(this.showContent);
+    this.toggleMenu.emit(!this.showContent);
   }
 }

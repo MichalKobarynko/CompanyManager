@@ -134,7 +134,7 @@ export class ProjectFormComponent {
 
 
   onSubmit() {
-    var userID = this.localStorageService.getUserID().getValue();
+    var userID = this.localStorageService.loggedUserId$.getValue();
 
     if (this.editForm?.valid) 
       this.editProject(userID);

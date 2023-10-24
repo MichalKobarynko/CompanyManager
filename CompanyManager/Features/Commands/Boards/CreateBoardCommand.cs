@@ -27,14 +27,31 @@ namespace CompanyManager.Features.Commands.Boards
 
             public async Task<BoardDTO> Handle(CreateBoardCommand request, CancellationToken cancellationToken)
             {
+                Guid boardID = Guid.NewGuid();  
                 var board = new Board
                 {
-                    ID = Guid.NewGuid(),
+                    ID = boardID,
                     Name = request.Name,
                     ProjectID = request.ProjectID,
                 };
 
+                var column1 = new Column
+                {
+                    Name = "Zgłoszono",
+                    DotColor = "#914ECF",
+                    BoardID = boardID
+                };
+
+                var column2 = new Column
+                {
+                    Name = "Zgłoszono",
+                    DotColor = "#913c1a3",
+                    BoardID = boardID
+                };
+
                 await repository.Board.CreateBoard(board);
+                await repository.Column.CreateColumn(column1);
+                await repository.Column.CreateColumn(column2);
                 await repository.Save();
 
                 var boardDTO = new BoardDTO

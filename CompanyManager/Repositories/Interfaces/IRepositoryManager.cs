@@ -4,6 +4,7 @@
     {
         IProjectRepository Project { get; }
         IBoardRepository Board { get; }
+        IColumnRepository Column { get; }   
         Task Save();
     }
 }

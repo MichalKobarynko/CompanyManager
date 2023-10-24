@@ -110,7 +110,7 @@ export class BoardFormComponent implements OnInit {
     addBoard.name = addForm?.get('name')?.value;
     addBoard.projectId = addForm?.get('projectId')?.value;
 
-    this.boardRestService.createBoard(addBoard).subscribe({
+    this.boardRestService.createBoard(addBoard, addBoard.projectId).subscribe({
       next: (res) => {
         this.toastService.showToast('confirm', `Utworzono tablicę: ${res.name}`);
       },
@@ -122,7 +122,7 @@ export class BoardFormComponent implements OnInit {
 
 
   onSubmit() {
-    var userID = this.localStorageService.getUserID().getValue();
+    var userID = this.localStorageService.loggedUserId$.getValue();
 
     if (this.editForm?.valid)
       this.editBoard(userID);

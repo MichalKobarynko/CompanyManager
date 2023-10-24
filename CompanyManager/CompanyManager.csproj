@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Commands\Users\" />
+    <Folder Include="Features\Queries\Columns\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -32,10 +32,29 @@ namespace CompanyManager.Models.DBContext
         [ForeignKey(nameof(Project))]
         public Guid ProjectID { get; set; }
         public Project Project { get; set; }    
+
+        public IEnumerable<Column> Columns { get; set; }
+
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
         public bool IsFinished { get; set; } = false;
+    }
+
+    public class Column
+    {
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string DotColor { get; set; }
+
+        [ForeignKey(nameof(Board))]
+        public Guid BoardID { get; set; }
+        public Board Board { get; set; }
+
+        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime UpdateAt { get; set; } = DateTime.Now;
+        public bool IsDeleted { get; set; } = false;
+
     }
 
     public class ProjectTask
@@ -48,8 +67,5 @@ namespace CompanyManager.Models.DBContext
 
     }
 
-    public class Column
-    {
-
-    }
+    
 }
