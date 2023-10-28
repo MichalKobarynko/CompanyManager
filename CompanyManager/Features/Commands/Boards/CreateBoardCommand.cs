@@ -44,7 +44,7 @@ namespace CompanyManager.Features.Commands.Boards
 
                 var column2 = new Column
                 {
-                    Name = "Zgłoszono",
+                    Name = "Zakończono",
                     DotColor = "#913c1a3",
                     BoardID = boardID
                 };

@@ -12,6 +12,7 @@ import { BoardService } from '../../../../services/board.service';
 import { BoardRestService } from '../../../../api/services/board-rest.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Project } from '../../../../models/project.model';
+import { BoardEditDTO } from '../../../../api/models/board-dtos/board-edit.dto';
 
 @Component({
   selector: 'app-board-form',
@@ -70,9 +71,9 @@ export class BoardFormComponent implements OnInit {
     this.formGroup.get('edit')?.patchValue({
       boardId: this.formService.getEditingBoard?.id,
       name: this.formService.getEditingBoard?.name,
-      projectId: this.formService.getEditingBoard?.projectId.toUpperCase()
+      projectId: this.formService.getEditingBoard?.projectId
     });
-
+    
     this.formGroup.get('add')?.patchValue({
       projectId: this.projectId
     });
@@ -101,7 +102,23 @@ export class BoardFormComponent implements OnInit {
   }
 
   private editBoard(userID: string) {
+    var editBoard: BoardEditDTO = <BoardEditDTO>{};
+
+    const editForm = this.formGroup.get('edit');
+    editBoard.boardId = editForm?.get('boardId')?.value;
+    editBoard.name = editForm?.get('name')?.value;
+    editBoard.projectId = editForm?.get('projectId')?.value;
+
+    var projectId = this.boardService.getSelectedProject?.getValue()?.id || '';
     
+    this.boardRestService.updateBoard(editBoard.boardId, projectId, editBoard).subscribe({
+      next: (res) => {
+        this.toastService.showToast('confirm', `Edytowano tablicę: ${res.name}`);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showToast('warning', `Błąd podczas edycji tablicy!`);
+      }
+    })
   }
   private addBoard(userID: string) {
     var addBoard: BoardCreateDTO = <BoardCreateDTO>{};

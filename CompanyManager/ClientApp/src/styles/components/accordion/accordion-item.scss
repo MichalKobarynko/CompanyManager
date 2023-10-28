@@ -13,17 +13,18 @@
     }
 
     &.show__item {
-      display: block;
+      display: flex;
+      flex-direction: column;
       border-bottom: 1px solid $secondary;
     }
 
     .accordion-item-paragraph {
-      color: $danger;
+        align-self: center;
       font-weight: $font-weight-bold;
+      color: $secondary;
     }
 
     .accordion-item {
-       
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -48,7 +49,7 @@
         width: calc(100% - 3rem);
       }
 
-      app-context-menu{
+      app-context-menu {
         width: 2rem;
       }
 

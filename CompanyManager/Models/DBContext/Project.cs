@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CompanyManager.Models.DBContext
@@ -21,6 +22,9 @@ namespace CompanyManager.Models.DBContext
         public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
         public bool IsFinished { get; set; } = false;
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 
 
@@ -39,6 +43,9 @@ namespace CompanyManager.Models.DBContext
         public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
         public bool IsFinished { get; set; } = false;
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 
     public class Column
@@ -54,6 +61,9 @@ namespace CompanyManager.Models.DBContext
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; } = DateTime.Now;
         public bool IsDeleted { get; set; } = false;
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
     }
 

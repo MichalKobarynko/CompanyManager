@@ -10,6 +10,7 @@ import { ProjectEditDTO } from "../models/project-dtos/project-edit.dto";
 import { BoardCreateDTO } from "../models/board-dtos/board-create.dto";
 import { Board } from "../../models/board.model";
 import { BoardListDTO } from "../models/board-dtos/board-list.dto";
+import { BoardEditDTO } from "../models/board-dtos/board-edit.dto";
 
 @Injectable()
 export class BoardRestService {
@@ -21,7 +22,7 @@ export class BoardRestService {
     private http: HttpClient,
     private boardService: BoardService) { }
 
-  //TO na pewno do zmiany
+  
   public getBoards(projectId: string) {
     var url = this.queryUrl + '/GetBoardsByProject/' + projectId;
 
@@ -51,15 +52,15 @@ export class BoardRestService {
     );
   }
 
-  //public updateProject(userID: string, projectID: string, body: ProjectEditDTO): Observable<Project> {
-  //  var url = this.commandUrl + '/UpdateProject/' + projectID;
+  public updateBoard(boardId: string, projectId: string, body: BoardEditDTO): Observable<Board> {
+    var url = this.commandUrl + '/UpdateBoard/' + boardId;
 
-  //  return this.http.post<Project>(url, body).pipe(
-  //    map((result) => {
-  //      this.getProjects();
+    return this.http.post<Board>(url, body).pipe(
+      map((result) => {
+        this.getBoards(projectId);
 
-  //      return result;
-  //    })
-  //  );
-  //}
+        return result;
+      })
+    );
+  }
 }

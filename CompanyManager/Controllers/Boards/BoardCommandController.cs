@@ -28,6 +28,41 @@ namespace CompanyManager.Controllers.Boards
             this.mediator = mediator;
         }
 
+        [HttpPost("{id}")]
+        public async Task<ActionResult<ProjectDTO>> UpdateBoard(Guid id, [FromBody] BoardEditDTO boardDTO)
+        {
+            if (id != boardDTO.BoardID)
+            {
+                logger.LogWarn($"ID and project.ID not match.");
+                return BadRequest();
+            }
+
+            if(boardDTO.ProjectID == Guid.Empty)
+            {
+                logger.LogWarn($"Project ID is incorrect.");
+                return BadRequest();
+            }
+
+            var project = repo.Project.GetProject(boardDTO.ProjectID);
+            if (project is null)
+            {
+                logger.LogWarn($"The indicated project does not exist in the data base.");
+                return BadRequest();
+            }
+
+            var updatedBoard = await mediator.Send(new UpdateBoardCommand()
+            {
+                ID = boardDTO.BoardID,
+                Name = boardDTO.Name,
+                ProjectID = boardDTO.ProjectID
+            });
+
+            if (updatedBoard is null)
+                return BadRequest();
+
+            return Ok(updatedBoard);
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreateBoard([FromBody] BoardCreateDTO model)
         {
@@ -46,8 +81,7 @@ namespace CompanyManager.Controllers.Boards
             if (createdBoard is null)
                 return BadRequest();
 
-            return Ok(createdBoard);
-            //return CreatedAtAction(nameof(ProjectQueryController.GetProject), new { id = createdProject.ID }, createdProject);
+            return CreatedAtAction(nameof(BoardQueryController.GetBoard), new { id = createdBoard.ID }, createdBoard);
         }
 
         [HttpPost("{boardId}")]

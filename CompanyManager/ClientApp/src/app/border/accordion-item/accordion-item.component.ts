@@ -35,12 +35,7 @@ export class AccordionItemComponent {
 
   ngOnInit(): void {
     this.selectedBoardId$ = this.boardService.getSelectedBoard.pipe(
-      map(board => board?.id),
-      tap(boardId =>
-        this.project?.boards?.filter(board =>
-          board.id === boardId ? (this.showBoardList = true) : null
-        )
-      )
+      map(board => board?.id)
     );
 
     this.loggedInUserId$ = this.localStorageService.loggedUserId$;
@@ -50,6 +45,10 @@ export class AccordionItemComponent {
       this.showBoardList = this.project.id === this.selectedProjectId;
       this.cdr.detectChanges();
     });
+  }
+
+  setSelectedBoard(board: Board) {
+    this.boardService.onChangeSelectedBoard(board);
   }
 
   toggleShowContent(state: boolean) {

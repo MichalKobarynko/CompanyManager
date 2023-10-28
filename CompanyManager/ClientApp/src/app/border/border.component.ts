@@ -31,6 +31,7 @@ export class BorderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.projectService.getProjects();
+    
     this.boardService.getSelectedBoard.subscribe(result => {
       this.showBoard = result !== undefined;
     });

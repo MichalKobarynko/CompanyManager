@@ -5,7 +5,7 @@
 
  
   <ul class="accordion-item__list " [ngClass]="{ show__item: showBoardList }">
-    <li *ngFor="let board of (boards$ | async)">
+    <li *ngFor="let board of (boards$ | async)" (click)="setSelectedBoard(board)">
 
      
         <!--BOARD TITLE-->
@@ -25,7 +25,7 @@
 
     </li>
     <p class="accordion-item-paragraph"
-       *ngIf="project.boards?.length === 0">
+       *ngIf="(boards$ | async)?.length == 0">
       No boards
     </p>
   </ul>

@@ -56,17 +56,18 @@ export class BoardService {
   onSetProjects(projects: Project[] | undefined) {
     this.projects.next(projects);
 
-    if (this.firstLoad) {
-      this.firstLoad = false;
-      const projectsWithBoards = projects?.filter(
-        project => project.boards?.length !== 0
-      );
+    //Do wyjebania!
+    //if (this.firstLoad) {
+    //  this.firstLoad = false;
+    //  const projectsWithBoards = projects?.filter(
+    //    project => project.boards?.length !== 0
+    //  );
 
-      this.onChangeSelectedProject(projectsWithBoards?.at(0));
-      this.onChangeSelectedBoard(projectsWithBoards?.at(0)?.boards?.at(0));
-    } else {
-      this.refreshSelectedBoard();
-    }
+    //  this.onChangeSelectedProject(projectsWithBoards?.at(0));
+    //  this.onChangeSelectedBoard(projectsWithBoards?.at(0)?.boards?.at(0));
+    //} else {
+    //  this.refreshSelectedBoard();
+    //}
   }
 
   onChangeSelectedProject(project: Project | undefined) {
@@ -85,7 +86,7 @@ export class BoardService {
     this.selectedBoard$.next(board);
 
     if (!board) return;
-    this.allTagsFromOneBoard(board);
+    //this.allTagsFromOneBoard(board);
   }
 
   onChangeSelectedColumnId(columnId: string) {
@@ -96,20 +97,20 @@ export class BoardService {
     this.selectedTaskId$.next(taskId);
   }
 
-  allTagsFromOneBoard(board: Board | undefined) {
-    const columns = board?.columns?.flatMap(column => column.column);
+  //allTagsFromOneBoard(board: Board | undefined) {
+  //  const columns = board?.columns?.flatMap(column => column.column);
 
-    const tags = columns?.flatMap(column =>
-      column.tasks.flatMap(task => task.tagNames)
-    );
+  //  const tags = columns?.flatMap(column =>
+  //    column.tasks.flatMap(task => task.tagNames)
+  //  );
 
-    if (!tags) return;
+  //  if (!tags) return;
 
-    const tagsWithoutDuplicates = new Set([...tags]);
-    this.taskTagsFromTheSelectedBoard$.next([
-      ...tagsWithoutDuplicates.values(),
-    ]);
-  }
+  //  const tagsWithoutDuplicates = new Set([...tags]);
+  //  this.taskTagsFromTheSelectedBoard$.next([
+  //    ...tagsWithoutDuplicates.values(),
+  //  ]);
+  //}
 
   refreshSelectedBoard() {
     const projectId$ = this.getSelectedProject.pipe(
@@ -133,7 +134,7 @@ export class BoardService {
       )
       .subscribe(board => {
         this.onChangeSelectedBoard(board);
-        this.allTagsFromOneBoard(board);
+        //this.allTagsFromOneBoard(board);
       });
   }
 }

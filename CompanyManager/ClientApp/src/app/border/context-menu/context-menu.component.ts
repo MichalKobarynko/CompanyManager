@@ -8,6 +8,7 @@ import { ContextMenuModalService } from '../../services/context-menu-modal.servi
 import { FormService } from '../../services/form.service';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-context-menu',
@@ -31,6 +32,7 @@ export class ContextMenuComponent implements OnInit  {
   constructor(
     private formService: FormService,
     private localStorageService: LocalStorageService,
+    private boardService: BoardService,
     private contextMenuModalService: ContextMenuModalService
   ) { }
 
@@ -48,7 +50,16 @@ export class ContextMenuComponent implements OnInit  {
 
   onToggle(event: Event, id: string) {
     this.openedContextMenuOfElementId = id;
-    event.stopPropagation();
+
+    if (this.type === 'project' && this.editingProject) {
+      this.boardService.onChangeSelectedProject(this.editingProject);
+    }
+
+    if (this.type === 'board' && this.editingProject) {
+      this.boardService.onChangeSelectedBoard(this.editingBoard);
+    }
+    
+    event?.stopPropagation();
   }
 
   delete() {

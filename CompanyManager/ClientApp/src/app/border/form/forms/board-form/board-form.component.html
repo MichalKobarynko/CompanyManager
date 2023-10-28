@@ -28,7 +28,7 @@
                 formControlName="projectId"
                 placeholder="Wybierz projekt">
 
-         
+
           <option *ngFor="let project of (projects$ | async)" [value]="project.id">{{ project.title }}</option>
         </select>
         <app-input-validation [control]="addForm.getControl('projectId')"></app-input-validation>
@@ -36,7 +36,64 @@
     </div>
 
     <!--EDIT FORM-->
-   
+    <div class="auth-layout-wrapper"
+         *ngIf="isEditing === true"
+         formGroupName="edit">
+
+      <input class="form-control"
+             type="text"
+             id="boardId"
+             name="projectId"
+             autocomplete="off"
+             placeholder="Nazwa"
+             formControlName="boardId"
+             hidden>
+
+      <app-form-header title="Edytuj Tablicę"></app-form-header>
+
+      <div class="form-group">
+        <label class="form-label">Nazwa tablicy</label>
+        <input class="form-control"
+               type="text"
+               id="email"
+               name="name"
+               autocomplete="off"
+               placeholder="Nazwa"
+               formControlName="name">
+        <app-input-validation [control]="editForm.getControl('name')"></app-input-validation>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Projekt</label>
+        <select type="text"
+                class="form-control"
+                id="projectId"
+                formControlName="projectId"
+                placeholder="Wybierz projekt">
+
+
+          <option *ngFor="let project of (projects$ | async)" [value]="project.id">{{ project.title }}</option>
+        </select>
+        <app-input-validation [control]="editForm.getControl('projectId')"></app-input-validation>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data utworzenia</label>
+        <input type="date"
+               class="form-control"
+               value="{{createAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Data modyfikacji</label>
+        <input type="date"
+               class="form-control"
+               value="{{updateAt | date:'yyyy-MM-dd'}}"
+               disabled />
+      </div>
+    </div>
+
 
     <!--BUTTONS-->
     <div class="btn-container">
