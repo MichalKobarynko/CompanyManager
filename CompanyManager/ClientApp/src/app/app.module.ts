@@ -37,6 +37,7 @@ import { DateFormatDirective } from './directives/date-format.directive';
 import { PasswordToggleDirective } from './directives/password-toggle.directive';
 import { BoardRestService } from './api/services/board-rest.service';
 import { ColumnRestService } from './api/services/column-rest.service';
+import { NavigationService } from './services/navigation.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BoardRestService,
     UserRestService,
     ColumnRestService,
+    NavigationService,
     ContextMenuModalService,
     {
       provide: HTTP_INTERCEPTORS,

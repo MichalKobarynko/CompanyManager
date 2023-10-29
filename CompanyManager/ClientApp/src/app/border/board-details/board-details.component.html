@@ -1,0 +1,103 @@
+<div class="board-details__container">
+  <ng-content></ng-content>
+
+  <div class="board-details__header">
+    <div class="board-details__header-text w-50">
+      <p>
+        {{ (selectedBoard$ | async)?.name ?? 'Please select a board' }}
+      </p>
+    </div>
+    <div class="btn-container w-50">
+      <button type="button"
+              class="button small button-secondary"
+              (click)="onForm('see-tasks')">
+        Tasks
+      </button>
+      <button type="button"
+              class="button small button-secondary"
+              (click)="onForm('profile')">
+        Profile
+      </button>
+      <button type="button"
+              class="button small button-secondary"
+              *ngIf="selectedBoard$ | async"
+              (click)="onForm('user')">
+        Users ({{ (usersInTheProject$ | async)?.length }})
+      </button>
+
+      <button type="button"
+              class="button small button-danger"
+              (click)="onLogout()">
+        Logout
+      </button>
+    </div>
+  </div>
+  <div class="board-details__actions"
+       *ngIf="selectedBoard$ | async">
+    <div class="board-details__actions-add-buttons">
+      <button type="button"
+              class="button small button-secondary"
+              (click)="onForm('column')">
+        Add column
+      </button>
+      <button type="button"
+             
+              class="button small button-secondary"
+              (click)="onForm('task', true)">
+        Add task
+      </button>
+    </div>
+    <div class="board-details__actions-filter-buttons">
+      <div class="form-group">
+        <select class="form-control small" [(ngModel)]="boardType">
+          <option default value="kanban">Kanban</option>
+          <option value="table">Table</option>
+        </select>
+      </div>
+
+      <!--<button type="button"
+          class="button small button-secondary"
+          (click)="onForm('user')">
+    Users
+  </button>-->
+      <div class="form-group">
+        <select class="form-control small">
+          <option default [value]="{ column: 'title', direction: 'asc' }" hidden>
+            Title A-Z
+          </option>
+          <option [ngValue]="{ column: 'title', direction: 'asc' }">
+            Title A-Z
+          </option>
+          <option [ngValue]="{ column: 'title', direction: 'des' }">
+            Title Z-A
+          </option>
+          <option [ngValue]="{ column: 'updatedAt', direction: 'asc' }">
+            UpdatedAt asc
+          </option>
+          <option [ngValue]="{ column: 'updatedAt', direction: 'des' }">
+            UpdatedAt des
+          </option>
+          <option [ngValue]="{ column: 'createdAt', direction: 'asc' }">
+            CreatedAt asc
+          </option>
+          <option [ngValue]="{ column: 'createdAt', direction: 'des' }">
+            CreatedAt des
+          </option>
+        </select>
+      </div>
+      <!--<select class="button-global button" [(ngModel)]="sortBy">-->
+      <app-filter-menu [tags]="tags$ | async"
+                       (selectedTags)="onSelectedTags($event)">
+      </app-filter-menu>
+
+      <div class="form-group">
+        <input type="text"
+               aria-label="search task by title"
+               placeholder="Search by title"
+               class="form-control small"
+               name="searchTerm"
+               [(ngModel)]="searchTerm" />
+      </div>
+    </div>
+  </div>
+</div>

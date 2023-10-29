@@ -16,6 +16,11 @@
     padding-left: 1rem;
     width: 100%;
     height: $control-height;
+
+    &.small {
+      padding-left: 0.25rem;
+      height: 2rem;
+    }
   }
 }
 

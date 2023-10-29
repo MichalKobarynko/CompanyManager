@@ -18,3 +18,5 @@ export enum FormStatus {
 }
 
 export type TabNameAssign = 'peek' | 'assign';
+
+export type SortBy = { column: keyof Task; direction: 'asc' | 'des' };

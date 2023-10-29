@@ -20,6 +20,8 @@ import { CollapseButtonModule } from "./collapse-button/collapse-button.module";
 import { AccordionItemModule } from "./accordion-item/accordion-item.module";
 import { FormModule } from "./form/form.module";
 import { PictureModule } from "./picture/picture.module";
+import { BoardDetailsModule } from "./board-details/board-details.module";
+import { MobileNavigationModule } from "./mobile-navigation/mobile-navigation.module";
 
 @NgModule({
   declarations: [BorderComponent],
@@ -35,6 +37,8 @@ import { PictureModule } from "./picture/picture.module";
     ContextMenuModalModule,
     TranslateModule,
     PictureModule,
+    BoardDetailsModule,
+    MobileNavigationModule,
     FormModule
   ],
   providers: [

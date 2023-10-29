@@ -38,6 +38,10 @@
   <div *ngIf="showBoard; else logo"
        [ngClass]="{'board-main': showBoard, 'picture-container': !showBoard}"
        class="board-main">
+
+    <app-board-details *ngIf="status === 'ok'">
+      <app-mobile-navigation></app-mobile-navigation>
+    </app-board-details>
   </div>
 </main>
 
@@ -47,30 +51,5 @@
   </div>
 </ng-template>
 
-
-<!--<main class="main">
-  <aside class="board-sidebar">
-
-    
-
-    
-    
-  </aside>
-  
-  <div class="board-details-wrapper">-->
-
-    <!--<app-board-details *ngIf="status === 'ok'">
-      <app-mobile-navigation></app-mobile-navigation>
-    </app-board-details>-->
-
-    <!--<div class="loading-wrapper" *ngIf="status === 'loading'">
-
-      <p>Loading...</p>
-    </div>
-    <div class="loading-wrapper" *ngIf="status === 'error'">
-      <h2>Something went wrong! Try later!</h2>
-    </div>
-  </div>
-</main>-->
 
 
